@@ -1,0 +1,45 @@
+{
+  "title": "Engineered for Roasting Excellence",
+  "subTitle": "Precision machinery tailored to your production scale",
+  "badge": "Roaster's Favorite",
+  "thirdOption": "Need custom solutions or higher capacity?",
+  "btnText": "Get an Enterprise Quote",
+
+  "starterKit": {
+    "name": "Shop Roasters",
+    "description": "Optimum size for small-middle sized roasteries",
+    "price": "Explore",
+    "cents": "",
+    "billingFrequency": "",
+    "features": [
+      "Cropster & Artisan Compatibility",
+      "Free profile repeating software",
+      "Double-walled drum +15% capacity",
+      "Modulated Premix Burner system",
+      "Drum speed & airflow controls",
+      "Cast iron front plate durability",
+      "Easy maintenance access"
+    ],
+    "purchaseBtnTitle": "Explore Our Machines",
+    "purchaseLink": "/products" 
+  },
+
+  "professionalToolbox": {
+    "name": "Industrial Roasters",
+    "description": "For mass production purposes in large scales",
+    "price": "Explore",
+    "cents": "",
+    "billingFrequency": "",
+    "features": [
+      "High-efficiency insulation system",
+      "Extended 50kg+ batch capacity",
+      "Hot air flow precision control",
+      "Global brand components (Siemens, ABB)",
+      "Custom configuration options",
+      "Production-line consistency",
+      "Dedicated 24/7 priority support"
+    ],
+    "purchaseBtnTitle": "Explore Our Machines",
+    "purchaseLink": "/products" 
+  }
+}

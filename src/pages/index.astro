@@ -1,0 +1,148 @@
+---
+// Import the necessary components
+import MainLayout from "@/layouts/MainLayout.astro";
+import HeroSection from "@components/sections/landing/HeroSection.astro";
+import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
+import ClientsSection from "@components/sections/landing/ClientsSection.astro";
+import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
+import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
+import TestimonialsSection from "@components/sections/testimonials/TestimonialsSection.astro";
+import PricingSection from "@components/sections/pricing/PricingSection.astro";
+import FAQ from "@components/sections/misc/FAQ.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import heroImage from "@images/kraffe-hero3.webp";
+import faqs from "@data/faqs.json";
+import features from "@data/features.json";
+import pricing from "@data/pricing.json";
+import featureImage from "@images/features-image.avif";
+import construction from "@images/construction-image.avif";
+import tools from "@images/automated-tools.avif";
+import dashboard from "@images/dashboard-image.avif";
+import { partnersData } from "@/data_files/constants";
+
+const avatarSrcs: Array<string> = [
+  "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+];
+---
+
+<MainLayout>
+  <AnnouncementBanner
+    btnId="dismiss-button"
+    btnTitle="Explore ScrewFast on GitHub"
+    url="https://github.com/mearashadowfax/ScrewFast"
+  />
+
+    <HeroSection
+    title=`Master the Art of Roasting: <span class="text-yellow-500 dark:text-yellow-400">Kraffe Industrial Coffee Roasting Machines</span>`
+    subTitle="Unlock exceptional flavor consistency and operational efficiency with Kraffe's expertly engineered commercial coffee roasters. Built for durability, designed for precision, backed by lifetime support."
+    primaryBtn="Explore Our Machines"
+    primaryBtnURL="/products" 
+    secondaryBtn="Request a Consultation"
+    secondaryBtnURL="/contact"
+    withReview={true} 
+    avatars={avatarSrcs} 
+    rating=`<span class="font-bold">4.8</span> / 5` 
+    starCount={4} 
+    reviews=`Trusted by <span class="font-bold">Roasteries</span> Worldwide` 
+    src={heroImage}
+    alt="Detailed view of a commercial Kraffe industrial coffee roasting machine" 
+  />
+
+    <ClientsSection
+    title="The Choice of Leading Coffee Roasters"
+    subTitle="Join the ranks of businesses achieving roasting excellence with Kraffe."
+    partners={partnersData} 
+  />
+
+    <FeaturesGeneral
+    title="Engineered for Roasting Excellence"
+    subTitle="Every Kraffe roaster is meticulously designed for unparalleled control, consistency, and efficiency, empowering you to unlock the full potential of every bean."
+    src={featureImage} 
+    alt="Close-up of Kraffe coffee roaster components" 
+    features={features} 
+  />
+
+    <FeaturesNavs
+    title=`Unlock Peak Performance: <span class="text-yellow-500 dark:text-yellow-400">Inside the Kraffe Roaster</span>`
+    tabs={[
+      {
+        heading: "Advanced Thermal Control",
+        content:
+          "Master heat transfer with our double-walled drums, superior insulation, and robust cast iron front plates.",
+        svg: "tools", 
+        src: tools, 
+        alt: "Kraffe roaster drum detail", 
+        first: true,
+      },
+      {
+        heading: "Precision Roasting System",
+        content:
+          "Dial in perfection. Modulated premix burners, variable airflow, and adjustable drum speed give you ultimate control over the roast profile.",
+        svg: "dashboard", 
+        src: dashboard, 
+        alt: "Kraffe roaster control panel close-up", 
+        second: true,
+      },
+      {
+        heading: "Smart Roastery Integration",
+        content:
+          "Streamline your workflow. Our machines seamlessly integrate with Cropster and Artisan, complemented by our free profile repeating software.",
+        svg: "house", 
+        src: construction, 
+        alt: "Kraffe roaster integrated into a cafe setting", 
+      },
+    ]}
+  />
+
+    <TestimonialsSection
+    title="Trusted by Professional Roasters"
+    subTitle="Hear why leading roasteries choose Kraffe for quality, consistency, and support."
+    testimonials={[
+      {
+        content:
+          "The machine is incredibly user-friendly and delivers consistent results every time. The roasting process is efficient and precise, allowing me to achieve the perfect roast for my coffee beans.",
+        author: "Amir Montezar",
+        role: "Etude Coffee Co.",
+        avatarSrc:
+          "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80", // Replace with an actual image URL if possible
+      },
+      // Add more testimonials here if available
+      // { content: "...", author: "...", role: "...", avatarSrc: "..." },
+    ]}
+    statistics={[
+      {
+        count: "100%",
+        description:
+          "Quality Assurance: Rigorous quality control on every machine before shipment.",
+      },
+      {
+        count: "Custom",
+        description:
+          "Solution Oriented: Flexible design approach to meet your specific roastery needs.",
+      },
+      {
+        count: "Global",
+        description:
+          "Sustainability: Easy maintenance with components from worldwide known brands.",
+      },
+      {
+        count: "7/24",
+        description:
+          "Lifetime Support: Dedicated lifetime support from our solution-oriented team.",
+      },
+    ]}
+  />
+
+    <PricingSection pricing={pricing} />
+
+    <FAQ title="Frequently<br />Asked Questions" faqs={faqs} />
+
+    <HeroSectionAlt
+    title="Ready to Perfect Your Roast?"
+    subTitle="Connect with our experts today to discuss your needs and discover the ideal Kraffe roaster for your business."
+    url="/contact" 
+  />
+</MainLayout>

@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+import kraffeLogo from "@images/kraffe-logo.png"; // Yüklediğiniz logo dosyasının yolu
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<Image
+  src={kraffeLogo}
+  alt="Kraffe Roasters Logo"
+  loading="eager"
+  fetchpriority="high"
+  class:list={[className]}
+  {...rest} 
+  /> 
+  
