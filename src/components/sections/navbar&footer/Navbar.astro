@@ -1,12 +1,12 @@
 ---
 //Import relevant dependencies
-// ThemeIcon importu kaldırıldı
+// ThemeIcon importu zaten kaldırılmıştı
 import NavLink from "@components/ui/links/NavLink.astro";
 import Authentication from "../misc/Authentication.astro";
 import enStrings from "@utils/navigation.ts";
 import frStrings from "@utils/fr/navigation.ts";
 import BrandLogo from "@components/BrandLogo.astro";
-import LanguagePicker from "@components/ui/LanguagePicker.astro";
+import LanguagePicker from "@components/ui/LanguagePicker.astro"; // Bu import zaten var
 
 // Select the correct translation based on the page's lang prop:
 const strings = Astro.currentLocale === "fr" ? frStrings : enStrings;
@@ -19,7 +19,7 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
 >
   <!-- Navigation container -->
   <nav
-    class="relative mx-2 w-full rounded-[36px] border border-yellow-100/40 bg-yellow-50/60 px-4 py-3 backdrop-blur-md dark:border-neutral-700/40 dark:bg-neutral-800/80 dark:backdrop-blur-md md:flex md:items-center md:justify-between md:px-6 md:py-0 lg:px-8 xl:mx-auto"
+    class="relative mx-2 w-full rounded-[36px] border border-neutral-200/40 bg-neutral-50/60 px-4 py-3 backdrop-blur-md dark:border-neutral-700/40 dark:bg-neutral-800/80 dark:backdrop-blur-md md:flex md:items-center md:justify-between md:px-6 md:py-0 lg:px-8 xl:mx-auto"
     aria-label="Global"
   >
     <div class="flex items-center justify-between">
@@ -31,52 +31,53 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
       >
         <BrandLogo class="h-auto w-40" />
       </a>
-      <!-- Collapse toggle for smaller screens -->
-      <div class="ml-auto mr-5 md:hidden">
-        <button
-          type="button"
-          class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-neutral-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-hidden"
-          data-hs-collapse="#navbar-collapse-with-animation"
-          aria-controls="navbar-collapse-with-animation"
-          aria-label="Toggle navigation"
-        >
-          <svg
-            class="h-[1.25rem] w-[1.25rem] shrink-0 hs-collapse-open:hidden"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+      <!-- Right side icons for mobile -->
+      <div class="flex items-center gap-x-2 md:hidden"> {/* Mobil ikonları gruplandırmak için bir div */}
+        {/* LanguagePicker component specifically for smaller screens */}
+        <LanguagePicker /> {/* Buraya ekledik */}
+        {/* Collapse toggle for smaller screens */}
+        <div class=""> {/* ml-auto mr-5 kaldırıldı, gap-x-2 ile ayarlanacak */}
+          <button
+            type="button"
+            class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-neutral-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-hidden"
+            data-hs-collapse="#navbar-collapse-with-animation"
+            aria-controls="navbar-collapse-with-animation"
+            aria-label="Toggle navigation"
           >
-            <line x1="3" x2="21" y1="6" y2="6"></line>
-            <line x1="3" x2="21" y1="12" y2="12"></line>
-            <line x1="3" x2="21" y1="18" y2="18"></line>
-          </svg>
-          <svg
-            class="hidden h-[1.25rem] w-[1.25rem] shrink-0 hs-collapse-open:block"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M18 6 6 18"></path>
-            <path d="m6 6 12 12"></path>
-          </svg>
-        </button>
+            <svg
+              class="h-[1.25rem] w-[1.25rem] shrink-0 hs-collapse-open:hidden"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="3" x2="21" y1="6" y2="6"></line>
+              <line x1="3" x2="21" y1="12" y2="12"></line>
+              <line x1="3" x2="21" y1="18" y2="18"></line>
+            </svg>
+            <svg
+              class="hidden h-[1.25rem] w-[1.25rem] shrink-0 hs-collapse-open:block"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </button>
+        </div>
       </div>
-      <!-- ThemeIcon component specifically for smaller screens (KALDIRILDI) -->
-      <!-- <span class="inline-block md:hidden">
-        <ThemeIcon />
-      </span> -->
     </div>
-    <!-- Contains navigation links -->
+    <!-- Contains navigation links for Desktop -->
     <div
       id="navbar-collapse-with-animation"
       class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
@@ -91,13 +92,12 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
         ))}
 
         <Authentication />
-        <LanguagePicker />
-        <!-- ThemeIcon component specifically for larger screens (KALDIRILDI) -->
-        <!-- <span class="hidden md:inline-block">
-          <ThemeIcon />
-        </span> -->
+        {/* Language Picker for Desktop */}
+        <div class="hidden md:block"> {/* Masaüstünde göster */}
+          <LanguagePicker />
+        </div>
+        {/* ThemeIcon kaldırılmıştı */}
       </div>
     </div>
   </nav>
 </header>
-<!-- Theme Appearance script to manage light/dark modes (KALDIRILDI) -->
