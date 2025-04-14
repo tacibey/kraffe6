@@ -13,9 +13,9 @@ import heroImage from "@images/hero-kraffe.avif";
 import faqs from "@data/faqs.json";
 import features from "@data/features.json";
 import pricing from "@data/pricing.json";
-import construction from "@images/construction-image.avif";
-import tools from "@images/automated-tools.avif";
-import dashboard from "@images/dashboard-image.avif";
+import thermalControlImage from "@images/coffee-bean-roaster-machine2.avif";
+import precisionSystemImage from "@images/sample-coffee-roaster.webp";
+import smartIntegrationImage from "@images/cropster-artisan.avif";
 import { partnersData } from "@/data_files/constants";
 
 const avatarSrcs: Array<string> = [
@@ -59,34 +59,34 @@ const avatarSrcs: Array<string> = [
 
     <FeaturesNavs
     title=`Unlock Peak Performance: <span class="text-yellow-500 dark:text-yellow-400">Inside the Kraffe Roaster</span>`
-    tabs={[
-      {
-        heading: "Advanced Thermal Control",
-        content:
-          "Master heat transfer with our double-walled drums, superior insulation, and robust cast iron front plates.",
-        svg: "tools", 
-        src: tools, 
-        alt: "Kraffe roaster drum detail", 
-        first: true,
-      },
-      {
-        heading: "Precision Roasting System",
-        content:
-          "Dial in perfection. Modulated premix burners, variable airflow, and adjustable drum speed give you ultimate control over the roast profile.",
-        svg: "dashboard", 
-        src: dashboard, 
-        alt: "Kraffe roaster control panel close-up", 
-        second: true,
-      },
-      {
-        heading: "Smart Roastery Integration",
-        content:
-          "Streamline your workflow. Our machines seamlessly integrate with Cropster and Artisan, complemented by our free profile repeating software.",
-        svg: "house", 
-        src: construction, 
-        alt: "Kraffe roaster integrated into a cafe setting", 
-      },
-    ]}
+     tabs={[
+   {
+     heading: "Advanced Thermal Control",
+     content:
+       "Master heat transfer with our double-walled drums, superior insulation, and robust cast iron front plates.",
+     svg: "tools", // Bu ikon adını Kraffe'ye uygun bir ikonla değiştirebiliriz (örn: "thermometer" veya "shield-check")
+     src: thermalControlImage, // <-- YENİ DEĞİŞKEN
+     alt: "Close-up view of Kraffe Roaster's double-walled drum insulation", // <-- YENİ ALT METİN
+     first: true,
+   },
+   {
+     heading: "Precision Roasting System",
+     content:
+       "Dial in perfection. Modulated premix burners, variable airflow, and adjustable drum speed give you ultimate control over the roast profile.",
+     svg: "dashboard", // Bu ikon adını Kraffe'ye uygun bir ikonla değiştirebiliriz (örn: "sliders" veya "adjustments")
+     src: precisionSystemImage, // <-- YENİ DEĞİŞKEN
+     alt: "Detailed shot of Kraffe Roaster's precision burner system", // <-- YENİ ALT METİN
+     second: true, // Bu stili korumak isteyip istemediğinize bağlı
+   },
+   {
+     heading: "Smart Roastery Integration",
+     content:
+       "Streamline your workflow. Our machines seamlessly integrate with Cropster and Artisan, complemented by our free profile repeating software.",
+     svg: "puzzle", // İkon adını değiştirdik (house yerine puzzle daha uygun olabilir)
+     src: smartIntegrationImage, // <-- YENİ DEĞİŞKEN
+     alt: "Screenshot showing Kraffe Roaster software integration with Cropster/Artisan", // <-- YENİ ALT METİN
+   },
+ ]}
   />
 
     <TestimonialsSection
