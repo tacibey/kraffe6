@@ -22,24 +22,13 @@ interface Props {
 This is the main structure for the page.
 We set the language of the page to English and add classes for scrollbar and scroll behavior.
 -->
-<html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
+<html lang={lang} class="dark scrollbar-hide lenis lenis-smooth scroll-pt-16"> 
   <head>
     <!-- Adding metadata to the HTML document -->
     <Meta meta={meta} structuredData={structuredData} />
     <!-- Define the title of the page -->
     <title>{title}</title>
-    <script is:inline>
-      // Script to handle dark mode. It will check if the theme is stored in localStorage or if dark theme is preferred by system settings
-      if (
-        localStorage.getItem("hs_theme") === "dark" ||
-        (!("hs_theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
+    
     <script>
       import "@scripts/lenisSmoothScroll.js";
     </script>
