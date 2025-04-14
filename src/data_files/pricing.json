@@ -1,14 +1,14 @@
 {
   "title": "Engineered for Roasting Excellence",
   "subTitle": "Precision machinery tailored to your production scale",
-  "badge": "Roaster's Favorite",
+  "badge": "Explore Our Machines",
   "thirdOption": "Need custom solutions or higher capacity?",
   "btnText": "Get an Enterprise Quote",
 
   "starterKit": {
     "name": "Shop Roasters",
     "description": "Optimum size for small-middle sized roasteries",
-    "price": "Explore",
+    "price": "",
     "cents": "",
     "billingFrequency": "",
     "features": [
@@ -27,7 +27,7 @@
   "professionalToolbox": {
     "name": "Industrial Roasters",
     "description": "For mass production purposes in large scales",
-    "price": "Explore",
+    "price": "",
     "cents": "",
     "billingFrequency": "",
     "features": [
