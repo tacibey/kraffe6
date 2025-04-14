@@ -2,9 +2,9 @@
 const navBarLinks = [
   { name: "Home", url: "/" },
   { name: "Products", url: "/products" },
-  { name: "Services", url: "/services" },
+  { name: "About Us", url: "/about" },
   { name: "Blog", url: "/blog" },
-  { name: "Contact", url: "/contact" },
+  { name: "Contact Us", url: "/contact-us" },
 ];
 // An array of links for footer
 const footerLinks = [
