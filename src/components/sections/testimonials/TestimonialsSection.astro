@@ -1,15 +1,23 @@
 ---
 import TestimonialItem from "./TestimonialItem.astro";
 import StatsGrid from "../../ui/blocks/StatsGrid.astro";
-import type { ImageMetadata } from 'astro'; 
+import type { ImageMetadata } from 'astro'; // Import type
 
-const {
-  title,
-  subTitle,
-  testimonials,
-  statistics
-} = Astro.props;
+// TypeScript type definitions (YUKARI TAŞINDI)
+type Testimonial = {
+  content: string;
+  author: string;
+  role: string;
+  avatarSrc: ImageMetadata; // Tip güncellenmişti
+  avatarAlt: string;       // Prop eklenmişti
+};
 
+type StatProps = {
+  count: string;
+  description: string;
+};
+
+// Props interface (Artık yukarıda tanımlanan tipleri kullanıyor)
 interface Props {
   title: string;
   subTitle?: string;
@@ -17,20 +25,12 @@ interface Props {
   statistics?: StatProps[];
 }
 
-// TypeScript type for testimonials
-type Testimonial = {
-  content: string;
-  author: string;
-  role: string;
-  avatarSrc: ImageMetadata; 
-  avatarAlt: string;       
-};
-
-// TypeScript type for stats.
-type StatProps = {
-  count: string;
-  description: string;
-};
+const {
+  title,
+  subTitle,
+  testimonials,
+  statistics
+} = Astro.props;
 ---
 
 <section
@@ -63,12 +63,12 @@ type StatProps = {
           author={testimonial.author}
           role={testimonial.role}
           avatarSrc={testimonial.avatarSrc}
-          avatarAlt={testimonial.avatarAlt} {/* <-- avatarAlt prop'u eklendi */}
-         />
+          avatarAlt={testimonial.avatarAlt} {/* avatarAlt prop'unun iletildiğinden emin olundu */}
+        />
         ))
       }
     </div>
-{ statistics &&
+    { statistics &&
     <div class="mt-10 lg:col-span-6 lg:col-end-13 lg:mt-0">
       <div class="space-y-6 sm:space-y-8">
         <ul
