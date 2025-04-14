@@ -2,7 +2,6 @@
 //Import relevant dependencies
 // ThemeIcon importu zaten kaldırılmıştı
 import NavLink from "@components/ui/links/NavLink.astro";
-import Authentication from "../misc/Authentication.astro";
 import enStrings from "@utils/navigation.ts";
 import frStrings from "@utils/fr/navigation.ts";
 import BrandLogo from "@components/BrandLogo.astro";
@@ -82,16 +81,16 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
       id="navbar-collapse-with-animation"
       class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
     >
-      <!-- Navigation links container -->
+            <!-- Navigation links container -->
       <div
         class="mt-5 flex flex-col gap-x-0 gap-y-4 md:mt-0 md:flex-row md:items-center md:justify-end md:gap-x-4 lg:gap-x-7 md:gap-y-0 md:ps-7"
       >
-        <!-- Navigation links and Authentication component -->
+        <!-- Navigation links -->
         {strings.navBarLinks.map(link => (
           <NavLink url={link.url} name={link.name} />
         ))}
 
-        <Authentication />
+        {/* Authentication component kaldırıldı */}
         {/* Language Picker for Desktop */}
         <div class="hidden md:block"> {/* Masaüstünde göster */}
           <LanguagePicker />
