@@ -27,7 +27,7 @@ longDescription:
 descriptionList:
   - title: "Automatic Profile Roasting"
     subTitle: "Includes a diverse range of screw types and sizes to accommodate various applications and materials."
-  - title: "10" Touchscreen"
+  - title: "10'' Touchscreen"
     subTitle: "Each screw is designed for effortless installation, ensuring hassle-free fastening every time."
   - title: "3rd Party Software Compatibility"
     subTitle: "Eliminates the need for multiple trips to the hardware store, saving time and effort on your projects."
