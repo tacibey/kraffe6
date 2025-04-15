@@ -5,8 +5,8 @@ main:
   id: 2
   content: |
     Introducing Kraffe KRF-03: 3kg Commercial Coffee Roasting Machine ideal for small cafes and specialty roasters seeking consistent, high-quality results.
-  imgCard: "@/images/Kraffe-Roasters_KRF-03.webp"
-  imgMain: "@/images/Kraffe-Roasters_KRF-03.webp"
+  imgCard: "@/images/krf03.avif"
+  imgMain: "@/images/krf03.avif"
   imgAlt: "Kraffe KRF-03 Commercial Coffee Roasting Machine, side view"
 tabs:
   - id: "tabs-with-card-item-1"
