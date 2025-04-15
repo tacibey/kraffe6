@@ -53,10 +53,14 @@ const productsCollection = defineCollection({
         description: z.array(z.array(z.string())),
       })
     ).optional(),
+    // --- DEĞİŞİKLİK BU SATIRDA ---
     blueprints: z.object({
       first: image().optional(),
       second: image().optional(),
-    }),
+    }).optional(), // <<< .optional() BURAYA EKLENDİ
+    // --- DEĞİŞİKLİK SONU ---
+     // Gerekirse ekleyin: 'krf-03.md' dosyasında kullanmasak da şemada opsiyonel olarak bulunsun.
+    technicalLayoutImage: image().optional(),
   }),
 });
 
@@ -83,7 +87,7 @@ const insightsCollection = defineCollection({
   schema: ({ image }) => z.object ({
   title: z.string(),
   description: z.string(),
-  // contents: z.array(z.string()),
+  // contents: z.array(z.string()), // Bu satır zaten yorumlu kalabilir
   cardImage: image(),
   cardImageAlt: z.string(),
   }),
