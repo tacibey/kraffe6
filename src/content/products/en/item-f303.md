@@ -50,6 +50,6 @@ specificationsRight:
   - title: "Applications"
     subTitle: "Ideal for use in construction, machinery, automotive, and other heavy-duty applications that demand strong and reliable fastening."
 blueprints:
-  first: "@/images/blueprint-1.avif"
-  second: "@/images/blueprint-2.avif"  
+  first: "@/images/3kg-layout-2048x1474.webp"
+  second: "@/images/kraffe-03-catalog.avif"  
 ---
