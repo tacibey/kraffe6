@@ -1,13 +1,13 @@
 ---
-title: "SF-AB A765"
-description: "Assorted Screw Set" 
+title: "Kraffe KRF-03"
+description: "Commercial Coffee Roasting Machine" 
 main:
   id: 2
   content: |
-    Introducing the SF-AB A765 Assorted Screw Set – the ultimate solution for your screw fastening needs. This comprehensive set includes a wide variety of screws meticulously curated to tackle various projects with ease and precision.
-  imgCard: "@/images/product-image-2.avif"
-  imgMain: "@/images/product-image-main-2.avif"
-  imgAlt: "Mockup boxes of assorted screw set"
+    Introducing Kraffe KRF-03: 3kg Commercial Coffee Roasting Machine ideal for small cafes and specialty roasters seeking consistent, high-quality results.
+  imgCard: "@/images/Kraffe-Roasters_KRF-03.webp"
+  imgMain: "@/images/Kraffe-Roasters_KRF-03.webp"
+  imgAlt: "Kraffe KRF-03 Commercial Coffee Roasting Machine, side view"
 tabs:
   - id: "tabs-with-card-item-1"
     dataTab: "#tabs-with-card-1"
@@ -19,18 +19,22 @@ tabs:
     dataTab: "#tabs-with-card-3"
     title: "Blueprints"
 longDescription:
-  title: "Versatile Screw Fastening Solutions"
+  title: "Fast and Durable with Kraffe Quality Standards"
   subTitle: |
-    The SF-AB A765 Assorted Screw Set offers unmatched versatility and convenience, making it the perfect choice for DIY enthusiasts and professionals alike. With a comprehensive selection of screws, you'll always have the right fastener for the job.
-  btnTitle: "Contact sales to learn more"
-  btnURL: "#"
+    Experience roasting control like never before with the intuitive Touch Screen Control Panel, allowing you to fine-tune every aspect of the process with ease and precision. Choose your color, details, and additional features to build the commercial coffee roasting machine of your dreams!
+  btnTitle: "Contact Sales"
+  btnURL: "/contact"
 descriptionList:
-  - title: "Wide Variety"
+  - title: "Automatic Profile Roasting"
     subTitle: "Includes a diverse range of screw types and sizes to accommodate various applications and materials."
-  - title: "Ease of Use"
+  - title: "10" Touchscreen"
     subTitle: "Each screw is designed for effortless installation, ensuring hassle-free fastening every time."
-  - title: "Convenience"
+  - title: "3rd Party Software Compatibility"
     subTitle: "Eliminates the need for multiple trips to the hardware store, saving time and effort on your projects."
+  - title: "Easy Maintenance and Installation"
+    subTitle: "Includes a diverse range of screw types and sizes to accommodate various applications and materials."
+  - title: "Modulated Premix Burner"
+    subTitle: "Includes a diverse range of screw types and sizes to accommodate various applications and materials."
 specificationsLeft:
   - title: "Material"
     subTitle: "Constructed from high-quality materials such as stainless steel, ensuring durability and corrosion resistance."
@@ -49,6 +53,6 @@ tableData:
       - ["Finish", "Assorted"]
       - ["Package Contents", "Various screws in a set"]
 blueprints:
-  first: "@/images/blueprint-1.avif"
-  second: "@/images/blueprint-2.avif"
+  first: "@/images/3kg-layout-2048x1474.webp"
+  second: "@/images/kraffe-03-catalog.avif"  
 ---
