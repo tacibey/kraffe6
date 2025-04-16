@@ -1,5 +1,6 @@
 ---
-// Import the necessary dependencies.
+// Gerekli bileşenleri ve resimleri import et
+import { Image } from "astro:assets";
 import AuthBtn from "@components/ui/buttons/AuthBtn.astro";
 import ContactIconBlock from "@components/ui/blocks/ContactIconBlock.astro";
 import TextInput from "@components/ui/forms/input/TextInput.astro";
@@ -7,13 +8,48 @@ import EmailContactInput from "@components/ui/forms/input/EmailContactInput.astr
 import PhoneInput from "@components/ui/forms/input/PhoneInput.astro";
 import TextAreaInput from "@components/ui/forms/input/TextAreaInput.astro";
 import Icon from "@components/ui/icons/Icon.astro";
+import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro"; // Review bileşeni eklendi
+import scaLogo from "@images/sca-logo.webp"; // SCA logosu import edildi
+import ceLogo from "@images/ce-mark.avif"; // CE logosu import edildi
 
-// Define the variables that will be used in this component
+// Review bölümü için avatar kaynakları (index.astro'dan kopyalandı)
+const avatarSrcs: Array<string> = [
+  "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+];
+
+// Sabit metinler
 const title: string = "Contact us";
-const subTitle: string =
-  "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.";
+// Alt başlık güncellendi
+const subTitle: string = "Desire of achieving highest quality standards!";
 const formTitle: string = "Fill in the form below";
+// Form altı metni güncellendi (ReviewComponent eklenecek)
 const formSubTitle: string = "We'll get back to you in 1-2 business days.";
+
+// About Us (Eski Knowledge Base) verileri güncellendi
+const aboutUsHeading: string = "About Us";
+const aboutUsContent: string = "Learn more about Kraffe Roasters' mission and values.";
+const aboutUsLinkTitle: string = "Visit About Us page";
+const aboutUsLinkURL: string = "/about"; // Hedef URL /about olarak ayarlandı
+
+// Office (Eski Visit our office) verileri güncellendi
+const officeHeading: string = "Our Office";
+const officeContent: string = "KRAFFE ROASTERS";
+const officeAddress: string = "Adalet, Manas Blvd. No. 39, Unit 3408, 35530 Bayraklı, İzmir, Turkiye";
+
+// Email verileri güncellendi
+const emailHeading: string = "Contact us by email";
+const emailContent: string = "Prefer the written word? Drop us an email at";
+const emailLinkTitle: string = "info@krafferoasters.com";
+const emailLinkURL: string = "mailto:info@krafferoasters.com"; // mailto: linki eklendi
+
+// Review verileri (index.astro'dan alındı)
+const rating: string = `<span class="font-bold">4.8</span> / 5`;
+const starCount: number = 4;
+const reviews: string = `Trusted by <span class="font-bold">Roasteries</span> Worldwide`;
+
 ---
 
 <!-- Contact Us -->
@@ -25,20 +61,37 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
       >
         {title}
       </h1>
-      <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
+      <p class="mt-1 text-pretty text-lg text-neutral-600 dark:text-neutral-400"> {/* Boyut artırıldı (isteğe bağlı) */}
         {subTitle}
       </p>
+
+      {/* --- YENİ BADGE/LOGO BÖLÜMÜ --- */}
+      <div class="mt-6 flex items-center justify-center gap-x-6 sm:gap-x-8">
+        <Image
+          src={ceLogo}
+          alt="CE Marking Certification Logo"
+          class="h-10 w-auto object-contain sm:h-12" {/* Boyut ayarlandı */}
+          loading="lazy"
+        />
+        <Image
+          src={scaLogo}
+          alt="Specialty Coffee Association Member Logo"
+          class="h-10 w-auto object-contain sm:h-12" {/* Boyut ayarlandı */}
+          loading="lazy"
+        />
+      </div>
+      {/* --- /YENİ BADGE/LOGO BÖLÜMÜ --- */}
+
     </div>
 
-    <div class="mt-12 grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
-      <div class="flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
+    <div class="mt-12 grid items-start gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-16"> {/* items-start eklendi */}
+      {/* Sol Taraf: Form */}
+      <div class="flex flex-col rounded-xl border border-neutral-200 bg-neutral-100 p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 sm:p-6 lg:p-8"> {/* Stil eklendi */}
         <h2
-          class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300"
+          class="mb-8 text-xl font-semibold text-neutral-800 dark:text-neutral-200" /* Font kalınlığı ayarlandı */
         >
           {formTitle}
         </h2>
-        <!-- Form for user input with various input fields.-->
-        <!-- Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)-->
         <form>
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -50,7 +103,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
               <TextInput
                 id="hs-lastname-contacts"
                 label="Last Name"
-                name="hs-firstname-contacts"
+                name="hs-lastname-contacts"
               />
             </div>
             <EmailContactInput id="hs-email-contacts" />
@@ -70,22 +123,30 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
             <p class="text-sm text-neutral-600 dark:text-neutral-400">
               {formSubTitle}
             </p>
+             {/* --- YENİ REVIEW BÖLÜMÜ --- */}
+            <div class="mt-6"> {/* Boşluk için mt-6 eklendi */}
+              <ReviewComponent avatars={avatarSrcs} starCount={starCount} rating={rating} reviews={reviews} />
+            </div>
+            {/* --- /YENİ REVIEW BÖLÜMÜ --- */}
           </div>
         </form>
       </div>
 
-      <!--ContactIconBlocks are used to display different methods of contacting, including visiting office, email, browsing knowledgebase, and FAQ.-->
-      <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
+      {/* Sağ Taraf: İkon Blokları */}
+      <div class="divide-y divide-neutral-200 dark:divide-neutral-700">
+        {/* About Us (Eski Knowledge Base) */}
         <ContactIconBlock
-          heading="Knowledgebase"
-          content="Browse through all of our knowledgebase articles."
+          heading={aboutUsHeading}
+          content={aboutUsContent}
           isLinkVisible={true}
-          linkTitle="Visit guides & tutorials"
-          linkURL="#"
+          linkTitle={aboutUsLinkTitle}
+          linkURL={aboutUsLinkURL}
           isArrowVisible={true}
-          ><Icon name="question" />
+          ><Icon name="info" /> {/* İkon değişti */}
         </ContactIconBlock>
 
+        {/* FAQ (KALDIRILDI) */}
+        {/*
         <ContactIconBlock
           heading="FAQ"
           content="Explore our FAQ for quick, clear answers to common queries."
@@ -95,21 +156,24 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
           isArrowVisible={true}
           ><Icon name="chatBubble" />
         </ContactIconBlock>
+        */}
 
+        {/* Our Office (Eski Visit our office) */}
         <ContactIconBlock
-          heading="Visit our office"
-          content="UK ScrewFast"
+          heading={officeHeading}
+          content={officeContent}
           isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
+          addressContent={officeAddress}
           ><Icon name="mapPin" />
         </ContactIconBlock>
 
+        {/* Contact us by email */}
         <ContactIconBlock
-          heading="Contact us by email"
-          content="Prefer the written word? Drop us an email at"
+          heading={emailHeading}
+          content={emailContent}
           isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
-          linkURL="#"
+          linkTitle={emailLinkTitle}
+          linkURL={emailLinkURL}
           ><Icon name="envelopeOpen" />
         </ContactIconBlock>
       </div>
