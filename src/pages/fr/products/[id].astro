@@ -1,7 +1,7 @@
 ---
 // Import section components
 import MainLayout from "@/layouts/MainLayout.astro";
-import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro"; // Banner importu
 import ProductTabBtn from "@components/ui/buttons/ProductTabBtn.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import { Image } from "astro:assets";
@@ -14,16 +14,16 @@ declare global {
     gsap: any;
   }
 }
-// This gets the static paths for all the unique products
+// This gets the static paths for all the unique FR products
 
 export async function getStaticPaths() {
   const productEntries = await getCollection("products", ({ id }) =>
-    id.startsWith("fr/")
+    id.startsWith("fr/") // <-- Filtre FR olarak güncellendi
   );
   return productEntries.map((product) => {
     const idWithoutLang = product.id.replace(/^fr\//, ""); // Remove the "fr/" prefix
     return {
-      params: { lang: "fr", id: idWithoutLang },
+      params: { lang: 'fr', id: idWithoutLang }, // lang: 'fr' eklendi
       props: { product },
     };
   });
@@ -34,54 +34,60 @@ const { product } = Astro.props;
 const pageTitle: string = `${product.data.title} | ${SITE.title}`;
 ---
 
-<MainLayout title={pageTitle}>
- <AnnouncementBanner
-    btnId="dismiss-button" 
+<MainLayout title={pageTitle} lang="fr"> {/* lang="fr" eklendi */}
+  {/* Banner (FR) */}
+  <AnnouncementBanner
+    btnId="dismiss-button"
     btnTitle="Obtenir une offre" {/* <-- Fransızca metin */}
     url="/fr/contact"           {/* <-- Fransızca URL */}
   />
-
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
   </div>
 
+  {/* === YERLEŞİMİ GÜNCELLENEN BÖLÜM (EN ile aynı) === */}
   <section
-    class="mx-auto flex max-w-[85rem] flex-col px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
+    class="mx-auto grid max-w-[85rem] grid-cols-1 items-center gap-8 px-4 py-10 sm:px-6 md:grid-cols-5 lg:px-8 lg:py-14 2xl:max-w-full"
   >
-    <div>
-      <p
-        id="fadeText"
-        class="mb-8 max-w-prose text-pretty font-light text-neutral-700 dark:text-neutral-300 sm:text-xl"
-      >
-        {product.data.main.content}
-      </p>
-    </div>
-    <div
-      class="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0"
-    >
-      <div id="fadeInUp">
+    {/* Metin İçeriği (3 Sütun) */}
+    <div class="md:col-span-3">
+      <div> {/* Giriş paragrafı */}
+        <p
+          id="fadeText"
+          class="mb-8 max-w-prose text-pretty font-light text-neutral-700 dark:text-neutral-300 sm:text-xl"
+        >
+          {product.data.main.content}
+        </p>
+      </div>
+      <div id="fadeInUp"> {/* Başlık ve açıklama */}
         <h1
           class="block text-4xl font-bold tracking-tighter text-neutral-800 dark:text-neutral-200 sm:text-5xl md:text-6xl lg:text-7xl"
         >
           {product.data.title}
         </h1>
-        <p class="text-lg text-neutral-600 dark:text-neutral-400">
+        <p class="mt-2 text-lg text-neutral-600 dark:text-neutral-400">
           {product.data.description}
         </p>
       </div>
-      <div>
-        <Image
-          id="fadeInMoveRight"
-          src={product.data.main.imgMain}
-          class="w-[600px]"
-          alt={product.data.main.imgAlt}
-          format={"avif"}
-          loading={"eager"}
-        />
-      </div>
+    </div>
+
+    {/* Resim (2 Sütun) */}
+    <div class="flex items-center justify-center md:col-span-2">
+      <Image
+        id="fadeInMoveRight"
+        src={product.data.main.imgMain}
+        class="w-full max-w-xl rounded-lg"
+        alt={product.data.main.imgAlt}
+        format={"avif"}
+        loading={"eager"}
+      />
     </div>
   </section>
+  {/* === /YERLEŞİMİ GÜNCELLENEN BÖLÜM === */}
 
+
+  {/* === SEKMELER VE İÇERİKLERİ (DEĞİŞTİRİLMEDİ) === */}
   <div class="mx-auto max-w-[85rem] px-4 pt-10 sm:px-6 lg:px-8 lg:pt-14">
+    {/* Sekme Butonları */}
     <nav
       class="mx-auto grid max-w-6xl gap-y-px sm:flex sm:gap-x-4 sm:gap-y-0"
       aria-label="Tabs"
@@ -99,11 +105,13 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
       }
     </nav>
 
+    {/* Sekme İçerikleri */}
     <div class="mt-12 md:mt-16">
+      {/* Description Sekmesi */}
       <div id="tabs-with-card-1" role="tabpanel">
         <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
           <div class="grid gap-12 md:grid-cols-2">
-            <div class="lg:w-3/4">
+            <div class=""> {/* lg:w-3/4 kaldırıldı */}
               <h2
                 class="text-balance text-3xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:leading-tight lg:text-4xl"
               >
@@ -142,9 +150,11 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
         </div>
       </div>
 
+      {/* Specifications Sekmesi */}
       <div id="tabs-with-card-2" class="hidden" role="tabpanel">
         <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
           <div class="grid w-full grid-cols-1 gap-x-16 md:grid-cols-2">
+            {/* Sol Spesifikasyonlar */}
             <div class="max-w-md space-y-6">
               {
                 product.data.specificationsLeft.map((spec) => (
@@ -159,6 +169,7 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                 ))
               }
             </div>
+            {/* Sağ Spesifikasyonlar veya Tablo */}
             {
               product.data.specificationsRight ? (
                 <div class="mt-6 max-w-md space-y-6 md:ml-auto md:mt-0">
@@ -175,7 +186,8 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                 </div>
               ) : product.data.tableData ? (
                 <div class="mt-6 space-y-6 md:ml-auto md:mt-0">
-                  <div class="flex flex-col">
+                  {/* ... tablo kodu ... */}
+                   <div class="flex flex-col">
                     <div class="-m-1.5 overflow-x-auto">
                       <div class="inline-block min-w-full p-1.5 align-middle">
                         <div class="overflow-hidden">
@@ -196,12 +208,9 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                             </thead>
                             <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
                               {product.data.tableData?.map((row) =>
-                                // Wrap each row's content in a separate <tr> element
                                 row.description.map((rowData) => (
                                   <tr>
-                                    {/* Iterate through each cell value in the row's description array */}
                                     {rowData.map((cellValue) => (
-                                      // Render each cell value in its own <td> element
                                       <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">
                                         {cellValue}
                                       </td>
@@ -221,42 +230,47 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
           </div>
         </div>
       </div>
+
+      {/* Blueprints Sekmesi */}
+      <div id="tabs-with-card-3" class="hidden" role="tabpanel">
+        <div class="mx-auto mb-20 flex w-full md:mb-28 2xl:w-4/5">
+          {/* Blueprint Resimleri */}
+          <div
+            class="relative left-12 top-12 z-10 overflow-hidden rounded-xl shadow-lg md:left-12 md:top-16 md:-ml-12 lg:ml-0"
+          >
+            {
+              product.data.blueprints.first && (
+                <Image
+                  src={product.data.blueprints.first}
+                  class="h-full w-full object-cover object-center"
+                  alt="Blueprint Illustration"
+                  format={"avif"}
+                />
+              )
+            }
+          </div>
+
+          <div class="relative right-12 overflow-hidden rounded-xl shadow-xl">
+            {
+              product.data.blueprints.second && (
+                <Image
+                  src={product.data.blueprints.second}
+                  class="h-full w-full object-cover object-center"
+                  alt="Blueprint Illustration"
+                  format={"avif"}
+                />
+              )
+            }
+          </div>
+        </div>
+      </div>
+      {/* === /SEKMELER VE İÇERİKLERİ === */}
     </div>
   </div>
 
-  <div id="tabs-with-card-3" class="hidden" role="tabpanel">
-    <div class="mx-auto mb-20 flex w-full md:mb-28 2xl:w-4/5">
-      <div
-        class="relative left-12 top-12 z-10 overflow-hidden rounded-xl shadow-lg md:left-12 md:top-16 md:-ml-12 lg:ml-0"
-      >
-        {
-          product.data.blueprints.first && (
-            <Image
-              src={product.data.blueprints.first}
-              class="h-full w-full object-cover object-center"
-              alt="Blueprint Illustration"
-              format={"avif"}
-            />
-          )
-        }
-      </div>
-
-      <div class="relative right-12 overflow-hidden rounded-xl shadow-xl">
-        {
-          product.data.blueprints.second && (
-            <Image
-              src={product.data.blueprints.second}
-              class="h-full w-full object-cover object-center"
-              alt="Blueprint Illustration"
-              format={"avif"}
-            />
-          )
-        }
-      </div>
-    </div>
-  </div>
 </MainLayout>
 
+{/* === SCRIPT'LER (DEĞİŞTİRİLMEDİ) === */}
 <script>
   import { gsap } from "gsap";
 
