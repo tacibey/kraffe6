@@ -8,9 +8,9 @@ import EmailContactInput from "@components/ui/forms/input/EmailContactInput.astr
 import PhoneInput from "@components/ui/forms/input/PhoneInput.astro";
 import TextAreaInput from "@components/ui/forms/input/TextAreaInput.astro";
 import Icon from "@components/ui/icons/Icon.astro";
-import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro";
-import scaLogo from "@images/sca-new.webp";
-import ceLogoNew from "@images/ce-mark-new.avif"; // <-- CE logosu güncellendi
+import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro"; // Review bileşeni
+import scaLogo from "@images/sca-logo.webp";
+import ceLogoNew from "@images/ce-mark-new.avif";
 
 // Review bölümü için avatar kaynakları
 const avatarSrcs: Array<string> = [
@@ -26,12 +26,6 @@ const subTitle: string = "Desire of achieving highest quality standards!";
 const formTitle: string = "Fill in the form below";
 const formSubTitle: string = "We'll get back to you in 1-2 business days.";
 
-// About Us verileri
-const aboutUsHeading: string = "About Us";
-const aboutUsContent: string = "Learn more about Kraffe Roasters' mission and values.";
-const aboutUsLinkTitle: string = "Visit About Us page";
-const aboutUsLinkURL: string = "/about";
-
 // Office verileri
 const officeHeading: string = "Our Office";
 const officeContent: string = "KRAFFE ROASTERS";
@@ -39,7 +33,7 @@ const officeAddress: string = "Adalet, Manas Blvd. No. 39, Unit 3408, 35530 Bayr
 
 // Email verileri
 const emailHeading: string = "Contact us by email";
-const emailContent: string = "Drop us an email at";
+const emailContent: string = "Prefer the written word? Drop us an email at";
 const emailLinkTitle: string = "info@krafferoasters.com";
 const emailLinkURL: string = "mailto:info@krafferoasters.com";
 
@@ -49,7 +43,6 @@ const starCount: number = 4;
 const reviews: string = `Trusted by <span class="font-bold">Roasteries</span> Worldwide`;
 ---
 
-<!-- Contact Us -->
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
   <div class="mx-auto max-w-2xl lg:max-w-5xl">
     <div class="text-center">
@@ -61,24 +54,20 @@ const reviews: string = `Trusted by <span class="font-bold">Roasteries</span> Wo
       <p class="mt-1 text-pretty text-lg text-neutral-600 dark:text-neutral-400">
         {subTitle}
       </p>
-
-      {/* --- Badge/Logo Bölümü (Güncellendi) --- */}
-      <div class="mt-8 flex items-center justify-center gap-x-8 sm:gap-x-12"> {/* Boşluk artırıldı */}
+      <div class="mt-8 flex items-center justify-center gap-x-8 sm:gap-x-12">
         <Image
-          src={ceLogoNew} {/* Yeni CE logo */}
+          src={ceLogoNew}
           alt="CE Marking Certification Logo"
-          class="h-20 w-auto object-contain sm:h-24" {/* Boyut 2 katına çıkarıldı (h-20, sm:h-24) */}
+          class="h-20 w-auto object-contain sm:h-24"
           loading="lazy"
         />
         <Image
           src={scaLogo}
           alt="Specialty Coffee Association Member Logo"
-          class="h-20 w-auto object-contain sm:h-24" {/* Boyut 2 katına çıkarıldı */}
+          class="h-20 w-auto object-contain sm:h-24"
           loading="lazy"
         />
       </div>
-      {/* --- /Badge/Logo Bölümü --- */}
-
     </div>
 
     <div class="mt-12 grid items-start gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-16">
@@ -111,57 +100,52 @@ const reviews: string = `Trusted by <span class="font-bold">Roasteries</span> Wo
               name="hs-about-contacts"
             />
           </div>
-
           <div class="mt-4 grid">
             <AuthBtn title="Send Message" />
           </div>
-
           <div class="mt-3 text-center">
             <p class="text-sm text-neutral-600 dark:text-neutral-400">
               {formSubTitle}
             </p>
-             {/* --- Review Bölümü --- */}
-            <div class="mt-6">
-              <ReviewComponent avatars={avatarSrcs} starCount={starCount} rating={rating} reviews={reviews} />
-            </div>
-            {/* --- /Review Bölümü --- */}
+             {/* Review Component BURADAN KALDIRILDI */}
           </div>
         </form>
       </div>
 
-      {/* Sağ Taraf: İkon Blokları (Güncellendi) */}
-      {/* Bu div'in tüm ContactIconBlock'ları sarmaladığından emin ol */}
-      <div class="space-y-6"> {/* Direkt bu div'e space-y-6 verdik */}
-        {/* About Us */}
-        <ContactIconBlock
-          heading={aboutUsHeading}
-          content={aboutUsContent}
-          isLinkVisible={true}
-          linkTitle={aboutUsLinkTitle}
-          linkURL={aboutUsLinkURL}
-          isArrowVisible={true}
-          ><Icon name="info" />
-        </ContactIconBlock>
+      {/* Sağ Taraf: Önce Review, Sonra İkon Blokları */}
+      <div class="space-y-8"> {/* Üstteki Review ve alttaki bloklar arası boşluk */}
 
-        {/* Our Office */}
-        <ContactIconBlock
-          heading={officeHeading}
-          content={officeContent}
-          isAddressVisible={true}
-          addressContent={officeAddress}
-          ><Icon name="mapPin" />
-        </ContactIconBlock>
+        {/* Review Component'in YENİ YERİ */}
+        <div class="rounded-xl border border-neutral-200 bg-neutral-100 p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 sm:p-6">
+           <ReviewComponent avatars={avatarSrcs} starCount={starCount} rating={rating} reviews={reviews} />
+        </div>
 
-        {/* Contact us by email */}
-        <ContactIconBlock
-          heading={emailHeading}
-          content={emailContent}
-          isLinkVisible={true}
-          linkTitle={emailLinkTitle}
-          linkURL={emailLinkURL}
-          ><Icon name="envelopeOpen" />
-        </ContactIconBlock>
-      </div>
+        {/* Kalan İkon Blokları */}
+        <div class="space-y-6 divide-y divide-neutral-200 dark:divide-neutral-700"> {/* Eski divide-y yapısı buraya */}
+          {/* Our Office */}
+          <div class="pt-6 first:pt-0"> {/* Üstteki elemana göre boşluk */}
+             <ContactIconBlock
+               heading={officeHeading}
+               content={officeContent}
+               isAddressVisible={true}
+               addressContent={officeAddress}
+               ><Icon name="mapPin" />
+             </ContactIconBlock>
+          </div>
+
+          {/* Contact us by email */}
+          <div class="pt-6 first:pt-0"> {/* Üstteki elemana göre boşluk */}
+             <ContactIconBlock
+               heading={emailHeading}
+               content={emailContent}
+               isLinkVisible={true}
+               linkTitle={emailLinkTitle}
+               linkURL={emailLinkURL}
+               ><Icon name="envelopeOpen" />
+             </ContactIconBlock>
+          </div>
+        </div> {/* divide-y div sonu */}
+      </div> {/* Sağ sütun sonu */}
     </div>
   </div>
 </section>
