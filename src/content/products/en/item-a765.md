@@ -39,7 +39,7 @@ specificationsLeft:
   - title: "Modulated Premix Burner"
     subTitle: "The KRF-03 features a highly efficient and precise premix burner, enabling you to master heat transfer while reducing gas consumption for cost-effective roasting."
   - title: "10-Inch Touchscreen"
-    subTitle: "The KRF-03 comes with a 10" touchscreen display, putting full control at your fingertips. Monitor real-time temperature, label critical roasting values for future batches, and track development time and ROR (Rate of Rise) with ease."
+    subTitle: "The KRF-03 comes with a 10'' touchscreen display, putting full control at your fingertips. Monitor real-time temperature, label critical roasting values for future batches, and track development time and ROR (Rate of Rise) with ease."
   - title: "Fully Compatible with 3rd Party Software"
     subTitle: "Connect your laptop and control your machine using your preferred roasting software. Create, save, and repeat profiles for consistent results every time."
   - title: "Precise and Consistent Control"
