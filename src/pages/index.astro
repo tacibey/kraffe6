@@ -1,6 +1,7 @@
 ---
 // Import the necessary components
 import MainLayout from "@/layouts/MainLayout.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
 import HeroSection from "@components/sections/landing/HeroSection.astro";
 import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
 import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
@@ -27,6 +28,11 @@ const avatarSrcs: Array<string> = [
 ---
 
 <MainLayout>
+  <AnnouncementBanner
+    btnId="dismiss-button"
+    btnTitle="Get Offer"
+    url="/contact"  
+  />
 
     <HeroSection
     title=`Master the Art of Roasting: <span class="text-yellow-500 dark:text-yellow-400">Kraffe Commercial Coffee Roasting Machines</span>`
