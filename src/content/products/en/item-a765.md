@@ -1,10 +1,10 @@
 ---
 title: "Kraffe KRF-03"
-description: "Commercial Coffee Roasting Machine" 
+description: "3kg batch Commercial Coffee Roasting Machine" 
 main:
   id: 2
   content: |
-    Introducing Kraffe KRF-03: 3kg Commercial Coffee Roasting Machine ideal for small cafes and specialty roasters seeking consistent, high-quality results.
+    Discover the Kraffe KRF-03: 3kg Commercial Coffee Roaster – Ideal for Small Cafes and Specialty Roasters
   imgCard: "@/images/krf03.avif"
   imgMain: "@/images/krf03.avif"
   imgAlt: "Kraffe KRF-03 Commercial Coffee Roasting Machine, side view"
@@ -19,31 +19,33 @@ tabs:
     dataTab: "#tabs-with-card-3"
     title: "Blueprints"
 longDescription:
-  title: "Fast and Durable with Kraffe Quality Standards"
+  title: "Fast and Durable – Engineered with Kraffe Quality Standards"
   subTitle: |
-    Experience roasting control like never before with the intuitive Touch Screen Control Panel, allowing you to fine-tune every aspect of the process with ease and precision. Choose your color, details, and additional features to build the commercial coffee roasting machine of your dreams!
+    Control every stage of the roast with the KRF-03’s Touch Screen Panel and enjoy automatic profile roasting through third-party software. Customize color, details, and features to create the perfect commercial coffee roaster for your business.
   btnTitle: "Contact Sales"
   btnURL: "/contact"
 descriptionList:
+  - title: "Efficient Performance"
+    subTitle: "Reduce operational costs with a high-efficiency premix burner and superior heat insulation, ensuring minimal heat loss and maximum energy savings. Enjoy top-tier performance without compromising on efficiency."
+  - title: "Consistent Roasting Results"
+    subTitle: "Achieve high-quality, consistent results on every roasting session with a well-insulated body that minimizes environmental influence and precise variable controls for perfect consistency in every batch."
+  - title: "Tailor-Made Design"
+    subTitle: "Select a color that suits your coffee shop and customize your roaster to fit your space perfectly. Add your coffee shop logo to the machine and be involved in the design process, making it uniquely yours."
   - title: "Automatic Profile Roasting"
-    subTitle: "Includes a diverse range of screw types and sizes to accommodate various applications and materials."
-  - title: "10'' Touchscreen"
-    subTitle: "Each screw is designed for effortless installation, ensuring hassle-free fastening every time."
-  - title: "3rd Party Software Compatibility"
-    subTitle: "Eliminates the need for multiple trips to the hardware store, saving time and effort on your projects."
-  - title: "Easy Maintenance and Installation"
-    subTitle: "Includes a diverse range of screw types and sizes to accommodate various applications and materials."
-  - title: "Modulated Premix Burner"
-    subTitle: "Includes a diverse range of screw types and sizes to accommodate various applications and materials."
+    subTitle: "Connect your commercial coffee roaster to your laptop and experiment with precise variable controls. Create and customize roasting profiles using the third-party software you're already familiar with. Consistently deliver high-quality coffee with rich aroma and flavor to your customers, ensuring every batch meets your standards."
+  - title: "Ease of Use"
+    subTitle: "Enjoy easy operations from installation to maintenance. KRAFFE Coffee Roasters are designed for a smooth setup and simple upkeep, allowing you to focus on perfecting your roasts."
 specificationsLeft:
-  - title: "Material"
-    subTitle: "Constructed from high-quality materials such as stainless steel, ensuring durability and corrosion resistance."
-  - title: "Assortment"
-    subTitle: "Contains a generous assortment of screws, including wood screws, machine screws, and sheet metal screws."
-  - title: "Quantity"
-    subTitle: "Each set includes a sufficient quantity of screws to handle a wide range of projects and tasks."
-  - title: "Sizes"
-    subTitle: "Available in various sizes to suit different project requirements, ensuring compatibility and versatility."
+  - title: "Modulated Premix Burner"
+    subTitle: "The KRF-03 features a highly efficient and precise premix burner, enabling you to master heat transfer while reducing gas consumption for cost-effective roasting."
+  - title: "10-Inch Touchscreen"
+    subTitle: "The KRF-03 comes with a 10" touchscreen display, putting full control at your fingertips. Monitor real-time temperature, label critical roasting values for future batches, and track development time and ROR (Rate of Rise) with ease."
+  - title: "Fully Compatible with 3rd Party Software"
+    subTitle: "Connect your laptop and control your machine using your preferred roasting software. Create, save, and repeat profiles for consistent results every time."
+  - title: "Precise and Consistent Control"
+    subTitle: "Equipped with 3mm thick, sensitive thermocouples, the KRF-03 provides real-time temperature data throughout the roasting process. Master your roasting with precise variable controls and a well-insulated body that minimizes environmental effects, ensuring consistent results."
+  - title: "Safety Systems"
+    subTitle: "Equipped with advanced temperature and drum pressure safety systems, the KRF-03 ensures a safe roasting experience, giving you peace of mind throughout the process."
 tableData:
   - feature: ["Specification", "Value"]
     description:
