@@ -2,64 +2,100 @@
   "subTitle": "Ask us anything about Kraffe Roasters, our commercial coffee roasting machines, and our services. Get factual responses to guide your decision.",
   "faqs": [
     {
-      "question": "Are Kraffe roasters compatible with Cropster and Artisan?",
-      "answer": "Yes, absolutely. All Kraffe coffee roasting machines are engineered for seamless integration with both Cropster and Artisan software, ensuring they fit perfectly into your existing or planned workflow."
+      "question": "What are the key advantages of Kraffe Coffee Roasters?",
+      "answer": "Kraffe Coffee Roasters combine precision engineering, energy efficiency, and custom design with premium European components. They offer flexible controls, global support, and consistent high-quality roasting for both experts and aspiring roasters."
     },
     {
-      "question": "What kind of customer support do you offer for your coffee roasters?",
-      "answer": "We pride ourselves on offering dedicated 7/24 lifetime support for all Kraffe machines. Our solution-oriented technical team is always ready to provide swift, expert assistance to keep your commercial coffee roasters running flawlessly and efficiently."
+      "question": "Are Kraffe roasters compatible with Artisan and Cropster?",
+      "answer": "Yes. Kraffe Roasters integrate seamlessly with Artisan and Cropster, allowing you to connect via laptop and use these trusted third-party platforms for roast profiling and control."
     },
     {
-      "question": "Can I customize the color or design of my Kraffe roasting machine?",
-      "answer": "Definitely! We offer free-of-charge color customization to match your brand identity. Furthermore, our flexible design approach means we can often adapt aspects of the machine layout to better suit your specific roastery space and workflow needs. Let's discuss how we can tailor your industrial coffee roaster."
+      "question": "What customer support does Kraffe provide?",
+      "answer": "Kraffe offers free lifetime online support, remote troubleshooting, and fast responses. We collaborate with certified service partners worldwide to ensure reliable after-sales assistance."
     },
     {
-      "question": "How easy is it to maintain Kraffe coffee roasting machines?",
-      "answer": "Kraffe machines are designed for straightforward maintenance. We utilize high-quality components from globally recognized brands, ensuring durability and making spare parts readily accessible for routine upkeep of your commercial coffee roasters."
+      "question": "What safety systems do Kraffe Roasters include?",
+      "answer": "Kraffe Roasters feature advanced temperature/drum pressure monitoring, automatic shutoffs, and safety alerts to protect both operators and equipment during roasting."
     },
     {
-      "question": "How consistent is the roasting performance of Kraffe machines?",
-      "answer": "Consistency is a core design principle at Kraffe. Our double-walled drum construction, superior thermal insulation, precise airflow and drum speed controls, and advanced modulated premix burners work together to deliver exceptionally consistent roast profiles batch after batch, crucial for commercial coffee roasters."
+      "question": "What components are used in Kraffe Roasters?",
+      "answer": "Kraffe uses premium European components: Bonfiglioli motors (Italy), Siemens/Schneider electrical systems (Germany/France), and 3mm thermocouples. All machines meet CE safety standards."
     },
     {
-      "question": "What are the typical lead times and shipping options for your machines?",
-      "answer": "Lead times for our coffee roasting machines vary based on the specific model, capacity, and any customization requested. We provide an accurate estimate upon order confirmation. We offer reliable global shipping options; please contact our sales team for detailed information tailored to your location."
+      "question": "Why does Kraffe use third-party roasting software?",
+      "answer": "Kraffe prioritizes compatibility with industry-standard tools like Artisan and Cropster instead of proprietary software. This ensures flexibility, regular updates, and familiarity for users."
     },
     {
-      "question": "What capacity ranges do Kraffe industrial coffee roasters cover?",
-      "answer": "Kraffe offers a versatile range of industrial coffee roasters designed to meet diverse production needs. Our models typically range from smaller batch capacities ideal for specialty cafes (e.g., KRF-S Series) up to large-scale industrial capacities (e.g., KRF-I Series) suitable for high-volume roasteries. Contact us to find the perfect capacity for your output goals."
+      "question": "What are preheat and end-of-day modes?",
+      "answer": "Preheat mode brings the drum to optimal starting temperatures for consistency. End-of-day mode cools the system and prepares it for safe, energy-efficient shutdown."
     },
     {
-      "question": "How does Kraffe's burner technology contribute to roasting efficiency?",
-      "answer": "Our advanced modulated premix burner system provides highly precise heat control and rapid response times. This allows for intricate profile manipulation and ensures efficient energy usage, reducing operational costs for your commercial coffee roasting operation compared to less sophisticated systems."
+      "question": "What automation features do Kraffe Roasters offer?",
+      "answer": "Kraffe supports automatic profile roasting, touchscreen/laptop control, and optional full automation. Adjust airflow, flame, drum speed, and save/repeat profiles with precision."
     },
     {
-      "question": "What automation features are available on Kraffe coffee roasting machines?",
-      "answer": "Kraffe machines, particularly our KRF-I series, offer various automation capabilities. These include automated profile replication (via our free software and Cropster/Artisan compatibility), programmable charge and discharge sequences, and options for fully automated roasting cycles, enhancing consistency and reducing labor requirements in industrial coffee roaster settings."
+      "question": "How do Kraffe Roasters ensure consistency?",
+      "answer": "Consistency is achieved through 3mm thermocouples for real-time data, insulated bodies to block environmental interference, and precise repeatable controls for every roast profile."
     },
     {
-      "question": "How can investing in a Kraffe commercial coffee roaster improve my business's profitability?",
-      "answer": "Investing in a Kraffe commercial coffee roaster boosts profitability through several avenues: exceptional roast consistency enhances product quality and customer loyalty, high efficiency reduces gas and electricity costs, robust build quality minimizes downtime and maintenance expenses, and precise control allows for optimizing yield from green beans."
+      "question": "What is the lead time and transport process?",
+      "answer": "Standard lead times are 4-8 weeks (varies by customization). We arrange global delivery through trusted logistics partners upon request."
     },
     {
-      "question": "What is the expected lifespan and durability of Kraffe industrial coffee roasters?",
-      "answer": "Kraffe industrial coffee roasters are built to last. We use heavy-duty materials like cast iron front plates and double-walled drums, combined with high-quality, globally sourced components. With proper maintenance, you can expect many years of reliable, high-performance service, ensuring a strong return on your investment."
+      "question": "What capacity range do Kraffe Roasters cover?",
+      "answer": "Kraffe machines handle batches from 0.5kg to 240kg, supporting everything from small specialty roasts to high-volume production. Hourly output depends on the model."
     },
     {
-      "question": "What are the installation requirements for a Kraffe commercial coffee roaster?",
-      "answer": "Installation requirements vary by model size but generally include adequate space with proper ventilation, appropriate gas line pressure and volume, sufficient electrical supply, and compliance with local fire and safety codes. We provide detailed pre-installation guides and can offer consultation to ensure your site is ready."
+      "question": "What defines a 'batch' and roasting cycle time?",
+      "answer": "A batch is one full load of green coffee. Roasting takes 12–14 minutes per batch (profile-dependent), followed by 2–4 minutes of cooling."
     },
     {
-      "question": "Do you provide training on operating Kraffe coffee roasting machines?",
-      "answer": "Yes, comprehensive training is a key part of our offering. We provide detailed operational manuals and can arrange for on-site or remote training sessions to ensure your team can confidently and effectively operate your new Kraffe coffee roasting machine to its full potential."
+      "question": "Can Kraffe Roasters handle light to dark roast styles?",
+      "answer": "Yes. Kraffe’s modulated premix burner system supports all roast styles, from light/fast development to bold dark roasts, and performs reliably in diverse climates."
     },
     {
-      "question": "What makes Kraffe coffee roasting machines stand out from competitors?",
-      "answer": "Kraffe stands out through a combination of robust engineering (double-walled drums, cast iron components), precise control systems (modulated burners, airflow/drum speed control), seamless software integration (Cropster/Artisan ready, free profile software), exceptional build quality ensuring longevity, flexible design options, and our unparalleled 7/24 lifetime customer support."
+      "question": "What burner type does Kraffe use?",
+      "answer": "All Kraffe models use high-efficiency premix gas burners for precise flame control, fast response times, and reduced fuel consumption."
     },
     {
-      "question": "How energy-efficient are Kraffe industrial coffee roasters?",
-      "answer": "Energy efficiency is a key design consideration. Our high-insulation construction minimizes heat loss, and the modulated premix burner technology optimizes gas consumption for the required heat output. This makes Kraffe industrial coffee roasters notably efficient compared to many standard designs, helping to reduce your operational costs."
+      "question": "What controls are available on Kraffe Roasters?",
+      "answer": "Operators can manually or automatically adjust airflow, flame level, and drum speed to fine-tune roast profiles for desired results."
+    },
+    {
+      "question": "What are the benefits of the 10-inch touchscreen?",
+      "answer": "The touchscreen provides real-time metrics (temperature/ROR/development time), profile labeling/saving, multi-language support, and intuitive roast parameter control."
+    },
+    {
+      "question": "How energy efficient are Kraffe Roasters?",
+      "answer": "Optimized insulation, high-efficiency burners, and adjustable airflow minimize heat loss and gas usage, reducing operational costs without sacrificing quality."
+    },
+    {
+      "question": "What is the lifespan of a Kraffe Roaster?",
+      "answer": "Kraffe Roasters are built to last 15–20 years with robust construction, premium components, and ongoing maintenance/spare parts support."
+    },
+    {
+      "question": "How easy is Kraffe Roaster maintenance?",
+      "answer": "Designed for simplicity: easily accessible components, straightforward cleaning routines, and remote/maintenance guide support."
+    },
+    {
+      "question": "What are the installation requirements?",
+      "answer": "Installation requires a chimney/flue system, proper gas/electrical connections, ventilation, and clearance. Clear documentation and online guidance are provided."
+    },
+    {
+      "question": "What electrical/gas options are available?",
+      "answer": "Kraffe supports single-phase or three-phase electrical (model-dependent) and both LPG (propane) or natural gas configurations."
+    },
+    {
+      "question": "Do you offer user training?",
+      "answer": "Yes. SCA-certified partners provide comprehensive training (online/in-person) on operation, profiling, maintenance, and safety."
+    },
+    {
+      "question": "Does Kraffe have global distributors?",
+      "answer": "Yes. A growing network of global partners and certified distributors ensures local technical support, service, and fast delivery."
+    },
+    {
+      "question": "What is the warranty period?",
+      "answer": "All machines include a 2-year standard warranty covering components/manufacturing. Extended warranties are available upon request."
     }
   ]
 }
