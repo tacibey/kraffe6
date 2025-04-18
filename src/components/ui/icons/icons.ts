@@ -335,6 +335,30 @@ export const Icons = {
     fill: "currentColor",
     title: "Slack",
   },
+instagramFooter: { // <-- Yeni ikonun adı
+    paths: [
+      { // Instagram logo path
+        d: "M12 16a4 4 0 100-8 4 4 0 000 8z"
+      },
+      { // Instagram çerçeve path
+        d: "M3 16V8a5 5 0 015-5h8a5 5 0 015 5v8a5 5 0 01-5 5H8a5 5 0 01-5-5z"
+      },
+      { // Instagram sağ üst nokta path
+        d: "M17.5 6.5a.5.5 0 100-1 .5.5 0 000 1z" // Küçük nokta için path
+      }
+    ],
+    class:
+      "h-4 w-4 shrink-0 fill-none text-neutral-700 dark:text-neutral-400", // Stil sınıfları
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none", // fill="none" olacak
+    strokeWidth: "1.5", // stroke genişliği
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    stroke: "currentColor", // stroke rengi
+    title: "Instagram", // İkon başlığı (opsiyonel)
+  },
   quotation: {
     paths: [
       {
