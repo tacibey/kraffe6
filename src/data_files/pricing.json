@@ -1,11 +1,29 @@
 {
   "title": "Engineered for Roasting Excellence",
   "subTitle": "Precision Machinery Tailored to Your Production and Design Needs",
-  "badge": "HOT",
-  "thirdOption": "Need custom solutions or higher capacity?",
-  "btnText": "Get a Quote",
+  "badge": "",
+  "thirdOption": "Need Sample Roasters?",
+  "btnText": "Sample Roasters",
 
   "starterKit": {
+    "name": "Industrial Roasters",
+    "description": "For Mass Production Purposes in Large-Scale Roasteries",
+    "price": "",
+    "cents": "",
+    "billingFrequency": "",
+    "features": [
+      "Cropster & Artisan Compatibility",
+      "Improved Heat Insulation",
+      "Double-walled drum with extended capacity",
+      "Precision control with advanced systems",
+      "Tailor made design for your needs",
+      "Dedicated 24/7 support"
+    ],
+    "purchaseBtnTitle": "Explore Our Machines",
+    "purchaseLink": "/products" 
+  },
+
+  "professionalToolbox": {
     "name": "Shop Roasters",
     "description": "Ideal Fit for Small to Mid-Sized Roasteries",
     "price": "",
@@ -22,23 +40,6 @@
     ],
     "purchaseBtnTitle": "Explore Our Machines",
     "purchaseLink": "/products" 
-  },
-
-  "professionalToolbox": {
-    "name": "Industrial Roasters",
-    "description": "For Mass Production Purposes in Large-Scale Roasteries",
-    "price": "",
-    "cents": "",
-    "billingFrequency": "",
-    "features": [
-      "Cropster & Artisan Compatibility",
-      "Improved Heat Insulation",
-      "Double-walled drum with extended capacity",
-      "Precision control with advanced systems",
-      "Tailor made design for your needs",
-      "Dedicated 24/7 support"
-    ],
-    "purchaseBtnTitle": "Explore Our Machines",
-    "purchaseLink": "/products" 
   }
 }
+
