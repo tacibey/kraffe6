@@ -1,155 +1,141 @@
 ---
-// Gerekli bileşenleri import et
+// Gerekli bileşenleri ve resimleri import et
 import MainLayout from "@/layouts/MainLayout.astro";
 import HeroSection from "@components/sections/landing/HeroSection.astro";
 import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
-// ClientsSection importu kaldırıldı (önceki adımdan)
-// FeaturesGeneral importu kaldırıldı
+// FeaturesGeneral importu kaldırılmıştı
 import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
 import TestimonialsSection from "@components/sections/testimonials/TestimonialsSection.astro";
 import PricingSection from "@components/sections/pricing/PricingSection.astro";
 import FAQ from "@components/sections/misc/FAQ.astro";
 import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
 import heroImage from "@images/hero-image.avif"; // Kraffe için değiştirilmeli
-import faqs from "@data/fr/faqs.json";
-// features importu kaldırıldı
+import faqs from "@data/fr/faqs.json"; // Kraffe için güncellenmeli
 import pricing from "@data/fr/pricing.json"; // Kraffe için güncellenmeli
-// features-image importu kaldırıldı
+// features importu kaldırılmıştı
+// features-image importu kaldırılmıştı
 import construction from "@images/construction-image.avif"; // Kraffe için değiştirilmeli
 import tools from "@images/automated-tools.avif";       // Kraffe için değiştirilmeli
 import dashboard from "@images/dashboard-image.avif";     // Kraffe için değiştirilmeli
 import { getRelativeLocaleUrl } from "astro:i18n";
-// partnersData importu kaldırıldı (önceki adımdan)
+import amirAvatar from "@images/Amir+Montazer.avif"; // Amir'in avatarı import edildi
 
-// Bu avatar URL'leri de Kraffe ile ilgili kişilerle değiştirilebilir
-const avatarSrcs: Array<string> = [
+// Avatar URL'leri (Grup için)
+const groupAvatarSrcs: Array<string> = [
   "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
   "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
   "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
   "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
 ];
 
-// Testimonial verisi (Fransızca)
+// Testimonial verisi (Fransızca) - avatarSrc ve avatarAlt EKLENDİ/GÜNCELLENDİ
 const frTestimonials = [
     {
         content:
-          "Kraffe est incroyablement convivial et fournit des résultats constants à chaque fois. Le processus de torréfaction est efficace et précis, me permettant d'obtenir la torréfaction parfaite pour mes grains de café.", // Örnek çeviri
-        author: "Amir Montazer", // İsim aynı kalabilir
+          "Kraffe est incroyablement convivial et fournit des résultats constants à chaque fois. Le processus de torréfaction est efficace et précis, me permettant d'obtenir la torréfaction parfaite pour mes grains de café.",
+        author: "Amir Montazer",
         role: "Etude Coffee Co.",
-        avatarSrc: // Amir'in avatarı import edilmeli veya Contact sayfasından prop olarak alınmalı
-          "src/images/Amir+Montazer.avif", // Geçici placeholder, prop'a çevrilecek
-        avatarAlt: "Portrait d'Amir Montazer"
+        avatarSrc: amirAvatar, // <-- IMPORT EDİLEN DEĞİŞKEN KULLANILDI
+        avatarAlt: "Portrait d'Amir Montazer" // <-- ALT METİN EKLENDİ
       },
 ];
 
 // İstatistik verisi (Fransızca)
 const frStatistics = [
-      {
-        count: "100%",
-        description:
-          "Assurance Qualité : Tests rigoureux avant expédition.",
-      },
-      {
-        count: "Flexible",
-        description:
-          "Conception Orientée Solution : Adaptée à vos besoins uniques.",
-      },
-      {
-        count: "Intuitif",
-        description:
-          "Convivial : Configuration, opération et maintenance simples.",
-      },
-      {
-        count: "7/24",
-        description:
-          "Support à Vie : Assistance dédiée et rapide quand vous en avez besoin.",
-      },
+      { count: "100%", description: "Assurance Qualité : Tests rigoureux avant expédition." },
+      { count: "Flexible", description: "Conception Orientée Solution : Adaptée à vos besoins uniques." },
+      { count: "Intuitif", description: "Convivial : Configuration, opération et maintenance simples." },
+      { count: "7/24", description: "Support à Vie : Assistance dédiée et rapide quand vous en avez besoin." },
 ];
+
+// Kraffe İçerikleri ve URL'leri (Fransızca)
+const kraffeHeroTitle = `Maîtrisez l'Art de la Torréfaction : <span class="text-orange-500 dark:text-orange-400">Machines à Torréfier Industrielles Kraffe</span>`;
+const kraffeHeroSubTitle = "Débloquez une constance de saveur et une efficacité opérationnelle exceptionnelles avec les torréfacteurs commerciaux Kraffe, conçus par des experts. Construits pour la durabilité, conçus pour la précision, soutenus par un support à vie.";
+const kraffePrimaryBtn = "Explorer Nos Machines";
+const kraffeSecondaryBtn = "Demander une Consultation";
+const kraffeReviews = `Approuvé par les <span class="font-bold">Torréfacteurs</span> du monde entier`;
+const kraffeHeroAlt = "Vue détaillée d'une machine à torréfier Kraffe"; // Hero görseli alt metni
+
+const kraffeFeaturesNavsTitle = `Libérez des Performances de Pointe : <span class="text-orange-500 dark:text-orange-400">À l'intérieur du Torréfacteur Kraffe</span>`;
+const kraffeTabs = [
+      {
+        heading: "Contrôle Thermique Avancé",
+        content: "Maîtrisez le transfert de chaleur avec nos tambours à double paroi, une isolation supérieure et des plaques avant robustes en fonte.",
+        svg: "thermometer", // İkon güncellendi (örnek)
+        src: tools, // Kraffe görseli ile değiştirilmeli
+        alt: "Détail de l'isolation du tambour à double paroi du torréfacteur Kraffe", // ALT METİN VAR
+        first: true,
+      },
+      {
+        heading: "Système de Torréfaction de Précision",
+        content: "Composez la perfection. Les brûleurs prémélangés modulés, le débit d'air variable et la vitesse de tambour réglable vous donnent un contrôle ultime sur le profil de torréfaction.",
+        svg: "sliders", // İkon güncellendi (örnek)
+        src: dashboard, // Kraffe görseli ile değiştirilmeli
+        alt: "Gros plan du système de brûleur de précision du torréfacteur Kraffe", // ALT METİN VAR
+        second: true,
+      },
+      {
+        heading: "Intégration Intelligente de la Torréfaction",
+        content: "Optimisez votre flux de travail. Nos machines s'intègrent parfaitement à Cropster et Artisan, complétées par notre logiciel gratuit de répétition de profil.",
+        svg: "puzzle",
+        src: construction, // Kraffe görseli ile değiştirilmeli
+        alt: "Capture d'écran montrant l'intégration logicielle du torréfacteur Kraffe avec Cropster/Artisan", // ALT METİN VAR
+      },
+    ];
+
+const kraffeTestimonialsTitle = "Approuvé par les Torréfacteurs Professionnels";
+const kraffeTestimonialsSubTitle = "Découvrez pourquoi les principales torréfactions choisissent Kraffe pour la qualité, la constance et le support.";
+
+const kraffeAltHeroTitle = "Prêt à Perfectionner Votre Torréfaction ?";
+const kraffeAltHeroSubTitle = "Connectez-vous avec nos experts dès aujourd'hui pour discuter de vos besoins et découvrir le torréfacteur Kraffe idéal pour votre entreprise.";
+const kraffeAltHeroBtn = "Demander un Devis";
 ---
 
 <MainLayout lang="fr">
   <AnnouncementBanner
     btnId="dismiss-button"
-    btnTitle="Découvrez Kraffe sur GitHub?" {/* Güncellenmeli */}
-    url="https://github.com/mearashadowfax/ScrewFast" {/* Güncellenmeli */}
+    btnTitle="Obtenir une offre" {/* Güncellendi */}
+    url={getRelativeLocaleUrl("fr", "contact")} {/* Güncellendi */}
   />
 
   <HeroSection
-    title=`Maîtrisez l'Art de la Torréfaction : <span class="text-orange-500 dark:text-orange-400">Machines à Torréfier Industrielles Kraffe</span>` {/* Kraffe Metni */}
-    subTitle="Débloquez une constance de saveur et une efficacité opérationnelle exceptionnelles avec les torréfacteurs commerciaux Kraffe, conçus par des experts. Construits pour la durabilité, conçus pour la précision, soutenus par un support à vie." {/* Kraffe Metni */}
-    primaryBtn="Explorer Nos Machines" {/* Kraffe Metni */}
+    title={kraffeHeroTitle}
+    subTitle={kraffeHeroSubTitle}
+    primaryBtn={kraffePrimaryBtn}
     primaryBtnURL={getRelativeLocaleUrl("fr", "products")}
-    secondaryBtn="Demander une Consultation" {/* Kraffe Metni */}
+    secondaryBtn={kraffeSecondaryBtn}
     secondaryBtnURL={getRelativeLocaleUrl("fr", "contact")}
     withReview={true}
-    avatars={avatarSrcs}
+    avatars={groupAvatarSrcs} {/* Grup avatarları kullanıldı */}
     rating=`<span class="font-bold">4.8</span> / 5`
     starCount={4}
-    reviews=`Approuvé par les <span class="font-bold">Torréfacteurs</span> du monde entier` {/* Kraffe Metni */}
+    reviews={kraffeReviews}
     src={heroImage}
-    alt="Vue détaillée d'une machine à torréfier Kraffe" {/* Kraffe Metni */}
+    alt={kraffeHeroAlt} {/* alt metni eklendi */}
   />
 
-  {/* ClientsSection kaldırıldı */}
-
-  {/* FeaturesGeneral KALDIRILDI */}
-  {/*
-  <FeaturesGeneral
-    title="Répondre aux exigences de l'industrie"
-    subTitle="Chez ScrewFast, nous relevons les défis uniques rencontrés..."
-    features={features}
-    // src={featureImage} --> Bu prop kaldırılmıştı
-    // alt="Produits ScrewFast dans des boîtes flottantes" --> Bu prop kaldırılmıştı
-  />
-  */}
-
+  {/* FeaturesNavs (tabs içindeki alt metinler kontrol edildi) */}
   <FeaturesNavs
-    title=`Libérez des Performances de Pointe : <span class="text-orange-500 dark:text-orange-400">À l'intérieur du Torréfacteur Kraffe</span>` {/* Kraffe Metni */}
-    tabs={[
-      {
-        heading: "Contrôle Thermique Avancé", // Kraffe Metni
-        content:
-          "Maîtrisez le transfert de chaleur avec nos tambours à double paroi, une isolation supérieure et des plaques avant robustes en fonte.", // Kraffe Metni
-        svg: "tools", // Uygun ikon seçilebilir (örn: thermometer)
-        src: tools, // Kraffe görseli ile değiştirilmeli
-        alt: "Détail de l'isolation du tambour à double paroi du torréfacteur Kraffe", // Kraffe Metni
-        first: true,
-      },
-      {
-        heading: "Système de Torréfaction de Précision", // Kraffe Metni
-        content:
-          "Composez la perfection. Les brûleurs prémélangés modulés, le débit d'air variable et la vitesse de tambour réglable vous donnent un contrôle ultime sur le profil de torréfaction.", // Kraffe Metni
-        svg: "dashboard", // Uygun ikon seçilebilir (örn: sliders)
-        src: dashboard, // Kraffe görseli ile değiştirilmeli
-        alt: "Gros plan du système de brûleur de précision du torréfacteur Kraffe", // Kraffe Metni
-        second: true,
-      },
-      {
-        heading: "Intégration Intelligente de la Torréfaction", // Kraffe Metni
-        content:
-          "Optimisez votre flux de travail. Nos machines s'intègrent parfaitement à Cropster et Artisan, complétées par notre logiciel gratuit de répétition de profil.", // Kraffe Metni
-        svg: "puzzle", // Uygun ikon seçilebilir
-        src: construction, // Kraffe görseli ile değiştirilmeli
-        alt: "Capture d'écran montrant l'intégration logicielle du torréfacteur Kraffe avec Cropster/Artisan", // Kraffe Metni
-      },
-    ]}
+    title={kraffeFeaturesNavsTitle}
+    tabs={kraffeTabs}
   />
 
+  {/* TestimonialsSection (frTestimonials içindeki avatarAlt kontrol edildi) */}
   <TestimonialsSection
-    title="Approuvé par les Torréfacteurs Professionnels" // Kraffe Metni
-    subTitle="Découvrez pourquoi les principales torréfactions choisissent Kraffe pour la qualité, la constance et le support." // Kraffe Metni
-    testimonials={frTestimonials} // Yukarıda tanımlanan Fransızca testimonial verisi
-    statistics={frStatistics}    // Yukarıda tanımlanan Fransızca istatistik verisi
+    title={kraffeTestimonialsTitle}
+    subTitle={kraffeTestimonialsSubTitle}
+    testimonials={frTestimonials}
+    statistics={frStatistics}
   />
 
-  <PricingSection pricing={pricing} /> {/* pricing verisi Kraffe için güncellenmeli */}
+  <PricingSection pricing={pricing} />
 
-  <FAQ title="Questions<br />fréquemment posées" faqs={faqs} /> {/* faqs verisi Kraffe için güncellenmeli */}
+  <FAQ title="Questions<br />fréquemment posées" faqs={faqs} />
 
   <HeroSectionAlt
-    title="Prêt à Perfectionner Votre Torréfaction ?" // Kraffe Metni
-    subTitle="Connectez-vous avec nos experts dès aujourd'hui pour discuter de vos besoins et découvrir le torréfacteur Kraffe idéal pour votre entreprise." // Kraffe Metni
-    url={getRelativeLocaleUrl("fr", "contact")} // Buton linki Contact sayfasına
-    btnTitle="Demander un Devis" // Buton metni güncellendi
+    title={kraffeAltHeroTitle}
+    subTitle={kraffeAltHeroSubTitle}
+    url={getRelativeLocaleUrl("fr", "contact")}
+    btnTitle={kraffeAltHeroBtn}
   />
 </MainLayout>
