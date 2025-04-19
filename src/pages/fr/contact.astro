@@ -1,30 +1,36 @@
 ---
-// Import the necessary components
+// Gerekli bileşenleri ve verileri import et
 import MainLayout from "@/layouts/MainLayout.astro";
-import ContactSection from "@components/sections/fr/ContactSection_fr.astro";
+import ContactSection_fr from "@components/sections/fr/ContactSection_fr.astro"; // Fransızca bileşeni import et
+import { SITE } from "@data/constants";
+import amirAvatar from "@images/Amir+Montazer.avif"; // Amir'in avatarı import edildi
+
+// Sayfa başlığı
+const pageTitle: string = `Nous Contacter | ${SITE.title}`; // Fransızca başlık
+
+// Canonical URL
+const canonicalUrl = "https://krafferoasters.com/fr/contact"; // Fransızca hedef URL
 ---
 
-<!--Utilizing MainLayout for the outer layout of the page, and defining meta for SEO purposes-->
 <MainLayout
-  title="Contact | ScrewFast"
-  lang="fr"
+  title={pageTitle}
+  lang="fr" {/* Dil etiketi */}
   structuredData={{
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://screwfast.uk//fr/contact",
-    url: "https://screwfast.uk//fr/contact",
-    name: "Nous Contacter | ScrewFast",
-    description:
-      "Vous avez des questions ou souhaitez discuter d'un projet ? Contactez-nous et élaborons ensemble la solution parfaite avec nos outils et services.",
-    isPartOf: {
-      "@type": "WebSite",
-      url: "https://screwfast.uk/fr/",
-      name: "ScrewFast",
-      description:
-        "ScrewFast propose des outils matériels de premier ordre et des services de construction experts pour répondre à tous vos besoins de projet.",
+    "@id": canonicalUrl,
+    "url": canonicalUrl,
+    "name": `Contacter Kraffe Roasters | Machines à Torréfier Commerciales et Industrielles`, // Fransızca sayfa adı
+    "description": "Contactez Kraffe Roasters pour toute question concernant nos machines à torréfier commerciales et industrielles, nos équipements ou nos services. Demandez un devis ou une consultation.", // Fransızca meta description
+    "isPartOf": {
+        "@type": "WebSite",
+        "url": "https://krafferoasters.com/fr", // Ana site FR URL'si
+        "name": SITE.title,
+        "description": SITE.description // constants.ts'den alınacak (İngilizce kalabilir veya çevrilebilir)
     },
-    inLanguage: "fr",
+    "inLanguage": "fr-FR" // Dil kodu
   }}
 >
-  <ContactSection />
+  {/* ContactSection_fr'e amirAvatar verisi prop olarak geçirildi */}
+  <ContactSection_fr amirAvatarData={amirAvatar} /> {/* Prop adı aynı */}
 </MainLayout>
