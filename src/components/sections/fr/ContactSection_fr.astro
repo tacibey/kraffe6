@@ -1,119 +1,192 @@
 ---
-// Import the necessary dependencies.
+// Gerekli bileşenleri ve resimleri import et
+import { Image } from "astro:assets";
+import type { ImageMetadata } from 'astro'; // ImageMetadata tipini import et
 import AuthBtn from "@components/ui/buttons/AuthBtn.astro";
 import ContactIconBlock from "@components/ui/blocks/ContactIconBlock.astro";
-import TextInput from "@components/ui/forms/input/TextInput.astro";
-import EmailContactInput from "@components/ui/forms/input/EmailContactInput.astro";
-import PhoneInput from "@components/ui/forms/input/PhoneInput.astro";
-import TextAreaInput from "@components/ui/forms/input/TextAreaInput.astro";
 import Icon from "@components/ui/icons/Icon.astro";
+import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro"; // Review bileşeni
+import scaLogo from "@images/sca2-new.webp";
+import ceLogoNew from "@images/ce-mark-new.avif";
 
-// Define the variables that will be used in this component
+// Prop Tanımı: Fransızca sayfadan gelen avatar verisini alacak
+interface Props {
+    amirAvatarData: ImageMetadata;
+}
+const { amirAvatarData } = Astro.props; // Gelen prop'u al
+
+// Review bölümü için grup avatar kaynakları (İngilizce ile aynı)
+const groupAvatarSrcs: Array<string> = [
+  "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+];
+
+// Sabit metinler (Fransızca)
 const title: string = "Contactez-nous";
-const subTitle: string =
-  "Vous avez des questions ou souhaitez discuter d'un projet ? Contactez-nous et laissons-nous élaborer la solution parfaite avec nos outils et services.";
-const formTitle: string = "Remplissez le formulaire ci-dessous";
-const formSubTitle: string =
-  "Nous vous répondrons dans un délai de 1 à 2 jours ouvrables.";
+const subTitle: string = "Le désir d'atteindre les plus hauts standards de qualité !";
+const formTitle: string = `Soyez l'un des <span class="text-orange-500 dark:text-orange-400">10</span> premiers ce mois-ci, obtenez une consultation gratuite !`; // Form başlığı (güncellendi)
+const formSubTitleItalic: string = `(<span class="text-orange-500 dark:text-orange-400">2</span>/10 places restantes)`; // Form alt başlığı (güncellendi)
+const formResponseTime: string = "Nous vous répondrons dans un délai de 1 à 2 jours ouvrables."; // Eski formSubTitle
+
+// Office verileri (İngilizce ile aynı)
+const officeHeading: string = "Notre Bureau"; // Başlık çevrildi
+const officeContent: string = "KRAFFE ROASTERS";
+const officeAddress: string = "Adalet, Manas Blvd. No. 39, Unit 3408, 35530 Bayraklı, İzmir, Turkiye";
+
+// Email verileri (İngilizce ile aynı)
+const emailHeading: string = "Contactez-nous par e-mail";
+const emailContent: string = "Vous préférez l'écrit ? Envoyez-nous un e-mail à"; // İçerik çevrildi
+const emailLinkTitle: string = "info@krafferoasters.com";
+const emailLinkURL: string = "mailto:info@krafferoasters.com";
+
+// Review verileri (İngilizce ile aynı)
+const rating: string = `<span class="font-bold">4.8</span> / 5`;
+const starCount: number = 4;
+const reviews: string = `Approuvé par les <span class="font-bold">Torréfacteurs</span> du monde entier`; // Metin çevrildi
+
+// StaticForms bilgileri (İngilizce ile aynı)
+const staticFormsApiKey = "sf_323gg5f098n8e9d9ch167dmh";
+const recaptchaSiteKey = "6LeLrxwrAAAAABfZl7OIP3Yv0ibik2SANXaLixp6";
+const redirectUrl = "https://krafferoasters.com/fr"; // Yönlendirme FR sayfasına (veya ana sayfaya?)
+
+// Ürün listesi (İngilizce ile aynı)
+const productOptions = [
+  "Dimi - Capacité de lot d'un demi-kg", "Primi - Capacité de lot de 1 kg", // Çevrildi
+  "KRF-03", "KRF-06", "KRF-12", "KRF-15", "KRF-20", "KRF-30",
+  "KRF-60", "KRF-120", "KRF-180", "KRF-240"
+];
+
+// Ülke/Bölge listesi (İngilizce ile aynı)
+const countryOptions = [
+  "Europe", "États-Unis", "Royaume-Uni", "Russie", "Amérique du Sud", "Asie", "Autre" // Çevrildi (isteğe bağlı)
+];
+
+// Input ve Select elemanları için ortak stil sınıfları (İngilizce ile aynı)
+const inputBaseClass = "block w-full rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-neutral-200 focus:outline-hidden focus:ring-3 focus:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-700/30 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:ring-1";
 ---
 
-<!-- Contact Us -->
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
   <div class="mx-auto max-w-2xl lg:max-w-5xl">
     <div class="text-center">
-      <h1
-        class="text-balance text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
-      >
+      <h1 class="text-balance text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
         {title}
       </h1>
-      <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
+      <p class="mt-1 text-pretty text-lg text-neutral-600 dark:text-neutral-400">
         {subTitle}
       </p>
+      <div class="mt-8 flex items-center justify-center gap-x-8 sm:gap-x-12">
+        <Image src={ceLogoNew} alt="Logo de certification CE Marking" class="h-24 w-auto object-contain sm:h-32" loading="lazy"/>
+        <Image src={scaLogo} alt="Logo de membre de la Specialty Coffee Association" class="h-24 w-auto object-contain sm:h-32" loading="lazy"/>
+      </div>
+
+      {/* Review Component (Formun üstünde) */}
+      <div class="mt-12 rounded-xl border border-neutral-200 bg-neutral-100 p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 sm:p-6 lg:mt-16">
+         <ReviewComponent
+           testimonialText="Incroyablement convivial et fournit des résultats constants à chaque fois." // Çevrildi
+           testimonialAuthor="Amir Montazer"
+           testimonialRole="Etude Coffee Co."
+           testimonialAvatar={amirAvatarData} {/* Prop'tan gelen veri */}
+           testimonialAvatarAlt="Portrait d'Amir Montazer" // Çevrildi
+           avatars={groupAvatarSrcs}
+           starCount={starCount}
+           rating={rating}
+           reviews={reviews}
+         />
+      </div>
     </div>
 
-    <div class="mt-12 grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
-      <div class="flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
-        <h2
-          class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300"
-        >
-          {formTitle}
-        </h2>
-        <!-- Form for user input with various input fields.-->
-        <!-- Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)-->
-        <form>
+    {/* Form ve Sağ Sütun */}
+    <div class="mt-8 grid items-start gap-6 lg:mt-10 lg:grid-cols-2 lg:gap-16">
+      {/* Sol Taraf: Form */}
+      <div class="flex flex-col rounded-xl border border-neutral-200 bg-neutral-100 p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 sm:p-6 lg:p-8">
+        <div class="mb-8 text-center">
+            <h2 class="text-xl font-semibold text-neutral-800 dark:text-neutral-200" set:html={formTitle} />
+            <p class="mt-1 text-sm italic text-neutral-600 dark:text-neutral-400" set:html={formSubTitleItalic} />
+        </div>
+
+        <form action="https://api.staticforms.xyz/submit" method="POST">
+          <input type="hidden" name="apiKey" value={staticFormsApiKey} />
+          <input type="hidden" name="replyTo" value="@" />
+          <input type="text" name="honeypot" style="display: none;" tabindex="-1" autocomplete="off"/>
+          <input type="hidden" name="redirectTo" value={redirectUrl} />
+
           <div class="grid gap-4">
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <TextInput
-                id="hs-firstname-contacts"
-                label="Prénom"
-                name="hs-firstname-contacts"
-              />
-              <TextInput
-                id="hs-lastname-contacts"
-                label="Nom"
-                name="hs-firstname-contacts"
-              />
+            {/* Name Alanı */}
+            <div>
+              <label for="contact-name" class="sr-only">Nom</label> {/* Çevrildi */}
+              <input type="text" id="contact-name" name="name" class={inputBaseClass} placeholder="Nom" required /> {/* Çevrildi */}
             </div>
-            <EmailContactInput id="hs-email-contacts" />
-            <PhoneInput id="hs-phone-number" />
-            <TextAreaInput
-              id="hs-about-contacts"
-              label="Détails"
-              name="hs-about-contacts"
-            />
+            {/* Company Alanı */}
+            <div>
+              <label for="contact-company" class="sr-only">Société</label> {/* Çevrildi */}
+              <input type="text" id="contact-company" name="$company" class={inputBaseClass} placeholder="Société" /> {/* Çevrildi */}
+            </div>
+            {/* Email Alanı */}
+            <div>
+              <label for="contact-email" class="sr-only">E-mail</label> {/* Çevrildi */}
+              <input type="email" id="contact-email" name="email" class={inputBaseClass} placeholder="E-mail" required autocomplete="email"/> {/* Çevrildi */}
+            </div>
+            {/* Phone Alanı */}
+            <div>
+              <label for="contact-phone" class="sr-only">Numéro de téléphone</label> {/* Çevrildi */}
+              <input type="tel" id="contact-phone" name="phone" class={inputBaseClass} placeholder="Numéro de téléphone"/> {/* Çevrildi */}
+            </div>
+             {/* Country Select Alanı */}
+             <div>
+               <label for="contact-country" class="sr-only">Sélectionnez le pays/la région</label> {/* Çevrildi */}
+               <select id="contact-country" name="$country" class={inputBaseClass + " cursor-pointer"}>
+                 <option value="" disabled selected>Sélectionnez le pays/la région</option> {/* Çevrildi */}
+                 {countryOptions.map(option => ( <option value={option}>{option}</option> ))}
+                 <option value="Autre">Autre (Veuillez préciser dans les détails)</option> {/* Çevrildi */}
+               </select>
+             </div>
+             {/* Product Select Alanı */}
+             <div>
+               <label for="contact-product" class="sr-only">Sélectionnez le produit</label> {/* Çevrildi */}
+               <select id="contact-product" name="$product" class={inputBaseClass + " cursor-pointer"}>
+                 <option value="" disabled selected>Sélectionnez le produit</option> {/* Çevrildi */}
+                 {productOptions.map(option => ( <option value={option}>{option}</option> ))}
+               </select>
+             </div>
+            {/* Details Alanı */}
+            <div>
+              <label for="contact-details" class="sr-only">Détails</label> {/* Çevrildi */}
+              <textarea id="contact-details" name="message" rows="4" class={inputBaseClass} placeholder="Détails" required></textarea> {/* Çevrildi */}
+            </div>
+            {/* reCAPTCHA */}
+            <div class="mt-2">
+                <div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
+            </div>
           </div>
 
           <div class="mt-4 grid">
-            <AuthBtn title="Envoyer un message" />
+            <AuthBtn title="Envoyer le message" /> {/* Çevrildi */}
           </div>
-
           <div class="mt-3 text-center">
             <p class="text-sm text-neutral-600 dark:text-neutral-400">
-              {formSubTitle}
+              {formResponseTime}
             </p>
           </div>
         </form>
       </div>
 
-      <!--ContactIconBlocks are used to display different methods of contacting, including visiting office, email, browsing knowledgebase, and FAQ.-->
-      <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
-        <ContactIconBlock
-          heading="Base de connaissances"
-          content="Parcourez tous nos articles de base de connaissances."
-          isLinkVisible={true}
-          linkTitle="Visiter les guides et tutoriels"
-          linkURL="#"
-          isArrowVisible={true}
-          ><Icon name="question" />
-        </ContactIconBlock>
-
-        <ContactIconBlock
-          heading="FAQ"
-          content="Explorez notre FAQ pour des réponses rapides et claires aux questions courantes."
-          isLinkVisible={true}
-          linkTitle="Visiter la FAQ"
-          linkURL="#"
-          isArrowVisible={true}
-          ><Icon name="chatBubble" />
-        </ContactIconBlock>
-
-        <ContactIconBlock
-          heading="Visitez notre bureau"
-          content="ScrewFast UK"
-          isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
-          ><Icon name="mapPin" />
-        </ContactIconBlock>
-
-        <ContactIconBlock
-          heading="Contactez-nous par e-mail"
-          content="Préférez-vous le texte écrit ? Envoyez-nous un e-mail à"
-          isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
-          linkURL="#"
-          ><Icon name="envelopeOpen" />
-        </ContactIconBlock>
+      {/* Sağ Taraf: İkon Blokları */}
+      <div class="space-y-6 divide-y divide-neutral-200 dark:divide-neutral-700">
+          <div class="pt-6 first:pt-0">
+             <ContactIconBlock heading={officeHeading} content={officeContent} isAddressVisible={true} addressContent={officeAddress}>
+               <Icon name="mapPin" />
+             </ContactIconBlock>
+          </div>
+          <div class="pt-6 first:pt-0">
+             <ContactIconBlock heading={emailHeading} content={emailContent} isLinkVisible={true} linkTitle={emailLinkTitle} linkURL={emailLinkURL}>
+               <Icon name="envelopeOpen" />
+             </ContactIconBlock>
+          </div>
       </div>
     </div>
   </div>
 </section>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
