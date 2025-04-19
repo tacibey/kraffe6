@@ -1,22 +1,21 @@
 ---
 import { Image } from "astro:assets";
-import Avatar from "@components/ui/avatars/Avatar.astro"; // Küçük avatarlar için
+import Avatar from "@components/ui/avatars/Avatar.astro";
 import FullStar from "@components/ui/stars/FullStar.astro";
 import HalfStar from "@components/ui/stars/HalfStar.astro";
 import type { ImageMetadata } from "astro";
 
-// Yeni eklenen testimonial için props
-interface TestimonialData {
-  testimonialText: string;
-  testimonialAuthor: string;
-  testimonialRole: string;
-  testimonialAvatar: ImageMetadata;
-  testimonialAvatarAlt: string;
-}
+// Props Interface (Testimonial verileri opsiyonel yapıldı)
+interface Props {
+  // Tekil Testimonial Props (Opsiyonel)
+  testimonialText?: string;       // '?' eklendi
+  testimonialAuthor?: string;     // '?' eklendi
+  testimonialRole?: string;       // '?' eklendi
+  testimonialAvatar?: ImageMetadata; // '?' eklendi
+  testimonialAvatarAlt?: string;  // '?' eklendi
 
-// Var olan props + yeni testimonial props'ları
-interface Props extends TestimonialData {
-  avatars?: Array<string>; // Grup avatarları (string URL'ler)
+  // Grup Avatar & Rating Props (Opsiyonel)
+  avatars?: Array<string>;
   starCount?: number;
   rating?: string;
   reviews?: string;
@@ -29,100 +28,101 @@ const {
   testimonialRole,
   testimonialAvatar,
   testimonialAvatarAlt,
-  avatars, // Grup avatarları
+  avatars,
   starCount = 0,
   rating,
   reviews
 } = Astro.props;
 
-// Amir'in avatarı için boyut sınıfı (diğerlerinin 2 katı h-16 w-16)
+// Avatar boyut sınıfları
 const largeAvatarClass = "h-16 w-16 rounded-full object-cover ring-2 ring-neutral-50 dark:ring-zinc-800";
-// Grup avatarları için boyut sınıfı (orijinal boyut h-8 w-8)
 const smallAvatarClass = "h-8 w-8 rounded-full ring-2 ring-neutral-50 dark:ring-zinc-800";
+const avatarSizeLarge = 64;
 ---
 
-{/* Bileşenin ana konteyneri */}
 <div class="mt-6 lg:mt-10">
-  <div class="py-5"> {/* İç padding */}
+  <div class="py-5">
 
-    {/* === YENİ TESTIMONIAL BÖLÜMÜ (GÜNCELLENDİ) === */}
-    <div class="mb-6 flex items-center gap-x-4 border-b border-neutral-300 pb-4 dark:border-neutral-700">
-      {/* Büyük Avatar (Amir) */}
-      <div class="shrink-0">
-        <Image
-          src={testimonialAvatar}
-          alt={testimonialAvatarAlt}
-          class={largeAvatarClass}
-          loading="lazy"
-          width={64} // h-16 = 4rem = 64px
-          height={64}
-        />
-      </div>
-      {/* Yorum ve Yazar Bilgisi */}
-      <div class="text-left">
-        <p class="text-base italic text-neutral-700 dark:text-neutral-300">
-          "{testimonialText}"
-        </p>
-        <p class="mt-2 text-sm font-bold text-neutral-800 dark:text-neutral-200">
-           {testimonialAuthor}
-        </p>
-        <p class="text-xs text-neutral-600 dark:text-neutral-400">
-           {testimonialRole}
-        </p>
-      </div>
-    </div>
-    {/* === /YENİ TESTIMONIAL BÖLÜMÜ === */}
-
-
-    {/* === ESKİ SOSYAL KANIT BÖLÜMÜ (Avatar Grubu ve Rating) === */}
-    <div class="text-center sm:flex sm:items-center sm:text-start">
-      {/* Avatar Grubu */}
-      { avatars && avatars.length > 0 && (
-        <div class="shrink-0 pb-5 sm:flex sm:pb-0 sm:pe-5">
-          <div class="flex justify-center -space-x-3">
-            {/* Küçük Avatarlar */}
-            {avatars?.map((src) => <Avatar src={src} alt="User Avatar" class={smallAvatarClass}/>)}
-            {/* "7k+" balonu */}
-            <span
-              class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 ring-2 ring-white dark:bg-zinc-900 dark:ring-zinc-800"
-            >
-              <span class="text-xs font-medium uppercase leading-none text-white">7k+</span>
-            </span>
-          </div>
+    {/* === Tekil Testimonial Bölümü (Koşullu Render) === */}
+    {/* Sadece gerekli proplar varsa bu bölümü göster */}
+    {testimonialText && testimonialAuthor && testimonialRole && testimonialAvatar && testimonialAvatarAlt && (
+      <div class="mb-6 flex items-center gap-x-4 border-b border-neutral-300 pb-4 dark:border-neutral-700">
+        <div class="shrink-0">
+          <Image
+            src={testimonialAvatar}
+            alt={testimonialAvatarAlt}
+            class={largeAvatarClass}
+            loading="lazy"
+            width={avatarSizeLarge}
+            height={avatarSizeLarge}
+          />
         </div>
-      )}
-
-      {/* Ayıraç Çizgisi */}
-      { avatars && avatars.length > 0 && (
-         <div class="mx-auto h-px w-32 border-t border-neutral-400 dark:border-neutral-500 sm:mx-0 sm:h-8 sm:w-auto sm:border-s sm:border-t-0"></div>
-      )}
-
-      {/* Yıldız Rating ve Açıklama */}
-      <div class={`flex flex-col items-center ${avatars && avatars.length > 0 ? 'sm:items-start' : 'sm:items-center w-full'}`}>
-        <div class={`flex items-baseline space-x-1 pt-5 ${avatars && avatars.length > 0 ? 'sm:ps-5' : ''} sm:pt-0`}>
-          {/* Yıldızlar */}
-          <div class="flex space-x-1">
-            {Array(starCount).fill(0).map((_, i) => <FullStar key={i} />)}
-            <HalfStar />
-          </div>
-          {/* Rating Metni */}
-          {rating && (
-            <p class="text-neutral-800 dark:text-neutral-200">
-              <Fragment set:html={rating} />
-            </p>
-          )}
+        <div class="text-left">
+          <p class="text-base italic text-neutral-700 dark:text-neutral-300">
+            "{testimonialText}"
+          </p>
+          <p class="mt-2 text-sm font-bold text-neutral-800 dark:text-neutral-200">
+             {testimonialAuthor}
+          </p>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400">
+             {testimonialRole}
+          </p>
         </div>
-        {/* Reviews Metni */}
-        {reviews && (
-          <div class={`text-sm text-neutral-800 dark:text-neutral-200 ${avatars && avatars.length > 0 ? 'sm:ps-5' : ''}`}>
-            <p>
-              <Fragment set:html={reviews} />
-            </p>
+      </div>
+    )}
+    {/* === /Tekil Testimonial Bölümü === */}
+
+
+    {/* === Sosyal Kanıt Bölümü (Avatar Grubu ve Rating) === */}
+    {/* Sadece avatars veya rating/reviews varsa bu bölüm mantıklı */}
+    {(avatars && avatars.length > 0) || rating || reviews ? (
+      <div class="text-center sm:flex sm:items-center sm:text-start">
+        {/* Avatar Grubu */}
+        { avatars && avatars.length > 0 && (
+          <div class="shrink-0 pb-5 sm:flex sm:pb-0 sm:pe-5">
+            <div class="flex justify-center -space-x-3">
+              {avatars?.map((src) => <Avatar src={src} alt="User Avatar" class={smallAvatarClass}/>)}
+              <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 ring-2 ring-white dark:bg-zinc-900 dark:ring-zinc-800">
+                <span class="text-xs font-medium uppercase leading-none text-white">7k+</span>
+              </span>
+            </div>
           </div>
         )}
-      </div>
-    </div>
-    {/* === /ESKİ SOSYAL KANIT BÖLÜMÜ === */}
 
+        {/* Ayıraç Çizgisi */}
+        { avatars && avatars.length > 0 && (rating || reviews) && ( // Sadece avatar ve rating/review varsa göster
+           <div class="mx-auto h-px w-32 border-t border-neutral-400 dark:border-neutral-500 sm:mx-0 sm:h-8 sm:w-auto sm:border-s sm:border-t-0"></div>
+        )}
+
+        {/* Yıldız Rating ve Açıklama */}
+        { (rating || reviews) && ( // Sadece rating veya review varsa göster
+          <div class={`flex flex-col items-center ${avatars && avatars.length > 0 ? 'sm:items-start' : 'sm:items-center w-full'}`}>
+            <div class={`flex items-baseline space-x-1 pt-5 ${avatars && avatars.length > 0 ? 'sm:ps-5' : ''} sm:pt-0`}>
+              {/* Yıldızlar */}
+              {starCount > 0 && ( // Sadece starCount varsa göster
+                <div class="flex space-x-1">
+                  {Array(starCount).fill(0).map((_, i) => <FullStar key={i} />)}
+                  <HalfStar />
+                </div>
+              )}
+              {/* Rating Metni */}
+              {rating && (
+                <p class="text-neutral-800 dark:text-neutral-200">
+                  <Fragment set:html={rating} />
+                </p>
+              )}
+            </div>
+            {/* Reviews Metni */}
+            {reviews && (
+              <div class={`text-sm text-neutral-800 dark:text-neutral-200 ${avatars && avatars.length > 0 ? 'sm:ps-5' : ''}`}>
+                <p>
+                  <Fragment set:html={reviews} />
+                </p>
+              </div>
+            )}
+          </div>
+         )} {/* rating || reviews sonu */}
+      </div>
+    ) : null } {/* Sosyal kanıt bölümü sonu */}
   </div>
 </div>
