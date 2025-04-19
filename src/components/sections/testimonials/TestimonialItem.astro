@@ -1,42 +1,58 @@
 ---
 import { Image } from "astro:assets";
-import Icon from "../../ui/icons/Icon.astro";
+import type { ImageMetadata } from "astro"; // ImageMetadata tipini import et
+import Icon from "../../ui/icons/Icon.astro"; // Icon importu zaten vardı
 
-const { content, author, role, avatarSrc } = Astro.props;
+// Props'u alırken avatarAlt'ı da ekle ve avatarSrc tipini güncelle
+const { content, author, role, avatarSrc, avatarAlt } = Astro.props;
 
+// Props tip tanımını güncelle
 interface Props {
   content: string;
   author: string;
   role: string;
-  avatarSrc: string;
+  avatarSrc: string | ImageMetadata; // Hem string (URL) hem de import edilmiş resim kabul etsin
+  avatarAlt: string;               // Alt metni zorunlu yapalım
 }
+
+// Avatar boyutu için sınıf (Daha önce h-10 w-10 yapmıştık, isteğe bağlı olarak değiştirilebilir)
+const avatarClass = "h-10 w-10 rounded-full";
+// Boyutları sayısal olarak da tanımlayalım (Tailwind h-10 w-10 = 40px)
+const avatarSize = 40;
 ---
 
 <blockquote class="relative">
-  <Icon name="quotation" />
+  {/* Quotation ikonu */}
+  <Icon name="quotation" class="absolute start-0 top-0 h-16 w-16 -translate-x-6 -translate-y-8 transform text-neutral-300 dark:text-neutral-700"/>
 
+  {/* Yorum içeriği */}
   <div class="relative z-10">
     <p class="text-xl italic text-neutral-800 dark:text-neutral-200">
       {content}
     </p>
   </div>
 
+  {/* Yazar bilgileri */}
   <div class="mt-6">
     <div class="flex items-center">
+      {/* Avatar */}
       <div class="shrink-0">
         <Image
-          class="h-8 w-8 rounded-full"
-          src={avatarSrc}
-          alt="Avatar Description"
-          loading={"eager"}
-          inferSize
+          class={avatarClass} {/* Dinamik sınıf kullanıldı */}
+          src={avatarSrc}     {/* Güncellenmiş prop */}
+          alt={avatarAlt}     {/* Yeni prop */}
+          loading={"lazy"}    {/* eager yerine lazy daha uygun olabilir */}
+          width={avatarSize}  {/* Sayısal boyut */}
+          height={avatarSize} {/* Sayısal boyut */}
+          {/* inferSize kaldırıldı */}
         />
       </div>
+      {/* Yazar adı ve rolü */}
       <div class="ms-4 grow">
         <div class="font-bold text-neutral-800 dark:text-neutral-200">
           {author}
         </div>
-        <div class="text-xs text-neutral-500">{role}</div>
+        <div class="text-xs text-neutral-600 dark:text-neutral-400">{role}</div> {/* Renk biraz koyulaştırıldı */}
       </div>
     </div>
   </div>
