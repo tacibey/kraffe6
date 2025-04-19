@@ -18,7 +18,7 @@ import construction from "@images/construction-image.avif"; // Kraffe için değ
 import tools from "@images/automated-tools.avif";       // Kraffe için değiştirilmeli
 import dashboard from "@images/dashboard-image.avif";     // Kraffe için değiştirilmeli
 import { getRelativeLocaleUrl } from "astro:i18n";
-
+import amirAvatar from "@images/Amir+Montazer.avif";
 
 // Avatar URL'leri (Grup için)
 const groupAvatarSrcs: Array<string> = [
@@ -28,16 +28,17 @@ const groupAvatarSrcs: Array<string> = [
   "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
 ];
 
-// Testimonial verisi (Fransızca) - avatarSrc string olarak güncellendi
+// Testimonial verisi (Fransızca) - avatarSrc güncellendi
 const frTestimonials = [
     {
         content:
           "Kraffe est incroyablement convivial et fournit des résultats constants à chaque fois. Le processus de torréfaction est efficace et précis, me permettant d'obtenir la torréfaction parfaite pour mes grains de café.",
         author: "Amir Montazer",
         role: "Etude Coffee Co.",
-        avatarSrc: "/src/images/Amir+Montazer.avif", // <-- STRING YOLU OLARAK GÜNCELLENDİ
+        avatarSrc: amirAvatar, 
         avatarAlt: "Portrait d'Amir Montazer"
       },
+
 ];
 
 // İstatistik verisi (Fransızca)
