@@ -1,32 +1,36 @@
 ---
-// Import the necessary components
+// Gerekli bileşenleri ve verileri import et
 import MainLayout from "@/layouts/MainLayout.astro";
 import ContactSection from "@components/sections/misc/ContactSection.astro";
-import { SITE } from "@data/constants";
+import { SITE } from "@data/constants"; // SITE sabiti kullanılacak
+import amirAvatar from "@images/Amir+Montazer.avif"; // Amir'in avatarı import edildi
 
-const pageTitle: string = `Contact | ${SITE.title}`;
+// Sayfa başlığını Kraffe Roasters'a göre ayarla
+const pageTitle: string = `Contact Us | ${SITE.title}`; // SITE.title Kraffe Roasters olmalı
+
+// Canonical URL için hedef domaini kullan
+const canonicalUrl = "https://krafferoasters.com/contact"; // Hedef domain
 ---
 
-<!--Utilizing MainLayout for the outer layout of the page, and defining meta for SEO purposes-->
 <MainLayout
   title={pageTitle}
+  lang="en" {/* Dil etiketi eklendi (opsiyonel ama iyi pratik) */}
   structuredData={{
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://screwfast.uk/contact",
-    "url": "https://screwfast.uk/contact",
-    "name": "Contact Us | ScrewFast",
-    "description":
-      "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.",
+    "@id": canonicalUrl, // Canonical URL kullanıldı
+    "url": canonicalUrl, // Canonical URL kullanıldı
+    "name": `Contact Kraffe Roasters | Commercial & Industrial Coffee Roasters`, // Sayfa adı güncellendi
+    "description": "Get in touch with Kraffe Roasters for inquiries about our commercial and industrial coffee roasting machines, equipment, or services. Request a quote or consultation.", // Meta description güncellendi
     "isPartOf": {
-      "@type": "WebSite",
-      "url": "https://screwfast.uk",
-      "name": "ScrewFast",
-      "description":
-        "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.",
+        "@type": "WebSite",
+        "url": "https://krafferoasters.com", // Ana site URL'si güncellendi
+        "name": SITE.title, // constants.ts'den alınacak
+        "description": SITE.description // constants.ts'den alınacak
     },
     "inLanguage": "en-US"
   }}
 >
-  <ContactSection />
+  {/* ContactSection'a amirAvatar verisi prop olarak geçirildi */}
+  <ContactSection amirAvatarData={amirAvatar} />
 </MainLayout>
