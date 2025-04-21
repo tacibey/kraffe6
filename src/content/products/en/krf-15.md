@@ -4,7 +4,7 @@ description: "15 kg Commercial Coffee Roasting Machine"
 main:
   id: 10
   content: |
-    Introducing KRAFFE KRF-15: 15kg commercial coffee roasting machine designed for growing specialty coffee businesses and small-scale production. Ideal for roasters who seek precision, energy efficiency, and consistent quality in every batch.
+    Introducing KRAFFE KRF-15: 15kg commercial coffee roasting machine engineered for established roasteries and wholesale operations. Designed to deliver consistent performance, profile flexibility, and efficiency for daily high-volume roasting.
   imgCard: "@/images/15.avif"
   imgMain: "@/images/15.avif"
   imgAlt: "Kraffe 15 kg Commercial Coffee Roasting Machine, side view"
