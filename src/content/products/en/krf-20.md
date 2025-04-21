@@ -4,7 +4,7 @@ description: "20 kg Commercial Coffee Roasting Machine"
 main:
   id: 11
   content: |
-    Introducing KRAFFE KRF-20: 20kg commercial coffee roasting machine designed for growing specialty coffee businesses and small-scale production. Ideal for roasters who seek precision, energy efficiency, and consistent quality in every batch.
+    Introducing KRAFFE KRF-20: 20kg industrial coffee roasting machine crafted for professional roasteries with large-scale demands. Built to combine precision roasting, automation, and consistency for operations that require reliable, continuous output.
   imgCard: "@/images/20.avif"
   imgMain: "@/images/20.avif"
   imgAlt: "Kraffe 20 kg Commercial Coffee Roasting Machine, side view"
