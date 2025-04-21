@@ -2,7 +2,7 @@
 title: "Kraffe KRF-60"
 description: "60 kg Industrial Coffee Roasting Machine" 
 main:
-  id: 12
+  id: 13
   content: |
     Introducing KRAFFE KRF-60: 60KG Commercial Coffee Roasting Machine, designed for large-scale roasters and high-demand operations seeking unparalleled consistency, premium quality, and maximum efficiency in every batch.
   imgMain: "@/images/60.avif"
