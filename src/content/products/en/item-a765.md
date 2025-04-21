@@ -1,12 +1,12 @@
 ---
-title: "Kraffe KRF-03"
+title: "Kraffe Product Title"
 description: "3kg batch Commercial Coffee Roasting Machine" 
 main:
   id: 2
   content: |
     Discover the Kraffe KRF-03: 3kg Commercial Coffee Roaster – Ideal for Small Cafes and Specialty Roasters
   imgCard: "@/images/dimi1.avif"
-  imgMain: "@/images/dimi2.webp"
+  imgMain: "@/images/dimi1.avif"
   imgAlt: "Kraffe KRF-03 Commercial Coffee Roasting Machine, side view"
 tabs:
   - id: "tabs-with-card-item-1"
