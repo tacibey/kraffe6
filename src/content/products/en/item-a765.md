@@ -55,6 +55,6 @@ tableData:
       - ["Finish", "Assorted"]
       - ["Package Contents", "Various screws in a set"]
 blueprints:
-  first: "@/images/KRAFFE KRF-30 Booklet-1.pdf"
+  first: "@/images/kraffe-03-catalog.avif"
   second: "@/images/kraffe-03-catalog.avif"  
 ---
