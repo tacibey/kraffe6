@@ -5,7 +5,7 @@ main:
   id: 5
   content: |
     Introducing KRAFFE DIMI: 0.5KG Commercial Coffee Roasting Machine crafted for micro-roasters, coffee labs, and training centers seeking precision, consistency, and full control in every small-batch roast.
-  imgCard: "@/images/dimi1-1.avif"
+  imgCard: "@/images/dimi2.avif"
   imgMain: "@/images/dimi1.avif"
   imgAlt: "Kraffe Dimi 0.5 kg Commercial Coffee Roasting Machine, side view"
 tabs:
