@@ -34,7 +34,6 @@ descriptionList:
 specificationsLeft:
   - title: "Technical Layout"
     subTitle: "Check Blueprints section for detailed technical layouts."
-  - title: "7-Inch Touchscreen"
 tableData:
   - feature: ["Specification", "Value"]
     description:
