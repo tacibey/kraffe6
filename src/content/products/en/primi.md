@@ -5,7 +5,7 @@ main:
   id: 6
   content: |
     Introducing KRAFFE PRIMI: 1KG Commercial Coffee Roasting Machine engineered for specialty cafes, roastery startups, and sample roasting with a perfect balance of control, consistency, and craftsmanship.
-  imgCard: "@/images/primi1.avif"
+  imgCard: "@/images/primi2-1.avif"
   imgMain: "@/images/primi1.avif"
   imgAlt: "Kraffe Primi 1 kg Commercial Coffee Roasting Machine, side view"
 tabs:
