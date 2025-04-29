@@ -10,26 +10,22 @@ interface Props {
   url?: string;
 }
 
-// YENİ Stilleri tanımla (Yeşil Buton için)
+// PrimaryCTA'dan ilham alınan stil sınıfları (Yeşil Buton için)
 const baseClasses =
-  "inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-sm font-medium shadow-sm outline-none transition duration-300"; // text-neutral-600 kaldırıldı, shadow-sm ve outline-none eklendi
-const borderClasses = "border border-transparent"; // Kenarlık şeffaf yapıldı
-const bgColorClasses = "bg-green-600"; // Arka plan yeşil yapıldı
-const textColorClasses = "text-neutral-50"; // Metin rengi beyaz yapıldı (veya text-white)
-const hoverClasses = "hover:bg-green-700"; // Hover rengi koyu yeşil yapıldı
-const focusClasses = "focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-800"; // Focus halkası yeşil yapıldı
-const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
-const fontSizeClasses = "2xl:text-base"; // Font boyutu aynı kaldı
-
-// Dark mode için özel class'lara artık pek gerek yok, çoğu yukarıda halledildi. Sadece focus offset'i kalabilir.
-const darkClasses = "dark:focus:outline-none"; // Sadeleştirildi
-
+  "group inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-sm font-bold text-neutral-50 ring-green-500 transition duration-300 focus-visible:ring-3 outline-hidden"; // text-neutral-50 (beyaz), font-bold, ring-green-500 eklendi/güncellendi
+const borderClasses = "border border-transparent"; // Kenarlık şeffaf
+const bgColorClasses =
+  "bg-green-500 hover:bg-green-600 active:bg-green-600 dark:focus:outline-none"; // Yeşil tonları, hover/active ve dark focus
+const disableClasses = "disabled:pointer-events-none disabled:opacity-50"; // Devre dışı bırakma
+const fontSizeClasses = "2xl:text-base"; // Font boyutu
+const ringClasses = "dark:ring-green-500"; // Dark mode focus halkası rengi güncellendi
 ---
 
-<!-- Yeşil stil uygulanmış link butonu -->
+<!-- PrimaryCTA stiline benzer, yeşil renkli link butonu -->
 <a
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${textColorClasses} ${hoverClasses} ${focusClasses} ${disableClasses} ${fontSizeClasses} ${darkClasses}`}
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses}`}
   href={url}
 >
   {title}
+  {/* Ok ikonu bu butonda genellikle olmaz, o yüzden eklenmedi */}
 </a>
