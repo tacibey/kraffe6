@@ -10,22 +10,25 @@ interface Props {
   url?: string;
 }
 
-// PrimaryCTA'dan ilham alınan stil sınıfları (Yeşil Buton için)
+// Orijinal CSS sınıfları, sadece metin rengi değiştirildi
 const baseClasses =
-  "group inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-sm font-bold text-neutral-50 ring-green-500 transition duration-300 focus-visible:ring-3 outline-hidden"; // text-neutral-50 (beyaz), font-bold, ring-green-500 eklendi/güncellendi
-const borderClasses = "border border-transparent"; // Kenarlık şeffaf
-const bgColorClasses =
-  "bg-green-500 hover:bg-green-600 active:bg-green-600 dark:focus:outline-none"; // Yeşil tonları, hover/active ve dark focus
-const disableClasses = "disabled:pointer-events-none disabled:opacity-50"; // Devre dışı bırakma
-const fontSizeClasses = "2xl:text-base"; // Font boyutu
-const ringClasses = "dark:ring-green-500"; // Dark mode focus halkası rengi güncellendi
+  "inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-sm font-medium text-yellow-700 shadow-xs outline-hidden ring-zinc-500 focus-visible:ring-3 transition duration-300"; // text-neutral-600 -> text-yellow-700 (okunabilirlik için biraz daha koyu sarı)
+const borderClasses = "border border-neutral-200";
+const bgColorClasses = "bg-neutral-300";
+const hoverClasses =
+  "hover:bg-neutral-400/50 active:text-neutral-700"; // hover:text-neutral-600 kaldırıldı, metin hover'da da sarı kalacak
+const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
+const fontSizeClasses = "2xl:text-base";
+const ringClasses = "ring-zinc-500"; // focus-visible:ring-3 zaten baseClasses'da
+
+const darkClasses =
+  "dark:border-neutral-700 dark:bg-zinc-700 dark:text-yellow-500 dark:ring-zinc-200 dark:hover:bg-zinc-600 dark:focus:outline-hidden"; // dark:text-neutral-300 -> dark:text-yellow-500 (koyu temada daha belirgin sarı)
 ---
 
-<!-- PrimaryCTA stiline benzer, yeşil renkli link butonu -->
+<!-- Arka planı aynı, metni sarı olan link butonu -->
 <a
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses}`}
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses}`}
   href={url}
 >
   {title}
-  {/* Ok ikonu bu butonda genellikle olmaz, o yüzden eklenmedi */}
 </a>
