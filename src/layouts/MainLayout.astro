@@ -1,34 +1,39 @@
 ---
-// Importing necessary components
+// src/layouts/MainLayout.astro
+
+// Gerekli bileşenleri ve sabitleri import et
 import Meta from "@components/Meta.astro";
 import Navbar from "@components/sections/navbar&footer/Navbar.astro";
 import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro"; // Yeni eklenen import
 import { SITE } from "@data/constants";
 import "@styles/global.css";
+import { getRelativeLocaleUrl } from "astro:i18n"; // Yeni eklenen import
 
-// Setting expected props
+// Prop tanımları
 const { title = SITE.title, meta, structuredData, lang = "en" } = Astro.props;
 
-// Interface to type-check the properties
+// Prop arayüzü
 interface Props {
   title?: string;
   meta?: string;
   structuredData?: object;
   lang?: string;
 }
+
+// Dinamik banner props'ları için dil ve URL belirle
+const currentLang = Astro.currentLocale || 'en'; // Astro.currentLocale ile mevcut dili al
+const contactUrl = getRelativeLocaleUrl(currentLang, 'contact'); // İlgili dildeki contact URL'sini al
+const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer'; // Dile göre buton metnini ayarla
 ---
 
-<!--
-This is the main structure for the page.
-We set the language of the page to English and add classes for scrollbar and scroll behavior.
--->
-<html lang={lang} class="dark scrollbar-hide lenis lenis-smooth scroll-pt-16"> 
+<html lang={lang} class="dark scrollbar-hide lenis lenis-smooth scroll-pt-16">
   <head>
-    <!-- Adding metadata to the HTML document -->
+    <!-- Meta etiketleri ve diğer başlık bilgileri -->
     <Meta meta={meta} structuredData={structuredData} />
-    <!-- Define the title of the page -->
     <title>{title}</title>
     
+    {/* Lenis smooth scroll scripti */}
     <script>
       import "@scripts/lenisSmoothScroll.js";
     </script>
@@ -36,27 +41,33 @@ We set the language of the page to English and add classes for scrollbar and scr
   <body
     class="bg-neutral-200 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-800"
   >
-    <!--
-    Setting up the main structure of the page.
-    The Navbar is placed at the top, with a slot for the main content and FooterSection at the bottom.
-    -->
     <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
       <Navbar />
       <main>
-        <slot />
+        <slot /> {/* Sayfa içeriği buraya gelecek */}
       </main>
     </div>
-    <FooterSection />
+
+    {/* ==== YENİ EKLENEN BANNER ==== */}
+    {/* Floating "Get Offer" butonu */}
+    <AnnouncementBanner
+      btnId="floating-offer-button" {/* ID artık işlevsel değil ama kalabilir */}
+      btnTitle={buttonText}          {/* Dile göre değişen metin */}
+      url={contactUrl}               {/* Dile göre değişen URL */}
+    />
+    {/* ==== /YENİ EKLENEN BANNER ==== */}
+
+    <FooterSection /> {/* Footer bölümü */}
+
+    {/* Preline scripti */}
     <script>
-      // https://preline.co
       import "preline/preline.js";
     </script>
+    {/* Scrollbar gizleme stilleri */}
     <style>
-      /* CSS rules for the page scrollbar */
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
       }
-
       .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
