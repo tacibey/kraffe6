@@ -10,22 +10,21 @@ interface Props {
   url?: string;
 }
 
-// Orijinal CSS sınıfları, sadece metin rengi değiştirildi
+// Orijinal yapıya dayalı, renkleri değiştirilmiş CSS sınıfları
 const baseClasses =
-  "inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-sm font-medium text-yellow-700 shadow-xs outline-hidden ring-zinc-500 focus-visible:ring-3 transition duration-300"; // text-neutral-600 -> text-yellow-700 (okunabilirlik için biraz daha koyu sarı)
-const borderClasses = "border border-neutral-200";
-const bgColorClasses = "bg-neutral-300";
-const hoverClasses =
-  "hover:bg-neutral-400/50 active:text-neutral-700"; // hover:text-neutral-600 kaldırıldı, metin hover'da da sarı kalacak
+  "inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-sm font-medium text-neutral-800 shadow-xs outline-hidden ring-yellow-500 focus-visible:ring-3 transition duration-300"; // Metin rengi koyu gri (text-neutral-800), focus halkası sarı (ring-yellow-500)
+const borderClasses = "border border-transparent"; // Kenarlık şeffaf yapıldı (sarı arka plan için)
+const bgColorClasses = "bg-yellow-400"; // Arka plan sarı yapıldı
+const hoverClasses = "hover:bg-yellow-500 active:bg-yellow-500"; // Hover/active için biraz daha koyu sarı, metin rengi hover'da değişmiyor
 const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
 const fontSizeClasses = "2xl:text-base";
-const ringClasses = "ring-zinc-500"; // focus-visible:ring-3 zaten baseClasses'da
+const ringClasses = "dark:ring-yellow-500"; // Dark mode focus halkası da sarı
 
 const darkClasses =
-  "dark:border-neutral-700 dark:bg-zinc-700 dark:text-yellow-500 dark:ring-zinc-200 dark:hover:bg-zinc-600 dark:focus:outline-hidden"; // dark:text-neutral-300 -> dark:text-yellow-500 (koyu temada daha belirgin sarı)
+  "dark:text-neutral-800 dark:focus:outline-none"; // Koyu modda da metin koyu gri (sarı arka plan üzerinde), özel dark:bg kaldırıldı (bg-yellow-400 kullanılacak), dark:hover kaldırıldı (hover:bg-yellow-500 kullanılacak)
 ---
 
-<!-- Arka planı aynı, metni sarı olan link butonu -->
+<!-- Arka planı sarı, metni koyu gri olan link butonu -->
 <a
   class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses}`}
   href={url}
