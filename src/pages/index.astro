@@ -1,6 +1,9 @@
 ---
-// Import the necessary components
+// src/pages/index.astro
+
+// Gerekli bileşenleri ve verileri import et
 import MainLayout from "@/layouts/MainLayout.astro";
+// import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro"; // <<<< BU SATIR SİLİNDİ
 import HeroSection from "@components/sections/landing/HeroSection.astro";
 import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
 import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
@@ -27,34 +30,35 @@ const avatarSrcs: Array<string> = [
 ---
 
 <MainLayout>
+  {/* Banner çağrısı SİLİNDİ */}
+  {/*
   <AnnouncementBanner
     btnId="dismiss-button"
     btnTitle="Get Offer"
-    url="/contact"  
+    url="/contact"
   />
+   */}
 
     <HeroSection
     title=`Master the Art of Roasting: <span class="text-yellow-500 dark:text-yellow-400">Kraffe Commercial Coffee Roasting Machines</span>`
     subTitle="Achieve precision, durability, and consistency with KRAFFE industrial coffee roasters—designed for professionals and backed by lifetime support."
     primaryBtn="Explore Our Machines"
-    primaryBtnURL="/products" 
+    primaryBtnURL="/products"
     secondaryBtn="Request a Quote"
     secondaryBtnURL="/contact"
-    withReview={true} 
-    avatars={avatarSrcs} 
-    rating=`<span class="font-bold">4.8</span> / 5` 
-    starCount={4} 
-    reviews=`Trusted by <span class="font-bold">Roasteries</span> Worldwide` 
+    withReview={true}
+    avatars={avatarSrcs}
+    rating=`<span class="font-bold">4.8</span> / 5`
+    starCount={4}
+    reviews=`Trusted by <span class="font-bold">Roasteries</span> Worldwide`
     src={heroImage}
-    alt="Detailed view of a commercial Kraffe industrial coffee roasting machine" 
+    alt="Detailed view of a commercial Kraffe industrial coffee roasting machine"
   />
-
-  
 
     <FeaturesGeneral
     title="Crafted for Roasting Perfection"
-    subTitle="Each KRAFFE roaster is expertly engineered to deliver exceptional control, consistency between batches, and efficiency, allowing you to fully unlock the potential of every bean." 
-    features={features} 
+    subTitle="Each KRAFFE roaster is expertly engineered to deliver exceptional control, consistency between batches, and efficiency, allowing you to fully unlock the potential of every bean."
+    features={features}
   />
 
     <FeaturesNavs
@@ -64,8 +68,8 @@ const avatarSrcs: Array<string> = [
      heading: "Roast with Confidence—No Matter the Conditions",
      content:
        "Take full control of heat transfer with KRAFFE’s advanced thermal control system, 3mm precision thermocouples, and improved heat insulation, ensuring consistent performance in any environment.",
-     svg: "dashboard", 
-     src: thermalControlImage, 
+     svg: "dashboard",
+     src: thermalControlImage,
      alt: "Close-up view of Kraffe Roaster's double-walled drum insulation", // <-- YENİ ALT METİN
      first: true,
    },
@@ -74,7 +78,7 @@ const avatarSrcs: Array<string> = [
      content:
        "Roasting to Perfection. Achieve flawless results with KRAFFE’s modulated premix burner, precise airflow, and sensitive drum speed controls for perfect, consistent roasts every time.",
      svg: "dashboard", // Bu ikon adını Kraffe'ye uygun bir ikonla değiştirebiliriz (örn: "sliders" veya "adjustments")
-     src: precisionSystemImage, 
+     src: precisionSystemImage,
      alt: "Detailed shot of Kraffe Roaster's precision burner system", // <-- YENİ ALT METİN
      second: true, // Bu stili korumak isteyip istemediğinize bağlı
    },
@@ -82,7 +86,7 @@ const avatarSrcs: Array<string> = [
      heading: "Smart Integration for Your Roastery",
      content:
        "Work with commonly used software like Cropster and Artisan, eliminating the need for unnecessary software while ensuring customizable control and precise roasting performance.",
-     svg: "dashboard", 
+     svg: "dashboard",
      src: smartIntegrationImage, // <-- YENİ DEĞİŞKEN
      alt: "Screenshot showing Kraffe Roaster software integration with Cropster/Artisan", // <-- YENİ ALT METİN
    },
@@ -136,7 +140,7 @@ const avatarSrcs: Array<string> = [
     <HeroSectionAlt
   title="Ready to Perfect Your Roast?"
   subTitle="Connect with our experts today to discuss your needs and discover the ideal Kraffe roaster for your business."
-  url="/contact" 
+  url="/contact"
   btnTitle="Contact Us" //
 />
 </MainLayout>
