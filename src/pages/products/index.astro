@@ -3,7 +3,7 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
-import CardWide from "@components/ui/cards/CardWide.astro";
+// import CardWide from "@components/ui/cards/CardWide.astro"; // Artık kullanılmıyor, silebilirsin veya yorumda bırakabilirsin
 import FeaturesStatsAlt from "@components/sections/features/FeaturesStatsAlt.astro";
 import TestimonialsSectionAlt from "@components/sections/testimonials/TestimonialsSectionAlt.astro";
 
@@ -102,20 +102,19 @@ const pageTitle: string = `Products | ${SITE.title}`;
       </div>
       <PrimaryCTA title="Customer Stories" url="#testimonials" noArrow={true} />
     </div>
-    <!--Displaying products in alternating styles. Alternative product gets different card styling.-->
-    <!--Maps through all product entries and displays them with either CardSmall or CardWide based on their position.-->
+
+    {/* === DEĞİŞEN BÖLÜM === */}
+    {/* Tüm ürünler için CardSmall kullanılıyor */}
     <section class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
       {
-        product.map((product, index) => {
-          const position = index % 4;
-          if (position === 0 || position === 3) {
-            return <CardSmall product={product} />;
-          } else {
-            return <CardWide product={product} />;
-          }
+        product.map((product) => {
+          // if/else kaldırıldı, her zaman CardSmall döndürülüyor
+          return <CardSmall product={product} />;
         })
       }
     </section>
+    {/* === /DEĞİŞEN BÖLÜM === */}
+
   </div>
   <!--Features statistics section-->
   <FeaturesStatsAlt
