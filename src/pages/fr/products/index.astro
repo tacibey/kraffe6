@@ -3,15 +3,16 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
-import CardWide from "@components/ui/cards/CardWide.astro";
+// import CardWide from "@components/ui/cards/CardWide.astro"; // Artık kullanılmıyor
 import FeaturesStatsAlt from "@components/sections/features/FeaturesStatsAlt.astro";
 import TestimonialsSectionAlt from "@components/sections/testimonials/TestimonialsSectionAlt.astro";
 
 // Importing necessary functions from Astro
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { SITE } from "@data/constants"; // SITE importu eklendi (önceden yoktu ama title için lazım)
 
-// Fetching all the product related content and sorting it by main.id
+// Fetching all the FR product related content and sorting it by main.id
 const product: CollectionEntry<"products">[] = (
   await getCollection("products", ({ id }) => {
     return id.startsWith("fr/");
@@ -58,27 +59,28 @@ const testimonials = [
     avatarAlt: "Description de l'image",
   },
 ];
+
+// Page title için SITE.title kullanıldı
+const pageTitle: string = `Produits | ${SITE.title}`;
 ---
 
 <MainLayout
-  title="Produits | ScrewFast"
+  title={pageTitle} {/* Dinamik başlık */}
   lang="fr"
-  structuredData={{
+  structuredData={{ // Structured data güncellendi
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://screwfast.uk/fr/products",
-    url: "https://screwfast.uk/fr/products",
-    name: "Outils Matériels | ScrewFast",
-    description:
-      "Explorez la durabilité et la précision des outils ScrewFast, conçus aussi bien pour les professionnels que pour les passionnés.",
-    isPartOf: {
+    "@id": "https://krafferoasters.com/fr/products", // URL güncellendi
+    "url": "https://krafferoasters.com/fr/products", // URL güncellendi
+    "name": `Produits | ${SITE.title}`, // Sayfa adı güncellendi
+    "description": "Explorez la durabilité et la précision des torréfacteurs Kraffe, conçus pour les professionnels et les passionnés.", // Açıklama güncellendi
+    "isPartOf": {
       "@type": "WebSite",
-      url: "https://screwfast.uk/fr",
-      name: "ScrewFast",
-      description:
-        "ScrewFast propose des outils matériels de premier ordre et des services de construction experts pour répondre à tous vos besoins de projet.",
+      "url": "https://krafferoasters.com/fr", // Ana site URL'si güncellendi
+      "name": SITE.title,
+      "description": SITE.description // constants.ts'den (İngilizce kalabilir veya çevrilebilir)
     },
-    inLanguage: "fr",
+    "inLanguage": "fr" // Dil kodu güncellendi
   }}
 >
   <div
@@ -105,20 +107,20 @@ const testimonials = [
         noArrow={true}
       />
     </div>
-    <!--Displaying products in alternating styles. Alternative product gets different card styling.-->
-    <!--Maps through all product entries and displays them with either CardSmall or CardWide based on their position.-->
+
+    {/* === DEĞİŞEN BÖLÜM === */}
+    {/* Tüm ürünler için CardSmall kullanılıyor */}
     <section class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
       {
-        product.map((product, index) => {
-          const position = index % 4;
-          if (position === 0 || position === 3) {
-            return <CardSmall product={product} productLocale="fr" />;
-          } else {
-            return <CardWide product={product} productLocale="fr" />;
-          }
+        product.map((product) => {
+          // if/else kaldırıldı, her zaman CardSmall döndürülüyor
+          // productLocale="fr" prop'u eklendi
+          return <CardSmall product={product} productLocale="fr" />;
         })
       }
     </section>
+    {/* === /DEĞİŞEN BÖLÜM === */}
+
   </div>
   <!--Features statistics section-->
   <FeaturesStatsAlt
