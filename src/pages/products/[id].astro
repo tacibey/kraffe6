@@ -43,6 +43,7 @@ const contactButtonTitle = "Request Info";
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
   </div>
 
+  {/* --- Grid yapısı md:grid-cols-2 olarak KORUNDU --- */}
   <section
     class="mx-auto grid max-w-[85rem] grid-cols-1 items-center gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-14 2xl:max-w-full"
   >
@@ -70,10 +71,11 @@ const contactButtonTitle = "Request Info";
 
     {/* Resim (1 Sütun) */}
     <div class="md:col-span-1">
-      {/* === id="fadeInMoveRight" KALDIRILDI === */}
+      {/* === Görsele id="fadeInMoveRight" GERİ EKLENDİ === */}
       <Image
+        id="fadeInMoveRight"
         src={product.data.main.imgMain}
-        class="w-full h-auto rounded-lg"
+        class="w-full h-auto rounded-lg" {/* w-full ve h-auto KORUNDU */}
         alt={product.data.main.imgAlt}
         format={"avif"}
         loading={"eager"}
@@ -257,7 +259,7 @@ const contactButtonTitle = "Request Info";
 
 </MainLayout>
 
-{/* --- Scriptler (DEĞİŞİKLİK YOK) --- */}
+{/* --- Scriptler --- */}
 <script>
   import { gsap } from "gsap";
 
@@ -287,14 +289,13 @@ const contactButtonTitle = "Request Info";
     willChange: "transform, opacity",
   });
 
-  // === #fadeInMoveRight animasyon başlangıç ayarı kaldırıldı/yorumlandı ===
-  /*
+  // === #fadeInMoveRight animasyon başlangıç ayarı GERİ EKLENDİ ===
   setElementAnimationDefaults("#fadeInMoveRight", {
     autoAlpha: 0,
     x: 300,
     willChange: "transform, opacity",
   });
-  */
+
 
   let timeline = gsap.timeline({ defaults: { overwrite: "auto" } });
 
@@ -312,18 +313,18 @@ const contactButtonTitle = "Request Info";
     "-=1.2"
   );
 
-  // === #fadeInMoveRight animasyonu kaldırıldı/yorumlandı ===
-  /*
+  // === #fadeInMoveRight animasyonu GERİ EKLENDİ ===
   timeline.to(
     "#fadeInMoveRight",
     { duration: 1.5, autoAlpha: 1, x: 0, ease: "power2.inOut" },
     "-=1.4"
   );
-  */
+
 
   timeline.to("#overlay", { duration: 1, autoAlpha: 0, delay: 0.2 });
 </script>
 <script>
+  // Sekme yönetimi script'i (DEĞİŞİKLİK YOK)
   document.addEventListener("DOMContentLoaded", function () {
     function setButtonInactive(btn: any, activeButton: any) {
       if (btn !== activeButton) {
