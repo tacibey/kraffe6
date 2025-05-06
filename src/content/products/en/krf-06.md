@@ -6,7 +6,7 @@ main:
   content: |
     Introducing KRAFFE KRF-06: 6kg commercial coffee roasting machine designed for growing specialty coffee businesses and small-scale production. Ideal for roasters who seek precision, energy efficiency, and consistent quality in every batch.
   imgCard: "@/images/06.avif"
-  imgMain: "@/images/06.avif"
+  imgMain: "@/images/krf-06.webp"
   imgAlt: "Kraffe 6 kg Commercial Coffee Roasting Machine, side view"
 tabs:
   - id: "tabs-with-card-item-1"
