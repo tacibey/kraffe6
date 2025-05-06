@@ -21,7 +21,7 @@ export async function getStaticPaths() {
     id.startsWith("fr/")
   );
   return productEntries.map((product) => {
-    const idWithoutLang = product.id.replace(/^fr\//, ""); // Remove the "fr/" prefix
+    const idWithoutLang = product.id.replace(/^fr\//, "");
     return {
       params: { lang: 'fr', id: idWithoutLang },
       props: { product },
@@ -69,18 +69,19 @@ const contactButtonTitle = "Demander des informations";
       </div>
     </div>
 
-    {/* Resim (1 Sütun) */}
-    <div class="flex items-center justify-center md:col-span-1"> {/* md:col-span-2 yerine md:col-span-1 */}
+    {/* === GÖRSEL CONTAINER DEĞİŞİKLİĞİ === */}
+    {/* Resim (1 Sütun) - flex, items-center, justify-center kaldırıldı */}
+    <div class="md:col-span-1">
       <Image
         id="fadeInMoveRight"
         src={product.data.main.imgMain}
-        class="w-full rounded-lg" {/* max-w-xl kaldırıldı */}
+        class="w-full h-auto rounded-lg" {/* h-auto eklendi */}
         alt={product.data.main.imgAlt}
         format={"avif"}
         loading={"eager"}
       />
     </div>
-    {/* === /YERLEŞİM GÜNCELLENDİ === */}
+    {/* === /GÖRSEL CONTAINER DEĞİŞİKLİĞİ === */}
   </section>
 
 
