@@ -1,12 +1,12 @@
 ---
 // Import section components
 import MainLayout from "@/layouts/MainLayout.astro";
-// import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro"; // <<<< BU SATIR SİLİNDİ
 import ProductTabBtn from "@components/ui/buttons/ProductTabBtn.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { SITE } from "@data/constants";
+import type { CollectionEntry } from 'astro:content'; // CollectionEntry tipini import et
 
 // Global declaration for gsap animation library
 declare global {
@@ -29,30 +29,28 @@ export async function getStaticPaths() {
   });
 }
 
+interface Props {
+  product: CollectionEntry<'products'>;
+}
+
 const { product } = Astro.props;
 
 const pageTitle: string = `${product.data.title} | ${SITE.title}`;
+
+// === YENİ BUTON METNİ (FRANSIZCA) ===
+const contactButtonTitle = "Demander des informations"; // Fransızca karşılığı
+// === /YENİ BUTON METNİ (FRANSIZCA) ===
 ---
 
 <MainLayout title={pageTitle} lang="fr"> {/* lang="fr" eklendi */}
-  {/* Banner (FR) çağrısı SİLİNDİ */}
-  {/*
-  <AnnouncementBanner
-    btnId="dismiss-button"
-    btnTitle="Obtenir une offre"
-    url="/fr/contact"
-  />
-   */}
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
   </div>
 
-  {/* === YERLEŞİMİ GÜNCELLENEN BÖLÜM (EN ile aynı) === */}
   <section
     class="mx-auto grid max-w-[85rem] grid-cols-1 items-center gap-8 px-4 py-10 sm:px-6 md:grid-cols-5 lg:px-8 lg:py-14 2xl:max-w-full"
   >
-    {/* Metin İçeriği (3 Sütun) */}
     <div class="md:col-span-3">
-      <div> {/* Giriş paragrafı */}
+      <div>
         <p
           id="fadeText"
           class="mb-8 max-w-prose text-pretty font-light text-neutral-700 dark:text-neutral-300 sm:text-xl"
@@ -60,7 +58,7 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
           {product.data.main.content}
         </p>
       </div>
-      <div id="fadeInUp"> {/* Başlık ve açıklama */}
+      <div id="fadeInUp">
         <h1
           class="block text-4xl font-bold tracking-tighter text-neutral-800 dark:text-neutral-200 sm:text-5xl md:text-6xl lg:text-7xl"
         >
@@ -71,8 +69,6 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
         </p>
       </div>
     </div>
-
-    {/* Resim (2 Sütun) */}
     <div class="flex items-center justify-center md:col-span-2">
       <Image
         id="fadeInMoveRight"
@@ -84,12 +80,8 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
       />
     </div>
   </section>
-  {/* === /YERLEŞİMİ GÜNCELLENEN BÖLÜM === */}
 
-
-  {/* === SEKMELER VE İÇERİKLERİ (DEĞİŞTİRİLMEDİ) === */}
   <div class="mx-auto max-w-[85rem] px-4 pt-10 sm:px-6 lg:px-8 lg:pt-14">
-    {/* Sekme Butonları */}
     <nav
       class="mx-auto grid max-w-6xl gap-y-px sm:flex sm:gap-x-4 sm:gap-y-0"
       aria-label="Tabs"
@@ -107,13 +99,11 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
       }
     </nav>
 
-    {/* Sekme İçerikleri */}
     <div class="mt-12 md:mt-16">
-      {/* Description Sekmesi */}
       <div id="tabs-with-card-1" role="tabpanel">
         <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
           <div class="grid gap-12 md:grid-cols-2">
-            <div class=""> {/* lg:w-3/4 kaldırıldı */}
+            <div class="">
               <h2
                 class="text-balance text-3xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:leading-tight lg:text-4xl"
               >
@@ -125,10 +115,12 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                 {product.data.longDescription.subTitle}
               </p>
               <p class="mt-5">
+                {/* === DEĞİŞİKLİK BURADA (FRANSIZCA) === */}
                 <PrimaryCTA
-                  title={product.data.longDescription.btnTitle}
+                  title={contactButtonTitle} {/* Markdown'dan gelen yerine yeni değişken kullanıldı */}
                   url={product.data.longDescription.btnURL}
                 />
+                {/* === /DEĞİŞİKLİK BURADA (FRANSIZCA) === */}
               </p>
             </div>
 
@@ -152,11 +144,9 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
         </div>
       </div>
 
-      {/* Specifications Sekmesi */}
       <div id="tabs-with-card-2" class="hidden" role="tabpanel">
         <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
           <div class="grid w-full grid-cols-1 gap-x-16 md:grid-cols-2">
-            {/* Sol Spesifikasyonlar */}
             <div class="max-w-md space-y-6">
               {
                 product.data.specificationsLeft.map((spec) => (
@@ -171,7 +161,6 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                 ))
               }
             </div>
-            {/* Sağ Spesifikasyonlar veya Tablo */}
             {
               product.data.specificationsRight ? (
                 <div class="mt-6 max-w-md space-y-6 md:ml-auto md:mt-0">
@@ -188,7 +177,6 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                 </div>
               ) : product.data.tableData ? (
                 <div class="mt-6 space-y-6 md:ml-auto md:mt-0">
-                  {/* ... tablo kodu ... */}
                    <div class="flex flex-col">
                     <div class="-m-1.5 overflow-x-auto">
                       <div class="inline-block min-w-full p-1.5 align-middle">
@@ -211,9 +199,9 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                             <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
                               {product.data.tableData?.map((row) =>
                                 row.description.map((rowData) => (
-                                  <tr>
-                                    {rowData.map((cellValue) => (
-                                      <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                                  <tr key={rowData.join('-')}>
+                                    {rowData.map((cellValue, index) => (
+                                      <td key={index} class="whitespace-nowrap px-6 py-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">
                                         {cellValue}
                                       </td>
                                     ))}
@@ -233,15 +221,13 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
         </div>
       </div>
 
-      {/* Blueprints Sekmesi */}
       <div id="tabs-with-card-3" class="hidden" role="tabpanel">
         <div class="mx-auto mb-20 flex w-full md:mb-28 2xl:w-4/5">
-          {/* Blueprint Resimleri */}
           <div
             class="relative left-12 top-12 z-10 overflow-hidden rounded-xl shadow-lg md:left-12 md:top-16 md:-ml-12 lg:ml-0"
           >
             {
-              product.data.blueprints.first && (
+              product.data.blueprints?.first && (
                 <Image
                   src={product.data.blueprints.first}
                   class="h-full w-full object-cover object-center"
@@ -254,7 +240,7 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
 
           <div class="relative right-12 overflow-hidden rounded-xl shadow-xl">
             {
-              product.data.blueprints.second && (
+              product.data.blueprints?.second && (
                 <Image
                   src={product.data.blueprints.second}
                   class="h-full w-full object-cover object-center"
@@ -266,13 +252,11 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
           </div>
         </div>
       </div>
-      {/* === /SEKMELER VE İÇERİKLERİ === */}
     </div>
   </div>
 
 </MainLayout>
 
-{/* === SCRIPT'LER (DEĞİŞTİRİLMEDİ) === */}
 <script>
   import { gsap } from "gsap";
 
@@ -384,8 +368,8 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
 
     function changeHeadingStyle(
       button: any,
-      addClasses: any,
-      removeClasses: any
+      addClasses: string[],
+      removeClasses: string[]
     ) {
       let heading = button.querySelector("span");
       if (heading) {
@@ -397,12 +381,18 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
     const tabButtons = document.querySelectorAll("[data-target]");
 
     if (tabButtons.length > 0) {
-      changeHeadingStyle(
-        tabButtons[0],
-        ["text-orange-400", "dark:text-orange-300"],
-        []
-      );
+        activateButton(tabButtons[0]);
+        tabButtons.forEach((btn, index) => {
+            if (index !== 0) {
+                changeHeadingStyle(
+                    btn,
+                    ["text-neutral-800", "dark:text-neutral-200"],
+                    ["text-orange-400", "dark:text-orange-300"]
+                );
+            }
+        });
     }
+
 
     tabButtons.forEach((button) => {
       button.addEventListener("click", () => {
