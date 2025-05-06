@@ -21,7 +21,7 @@ export async function getStaticPaths() {
     id.startsWith("en/")
   );
   return productEntries.map((product) => {
-    const idWithoutLang = product.id.replace(/^en\//, ""); // Remove the "en/" prefix
+    const idWithoutLang = product.id.replace(/^en\//, "");
     return {
       params: { id: idWithoutLang },
       props: { product },
@@ -43,12 +43,11 @@ const contactButtonTitle = "Request Info";
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
   </div>
 
-  {/* === YERLEŞİM GÜNCELLENDİ: md:grid-cols-2 === */}
   <section
     class="mx-auto grid max-w-[85rem] grid-cols-1 items-center gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-14 2xl:max-w-full"
   >
     {/* Metin İçeriği (1 Sütun) */}
-    <div class="md:col-span-1"> {/* md:col-span-3 yerine md:col-span-1 */}
+    <div class="md:col-span-1">
       <div>
         <p
           id="fadeText"
@@ -69,18 +68,19 @@ const contactButtonTitle = "Request Info";
       </div>
     </div>
 
-    {/* Resim (1 Sütun) */}
-    <div class="flex items-center justify-center md:col-span-1"> {/* md:col-span-2 yerine md:col-span-1 */}
+    {/* === GÖRSEL CONTAINER DEĞİŞİKLİĞİ === */}
+    {/* Resim (1 Sütun) - flex, items-center, justify-center kaldırıldı */}
+    <div class="md:col-span-1">
       <Image
         id="fadeInMoveRight"
         src={product.data.main.imgMain}
-        class="w-full rounded-lg" {/* max-w-xl kaldırıldı */}
+        class="w-full h-auto rounded-lg" {/* h-auto eklendi */}
         alt={product.data.main.imgAlt}
         format={"avif"}
         loading={"eager"}
       />
     </div>
-    {/* === /YERLEŞİM GÜNCELLENDİ === */}
+    {/* === /GÖRSEL CONTAINER DEĞİŞİKLİĞİ === */}
   </section>
 
 
