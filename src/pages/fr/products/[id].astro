@@ -43,12 +43,11 @@ const contactButtonTitle = "Demander des informations";
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
   </div>
 
-  {/* === YERLEŞİM GÜNCELLENDİ: md:grid-cols-2 === */}
   <section
     class="mx-auto grid max-w-[85rem] grid-cols-1 items-center gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-14 2xl:max-w-full"
   >
     {/* Metin İçeriği (1 Sütun) */}
-    <div class="md:col-span-1"> {/* md:col-span-3 yerine md:col-span-1 */}
+    <div class="md:col-span-1">
       <div>
         <p
           id="fadeText"
@@ -69,19 +68,17 @@ const contactButtonTitle = "Demander des informations";
       </div>
     </div>
 
-    {/* === GÖRSEL CONTAINER DEĞİŞİKLİĞİ === */}
-    {/* Resim (1 Sütun) - flex, items-center, justify-center kaldırıldı */}
+    {/* Resim (1 Sütun) */}
     <div class="md:col-span-1">
+      {/* === id="fadeInMoveRight" KALDIRILDI === */}
       <Image
-        id="fadeInMoveRight"
         src={product.data.main.imgMain}
-        class="w-full h-auto rounded-lg" {/* h-auto eklendi */}
+        class="w-full h-auto rounded-lg"
         alt={product.data.main.imgAlt}
         format={"avif"}
         loading={"eager"}
       />
     </div>
-    {/* === /GÖRSEL CONTAINER DEĞİŞİKLİĞİ === */}
   </section>
 
 
@@ -290,11 +287,14 @@ const contactButtonTitle = "Demander des informations";
     willChange: "transform, opacity",
   });
 
+  // === #fadeInMoveRight animasyon başlangıç ayarı kaldırıldı/yorumlandı ===
+  /*
   setElementAnimationDefaults("#fadeInMoveRight", {
     autoAlpha: 0,
     x: 300,
     willChange: "transform, opacity",
   });
+  */
 
   let timeline = gsap.timeline({ defaults: { overwrite: "auto" } });
 
@@ -312,11 +312,14 @@ const contactButtonTitle = "Demander des informations";
     "-=1.2"
   );
 
+  // === #fadeInMoveRight animasyonu kaldırıldı/yorumlandı ===
+  /*
   timeline.to(
     "#fadeInMoveRight",
     { duration: 1.5, autoAlpha: 1, x: 0, ease: "power2.inOut" },
     "-=1.4"
   );
+  */
 
   timeline.to("#overlay", { duration: 1, autoAlpha: 0, delay: 0.2 });
 </script>
