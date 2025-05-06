@@ -1,10 +1,13 @@
 ---
 // Import the necessary modules
 import { Image } from "astro:assets";
+import type { ImageMetadata } from 'astro'; // ImageMetadata tipi eklendi
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+
 // Destructure the props passed to the Astro component
 const { title, subTitle, btnExists, btnTitle, btnURL, img, imgAlt } =
   Astro.props;
+
 // Define TypeScript interface for props
 interface Props {
   title: string;
@@ -12,8 +15,8 @@ interface Props {
   btnExists?: boolean;
   btnTitle?: string;
   btnURL?: string;
-  img: any;
-  imgAlt: any;
+  img: ImageMetadata; // Tip ImageMetadata olarak güncellendi
+  imgAlt: string; // Tip string olarak düzeltildi
 }
 ---
 
@@ -37,12 +40,13 @@ interface Props {
     >
       {title}
     </h2>
-    <!-- The subtitle of the section -->
-    <p
+    <!-- The subtitle of the section - set:html kullanıldı -->
+    <div
       class="mb-4 max-w-prose text-pretty font-normal text-neutral-600 dark:text-neutral-400 sm:text-lg"
+      set:html={subTitle}
     >
-      {subTitle}
-    </p>
+      {/* subTitle içeriği buraya HTML olarak render edilecek */}
+    </div>
     <!-- Conditionally render the Primary CTA button if btnExists is true -->
     {btnExists ? <PrimaryCTA title={btnTitle} url={btnURL} /> : null}
   </div>
