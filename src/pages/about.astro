@@ -3,18 +3,19 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import MainSection from "@components/ui/blocks/MainSection.astro";
 import LeftSection from "@components/ui/blocks/LeftSection.astro";
-// RightSection'ı kullanmayacağımız için import etmiyoruz
+// RightSection importu kaldırıldı (bu sayfada kullanılmıyor)
 import FeaturesStats from "@components/sections/features/FeaturesStats.astro";
 import { SITE } from "@data/constants";
+import type { ImageMetadata } from 'astro'; // ImageMetadata tipi eklendi
 import { Image } from "astro:assets"; // Image importu gerekli
 
-// Kullanılacak görseller (şimdilik services sayfasından kalanlar, sonra değiştirilecek)
-import imgPlaceholder1 from "@images/etude-kraffe.avif"; // Eski beforeAfter yerine
-import imgPlaceholder2 from "@images/kraffeabout.avif"; // Eski usingTools yerine
+// Kullanılacak görseller (mevcut görseller korundu)
+import imgPlaceholder1 from "@images/etude-kraffe.avif";
+import imgPlaceholder2 from "@images/kraffeabout.avif";
 
 // Article tip tanımı (sadece LeftSection için gerekli alanlar)
 interface Article {
-  isRightSection: false; // Sadece LeftSection kullanacağız
+  isRightSection: boolean; // RightSection kullanılmayacak
   title: string;
   subTitle: string;
   btnExists?: boolean;
@@ -24,36 +25,51 @@ interface Article {
   imgAlt: string;
 }
 
-// Kraffe About sayfası için uyarlanmış içerik
+// === GÜNCELLENMİŞ İÇERİK ===
 const articles: Article[] = [
   {
     isRightSection: false, // LeftSection kullanılacak
-    title: "Designed by Roasters, For Roasters",
-    subTitle:
-      "Kraffe Roasters aren't just built; they're co-created. We blend 10+ years of engineering expertise with invaluable feedback from users worldwide. This collaborative approach ensures our machines are adaptable to diverse processing environments and roasting techniques, empowering you to achieve your unique vision.",
-    img: imgPlaceholder1, // Yer tutucu görsel 1
-    imgAlt: "Kraffe Roasters design schematic overlayed on roasted coffee beans",
+    title: "Why Kraffe Roasters", // Başlık güncellendi
+    subTitle: `
+      <p>At KRAFFE ROASTERS, we believe that features considered “optional” elsewhere should be standard. That’s why every Kraffe machine includes:</p>
+      <ul class="list-disc list-inside mt-2 space-y-1 text-neutral-600 dark:text-neutral-400">
+        <li>Precision engineering for batch-to-batch consistency</li>
+        <li>High thermal insulation and advanced variable control systems</li>
+        <li>Complete factory testing and a strict quality control process</li>
+        <li>Built with long-term durability and operational efficiency in mind</li>
+      </ul>
+      <p class="mt-2">Whether you need a 1 kg sample roaster or a 240 kg industrial coffee roaster, every KRAFFE machine delivers consistent roasting performance and lasting value for your business.</p>
+    `, // Alt başlık güncellendi (HTML listeleriyle)
+    img: imgPlaceholder1, // Görsel korundu
+    imgAlt: "Kraffe Roasters design schematic overlayed on roasted coffee beans", // Alt metin korundu
     btnExists: true, // Buton eklendi
-    btnTitle: "Contact Us", // Buton metni güncellendi
-    btnURL: "/contact", // Buton linki güncellendi
+    btnTitle: "Contact Us", // Buton metni eklendi
+    btnURL: "/contact", // Buton linki eklendi
   },
   {
     isRightSection: false, // LeftSection kullanılacak
-    title: "Built for Quality, Backed by Lifetime Support",
-    subTitle:
-      "Quality is paramount. Every Kraffe machine undergoes rigorous testing at each production stage. We use meticulously curated, high-grade materials and globally recognized components. This commitment extends beyond the sale with a comprehensive two-year warranty and dedicated 7/24 lifetime service support worldwide.",
-    img: imgPlaceholder2, // Yer tutucu görsel 2
-    imgAlt: "Technician performing maintenance on a Kraffe Roaster",
-    btnExists: false, // Burada butona gerek yok
+    title: "Our Commitment to You", // Başlık güncellendi
+    subTitle: `
+      <p>KRAFFE ROASTERS offers the fastest customer support in the industry. We understand that every minute matters in coffee production, which is why we guarantee:</p>
+      <ul class="list-disc list-inside mt-2 space-y-1 text-neutral-600 dark:text-neutral-400">
+        <li>24-hour response time to all customer requests</li>
+        <li>24/7 direct access to our quality assurance engineers — not sales reps</li>
+        <li>Fast diagnostics, parts support, and remote troubleshooting</li>
+        <li>A global support network that keeps your operation running</li>
+      </ul>
+      <p class="mt-2">Durable. Consistent. Fast. That’s more than our promise — it’s our standard.</p>
+    `, // Alt başlık güncellendi (HTML listeleriyle)
+    img: imgPlaceholder2, // Görsel korundu
+    imgAlt: "Technician performing maintenance on a Kraffe Roaster", // Alt metin korundu
+    btnExists: false, // Buton yok
   },
-  // Diğer iki görselli bölümler kaldırıldı
 ];
 
-// Yeni FeaturesStats verileri
+// FeaturesStats verileri (değiştirilmedi)
 const featuresStatsTitle: string = "Our Core Principles";
 const featuresStatsSubTitle: string = "These pillars define the Kraffe Roasters experience, ensuring quality, reliability, and partnership.";
-const featuresStatsMainStatTitle: string = "Partnership"; // Ana istatistik başlığı (isteğe bağlı)
-const featuresStatsMainStatSubTitle: string = "We believe in building lifetime relationships with our clients, becoming part of your success story."; // Ana istatistik alt başlığı (isteğe bağlı)
+const featuresStatsMainStatTitle: string = "Partnership";
+const featuresStatsMainStatSubTitle: string = "We believe in building lifetime relationships with our clients, becoming part of your success story.";
 const statsData = [
     {
         stat: "100%",
@@ -73,7 +89,7 @@ const statsData = [
     },
 ];
 
-
+// Sayfa başlığı (değiştirilmedi)
 const pageTitle: string = `About Us | ${SITE.title}`;
 ---
 
@@ -95,18 +111,16 @@ const pageTitle: string = `About Us | ${SITE.title}`;
     "inLanguage": "en-US"
   }}
 >
-  {/* Giriş Bölümü */}
+  {/* Giriş Bölümü - Başlık ve alt başlık güncellendi */}
   <MainSection
     title="Who We Are"
-    subTitle="Founded in 2022, KRAFFE ROASTERS is an innovative venture led by a team of engineers and coffee industry professionals with over a decade of experience in coffee roasting machine manufacturing. Leading the project is the founder and chief engineer of a well-known roaster brand, bringing deep expertise in product development, engineering, and customer-focused solutions.
-
-Kraffe was born from the vision to build the most consistent, durable, and responsive coffee roaster machines on the market — and to do it better than anyone else. Every decision we make, from engineering to customer support, is focused on that mission."
+    subTitle="Founded in 2022, KRAFFE ROASTERS is an innovative venture led by a team of engineers and coffee industry professionals with over a decade of experience in coffee roasting machine manufacturing. Leading the project is the founder and chief engineer of a well-known roaster brand, bringing deep expertise in product development, engineering, and customer-focused solutions. Kraffe was born from the vision to build the most consistent, durable, and responsive coffee roaster machines on the market — and to do it better than anyone else. Every decision we make, from engineering to customer support, is focused on that mission."
     btnExists={true}
-    btnTitle="Contact Us" {/* Buton metni güncellendi */}
-    btnURL="/contact"   {/* Buton linki güncellendi */}
+    btnTitle="Contact Us"
+    btnURL="/contact"
   />
 
-  {/* Sadece LeftSection Kullanılan İçerik Bölümleri */}
+  {/* İçerik Bölümleri - Başlıklar ve alt başlıklar güncellendi */}
   {
     articles.map(article => (
         <LeftSection
@@ -121,7 +135,7 @@ Kraffe was born from the vision to build the most consistent, durable, and respo
     ))
   }
 
-  {/* Yeni İstatistik Bölümü */}
+  {/* İstatistik Bölümü (değiştirilmedi) */}
   <FeaturesStats
     title={featuresStatsTitle}
     subTitle={featuresStatsSubTitle}
