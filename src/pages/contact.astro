@@ -1,107 +1,36 @@
 ---
 // Gerekli bileşenleri ve verileri import et
 import MainLayout from "@/layouts/MainLayout.astro";
-import ContactSection from "@components/sections/misc/ContactSection.astro"; // Bu hala form ve sağ sütun için gerekli
-import TestimonialsSectionAlt from "@components/sections/testimonials/TestimonialsSectionAlt.astro"; // YENİ IMPORT
-import { SITE } from "@data/constants";
-import { Image } from "astro:assets"; // Image importu eklendi (logolar için)
-import scaLogo from "@images/sca2-new.webp"; // Logo importları
-import ceLogoNew from "@images/ce-mark-new.avif"; // Logo importları
-// ReviewComponent importu kaldırıldı
-// amirAvatar importu kaldırıldı (TestimonialsSectionAlt kendi içindeki veriyi kullanacak)
+import ContactSection from "@components/sections/misc/ContactSection.astro";
+import { SITE } from "@data/constants"; // SITE sabiti kullanılacak
+import amirAvatar from "@images/Amir+Montazer.avif"; // Amir'in avatarı import edildi
 
 // Sayfa başlığını Kraffe Roasters'a göre ayarla
-const pageTitle: string = `Contact Us | ${SITE.title}`;
-const canonicalUrl = `${SITE.url}/contact`; // SITE.url kullanıldı
+const pageTitle: string = `Contact Us | ${SITE.title}`; // SITE.title Kraffe Roasters olmalı
 
-// === YENİ: Testimonial verileri (products/index.astro'dan alındı, isteğe göre değiştirilebilir) ===
-const testimonials = [
-  {
-    content:
-      " \"I'm a coffee enthusiast who enjoys experimenting with different coffee profiles. The coffee roasting machine from Kraffe has become an indispensable tool in my coffee journey.\" ",
-    author: "Henry",
-    role: "Kraffe Customer",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    avatarAlt: "Image Description",
-  },
-  {
-    content:
-      " \"I couldn't be happier with my decision to invest in the coffee roasting machine by Kraffe. As a small-scale coffee roaster, I needed a reliable and efficient machine that could handle my production needs. This machine delivers on all fronts.\" ",
-    author: "Sophie",
-    role: "Kraffe Customer",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1464979681340-bdd28a61699e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    avatarAlt: "Image Description",
-  },
-  {
-    content:
-      " \"I've been using the coffee roasting machine from Kraffe for several months now, and I must say it has exceeded my expectations. Modular flame level is helping me out to yield best results.\" ",
-    author: "Madison",
-    role: "Kraffe Customer",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1507914464562-6ff4ac29692f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    avatarAlt: "Image Description",
-  },
-];
-// === /YENİ: Testimonial verileri ===
-
-// Sabit metinler (ContactSection bileşenine gönderilmeyecek, doğrudan burada kullanılacak)
-const title: string = "Your new roasting machine is one step ahead";
-const subTitle: string = "Fill out our form to reveal the secrets of your coffee beans ðŸŒŸ";
-
+// Canonical URL için hedef domaini kullan
+const canonicalUrl = "https://krafferoasters.com/contact"; // Hedef domain
 ---
 
 <MainLayout
   title={pageTitle}
-  lang="en"
+  lang="en" {/* Dil etiketi eklendi (opsiyonel ama iyi pratik) */}
   structuredData={{
     "@context": "https://schema.org",
-    "@type": "ContactPage", // Tip ContactPage olarak güncellendi
-    "@id": canonicalUrl,
-    "url": canonicalUrl,
-    "name": `Contact Kraffe Roasters | Commercial & Industrial Coffee Roasters`,
-    "description": "Get in touch with Kraffe Roasters for inquiries about our commercial and industrial coffee roasting machines, equipment, or services. Request a quote or consultation.",
+    "@type": "WebPage",
+    "@id": canonicalUrl, // Canonical URL kullanıldı
+    "url": canonicalUrl, // Canonical URL kullanıldı
+    "name": `Contact Kraffe Roasters | Commercial & Industrial Coffee Roasters`, // Sayfa adı güncellendi
+    "description": "Get in touch with Kraffe Roasters for inquiries about our commercial and industrial coffee roasting machines, equipment, or services. Request a quote or consultation.", // Meta description güncellendi
     "isPartOf": {
         "@type": "WebSite",
-        "url": SITE.url, // SITE.url kullanıldı
-        "name": SITE.title,
-        "description": SITE.description
+        "url": "https://krafferoasters.com", // Ana site URL'si güncellendi
+        "name": SITE.title, // constants.ts'den alınacak
+        "description": SITE.description // constants.ts'den alınacak
     },
     "inLanguage": "en-US"
   }}
 >
-  {/* === ÜST BÖLÜM (Başlık, Altbaşlık, Logolar) === */}
-  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-    <div class="mx-auto max-w-2xl lg:max-w-5xl">
-      <div class="text-center">
-        <h1 class="text-balance text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
-          {title}
-        </h1>
-        <p class="mt-1 text-pretty text-lg text-neutral-600 dark:text-neutral-400">
-          {subTitle}
-        </p>
-        <div class="mt-8 flex items-center justify-center gap-x-8 sm:gap-x-12">
-          <Image src={ceLogoNew} alt="CE Marking Certification Logo" class="h-24 w-auto object-contain sm:h-32" loading="lazy"/>
-          <Image src={scaLogo} alt="Specialty Coffee Association Member Logo" class="h-24 w-auto object-contain sm:h-32" loading="lazy"/>
-        </div>
-      </div>
-
-      {/* === YENİ: Testimonials Bölümü EKLENDİ === */}
-      {/* Mevcut ReviewComponent'in bulunduğu div kaldırıldı ve yerine bu eklendi */}
-      <div class="mt-12 lg:mt-16">
-        <TestimonialsSectionAlt
-          title="What Our Customers Say"
-          testimonials={testimonials}
-        />
-      </div>
-      {/* === /YENİ: Testimonials Bölümü EKLENDİ === */}
-
-      {/* === FORM VE SAĞ SÜTUN BÖLÜMÜ (ContactSection çağrısı ile) === */}
-      {/* ContactSection'a artık avatar prop'u göndermeye gerek yok */}
-      <ContactSection />
-
-    </div> {/* max-w div sonu */}
-  </section>
-
+  {/* ContactSection'a amirAvatar verisi prop olarak geçirildi */}
+  <ContactSection amirAvatarData={amirAvatar} />
 </MainLayout>
