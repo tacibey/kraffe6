@@ -3,6 +3,7 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import ProductTabBtn from "@components/ui/buttons/ProductTabBtn.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+import CardSmall from "@components/ui/cards/CardSmall.astro"; // <<= YENİ IMPORT
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { SITE } from "@data/constants";
@@ -35,15 +36,25 @@ interface Props {
 
 const { product } = Astro.props;
 
+// === YENİ: Önceki/Sonraki Ürün Logic (Fransızca) ===
+const allFrenchProducts = (await getCollection("products", ({ id }) => id.startsWith("fr/")))
+  .sort((a, b) => a.data.main.id - b.data.main.id);
+
+const currentIndex = allFrenchProducts.findIndex(p => p.id === product.id);
+
+const prevProduct = currentIndex > 0 ? allFrenchProducts[currentIndex - 1] : null;
+const nextProduct = currentIndex < allFrenchProducts.length - 1 ? allFrenchProducts[currentIndex + 1] : null;
+// === /YENİ ===
+
 const pageTitle: string = `${product.data.title} | ${SITE.title}`;
 const contactButtonTitle = "Demander des informations";
+const relatedProductsTitle = "Découvrez nos autres machines"; // Section Title (FR)
 ---
 
 <MainLayout title={pageTitle} lang="fr">
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
   </div>
 
-  {/* --- Grid yapısı md:grid-cols-2 olarak KORUNDU --- */}
   <section
     class="mx-auto grid max-w-[85rem] grid-cols-1 items-center gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-14 2xl:max-w-full"
   >
@@ -71,11 +82,10 @@ const contactButtonTitle = "Demander des informations";
 
     {/* Resim (1 Sütun) */}
     <div class="md:col-span-1">
-      {/* === Görsele id="fadeInMoveRight" GERİ EKLENDİ === */}
       <Image
         id="fadeInMoveRight"
         src={product.data.main.imgMain}
-        class="w-full h-auto rounded-lg" {/* w-full ve h-auto KORUNDU */}
+        class="w-full h-auto rounded-lg"
         alt={product.data.main.imgAlt}
         format={"avif"}
         loading={"eager"}
@@ -84,8 +94,8 @@ const contactButtonTitle = "Demander des informations";
   </section>
 
 
-  {/* --- SEKMELER VE DİĞER İÇERİK (DEĞİŞİKLİK YOK) --- */}
-  <div class="mx-auto max-w-[85rem] px-4 pt-10 sm:px-6 lg:px-8 lg:pt-14">
+  {/* --- SEKMELER VE DİĞER İÇERİK --- */}
+   <div class="mx-auto max-w-[85rem] px-4 pt-10 sm:px-6 lg:px-8 lg:pt-14">
     <nav
       class="mx-auto grid max-w-6xl gap-y-px sm:flex sm:gap-x-4 sm:gap-y-0"
       aria-label="Tabs"
@@ -257,6 +267,29 @@ const contactButtonTitle = "Demander des informations";
     </div>
   </div>
 
+  {/* === YENİ: Önceki/Sonraki Ürünler Bölümü (Fransızca) === */}
+  {(prevProduct || nextProduct) && (
+    <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 text-center mb-8">{relatedProductsTitle}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center">
+        {prevProduct && (
+          <div class="flex justify-center sm:justify-end"> {/* Ortalama veya sağa yaslama */}
+            <CardSmall product={prevProduct} productLocale="fr" /> {/* productLocale="fr" */}
+          </div>
+        )}
+        {/* Eğer sadece 1 ürün varsa, bu div grid'i ortalamak için boş yer kaplar */}
+        {!prevProduct && nextProduct && <div class="hidden sm:block"></div>}
+
+        {nextProduct && (
+          <div class="flex justify-center sm:justify-start"> {/* Ortalama veya sola yaslama */}
+            <CardSmall product={nextProduct} productLocale="fr" /> {/* productLocale="fr" */}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+  {/* === /YENİ === */}
+
 </MainLayout>
 
 {/* --- Scriptler --- */}
@@ -289,7 +322,6 @@ const contactButtonTitle = "Demander des informations";
     willChange: "transform, opacity",
   });
 
-  // === #fadeInMoveRight animasyon başlangıç ayarı GERİ EKLENDİ ===
   setElementAnimationDefaults("#fadeInMoveRight", {
     autoAlpha: 0,
     x: 300,
@@ -313,7 +345,6 @@ const contactButtonTitle = "Demander des informations";
     "-=1.2"
   );
 
-  // === #fadeInMoveRight animasyonu GERİ EKLENDİ ===
   timeline.to(
     "#fadeInMoveRight",
     { duration: 1.5, autoAlpha: 1, x: 0, ease: "power2.inOut" },
