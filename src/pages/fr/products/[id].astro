@@ -14,16 +14,16 @@ declare global {
     gsap: any;
   }
 }
-// This gets the static paths for all the unique FR products
 
+// This gets the static paths for all the unique products
 export async function getStaticPaths() {
   const productEntries = await getCollection("products", ({ id }) =>
-    id.startsWith("fr/")
+    id.startsWith("en/")
   );
   return productEntries.map((product) => {
-    const idWithoutLang = product.id.replace(/^fr\//, "");
+    const idWithoutLang = product.id.replace(/^en\//, "");
     return {
-      params: { lang: 'fr', id: idWithoutLang },
+      params: { id: idWithoutLang },
       props: { product },
     };
   });
@@ -36,10 +36,10 @@ interface Props {
 const { product } = Astro.props;
 
 const pageTitle: string = `${product.data.title} | ${SITE.title}`;
-const contactButtonTitle = "Demander des informations";
+const contactButtonTitle = "Request Info";
 ---
 
-<MainLayout title={pageTitle} lang="fr">
+<MainLayout title={pageTitle}>
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
   </div>
 
@@ -179,7 +179,7 @@ const contactButtonTitle = "Demander des informations";
                 </div>
               ) : product.data.tableData ? (
                 <div class="mt-6 space-y-6 md:ml-auto md:mt-0">
-                   <div class="flex flex-col">
+                  <div class="flex flex-col">
                     <div class="-m-1.5 overflow-x-auto">
                       <div class="inline-block min-w-full p-1.5 align-middle">
                         <div class="overflow-hidden">
@@ -389,18 +389,17 @@ const contactButtonTitle = "Demander des informations";
     const tabButtons = document.querySelectorAll("[data-target]");
 
     if (tabButtons.length > 0) {
-        activateButton(tabButtons[0]);
-        tabButtons.forEach((btn, index) => {
-            if (index !== 0) {
-                changeHeadingStyle(
-                    btn,
-                    ["text-neutral-800", "dark:text-neutral-200"],
-                    ["text-orange-400", "dark:text-orange-300"]
-                );
-            }
-        });
+      activateButton(tabButtons[0]);
+      tabButtons.forEach((btn, index) => {
+         if (index !== 0) {
+            changeHeadingStyle(
+              btn,
+              ["text-neutral-800", "dark:text-neutral-200"],
+              ["text-orange-400", "dark:text-orange-300"]
+            );
+         }
+      });
     }
-
 
     tabButtons.forEach((button) => {
       button.addEventListener("click", () => {
