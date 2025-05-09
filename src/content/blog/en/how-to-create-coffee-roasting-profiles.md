@@ -1,6 +1,6 @@
 ---
 title: "A Comprehensive Guide to Creating Coffee Roasting Profiles"
-description: "Master the art of coffee roasting. Learn step-by-step how to create perfect roasting profiles, from bean selection to sensory analysis, for exceptional flavor."
+description: "Learn Step-by-Step How to Create Perfect Roasting Profiles"
 author: "Kraffe Technics"
 authorImage: "@/images/blog/kraffe-technic.avif"
 authorImageAlt: "Kraffe Technics Team Avatar"
