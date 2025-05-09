@@ -8,7 +8,7 @@ import SocialShare from "@components/ui/buttons/SocialShare.astro";
 import PostFeedback from "@components/ui/feedback/PostFeedback.astro";
 import { Image } from "astro:assets";
 import { capitalize, formatDate } from "@utils/utils";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content"; // render eklendi
 import type { CollectionEntry } from "astro:content";
 import { SITE } from "@data/constants";
 
@@ -18,26 +18,26 @@ export async function getStaticPaths() {
     id.startsWith("en/")
   );
   return blogPosts.map((post) => {
-    const idWithoutLang = post.id.replace(/^en\//, ""); // Remove the "en/" prefix
+    const idWithoutLang = post.id.replace(/^en\//, "");
     return {
-      params: { id: idWithoutLang },
+      params: { id: idWithoutLang }, // id yerine slug kullanılıyorsa burası değişebilir
       props: { post },
     };
   });
 }
 
-// Get the current post's data
+interface Props { // Props interface'i eklendi
+  post: CollectionEntry<"blog">;
+}
+
 const { post } = Astro.props;
+const { Content } = await render(post); // <Content /> için eklendi
 
 const blogPosts: CollectionEntry<"blog">[] = await getCollection(
   "blog",
   ({ id }) => id.startsWith("en/")
 );
 
-// Filter out the current post to get related posts
-// Note: This is a very basic way of choosing related posts, just for the purpose of the example.
-// In a production site, you might want to implement a more robust algorithm, choosing related posts based on tags, categories, dates, authors, or keywords.
-// See example: https://blog.codybrunner.com/2024/adding-related-articles-with-astro-content-collections/
 const relatedPosts: CollectionEntry<"blog">[] = blogPosts.filter(
   (blogEntry) => blogEntry.id !== post.id
 );
@@ -54,7 +54,6 @@ const pageTitle: string = `${post.data.title} | ${SITE.title}`;
           <div class="grow">
             <div class="flex items-center justify-between gap-x-2">
               <div>
-                <!--Post metadata and author info-->
                 <span class="font-bold text-neutral-700 dark:text-neutral-300">
                   {post.data.author}
                 </span>
@@ -75,53 +74,30 @@ const pageTitle: string = `${post.data.title} | ${SITE.title}`;
           </div>
         </div>
       </div>
-      <!--Blog post title-->
-      <h2
-        class="mb-3 text-2xl font-bold text-neutral-800 dark:text-neutral-200 md:text-3xl"
-      >
+      <h1 class="mb-3 text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl"> {/* h2'den h1'e */}
         {post.data.title}
-      </h2>
-      <!--Blog post contents-->
-      <div class="mb-5 space-y-5 md:mb-8 md:space-y-8">
-        {
-          post.data.contents.map((content: string, index: any) =>
-            index === 1 ? (
-              <>
-                <p class="text-pretty text-lg text-neutral-700 dark:text-neutral-300">
-                  {content}
-                </p>
-                <Image
-                  class="w-full rounded-xl object-cover"
-                  src={post.data.cardImage}
-                  alt={post.data.cardImageAlt}
-                  draggable={"false"}
-                  format={"avif"}
-                />
-              </>
-            ) : (
-              <p class="text-pretty text-lg text-neutral-700 dark:text-neutral-300">
-                {content}
-              </p>
-            )
-          )
-        }
-      </div>
+      </h1>
+
+      {/* === İÇERİK GÖSTERİMİ DEĞİŞTİ === */}
+      <article class="prose prose-neutral dark:prose-invert prose-lg lg:prose-xl max-w-none">
+        <Content />
+      </article>
+      {/* === /İÇERİK GÖSTERİMİ DEĞİŞTİ === */}
+
       <div
-        class="mx-auto grid max-w-(--breakpoint-lg) gap-y-5 sm:flex sm:items-center sm:justify-between sm:gap-y-0"
+        class="mx-auto grid max-w-(--breakpoint-lg) gap-y-5 sm:flex sm:items-center sm:justify-between sm:gap-y-0 mt-8" {/* mt-8 eklendi */}
       >
-        <!--Blog post tags-->
         <div
           class="flex flex-wrap gap-x-2 gap-y-1 sm:flex-nowrap sm:items-center sm:gap-y-0"
         >
           {
             post.data.tags?.map((tag: string) => (
-              <span class="inline-flex items-center gap-x-1.5 rounded-lg bg-neutral-400/30 px-3 py-1.5 text-xs font-medium text-neutral-700 outline-hidden focus:outline-hidden focus-visible:outline-hidden focus-visible:ring-3 dark:bg-neutral-700/60 dark:text-neutral-300">
+              <a href={`/blog/tags/${tag.toLowerCase()}`} class="inline-flex items-center gap-x-1.5 rounded-lg bg-neutral-400/30 px-3 py-1.5 text-xs font-medium text-neutral-700 outline-hidden focus:outline-hidden focus-visible:outline-hidden focus-visible:ring-3 dark:bg-neutral-700/60 dark:text-neutral-300 hover:bg-neutral-500/30 dark:hover:bg-neutral-600/60">
                 {capitalize(tag)}
-              </span>
+              </a>
             ))
           }
         </div>
-        <!--Bookmark and Share buttons-->
         <div class="flex items-center justify-end gap-x-1.5">
           <Bookmark />
           <div
@@ -141,7 +117,6 @@ const pageTitle: string = `${post.data.title} | ${SITE.title}`;
     />
   </section>
 
-  <!--Related articles section-->
   <section class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
     <div class="mb-10 max-w-2xl">
       <h2
@@ -150,9 +125,57 @@ const pageTitle: string = `${post.data.title} | ${SITE.title}`;
         Related articles
       </h2>
     </div>
-
-    <div class="grid grid-cols-2 gap-6">
-      {relatedPosts.map((entry) => <CardRelated blogEntry={entry} />)}
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6"> {/* sm:grid-cols-2 eklendi */}
+      {relatedPosts.slice(0, 2).map((entry) => <CardRelated blogEntry={entry} />)} {/* slice(0,2) ile en fazla 2 ilgili yazı gösterilir */}
     </div>
   </section>
 </MainLayout>
+
+<style is:global>
+  /* Prose stilleri için temel ayarlar (Tailwind Typography eklentisi yoksa) */
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-neutral-800 dark:text-neutral-200;
+  }
+  .prose h3 {
+    @apply text-xl font-bold mt-6 mb-3 text-neutral-800 dark:text-neutral-200;
+  }
+  .prose p {
+    @apply text-lg text-neutral-700 dark:text-neutral-300 mb-4 leading-relaxed;
+  }
+  .prose a {
+    @apply text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 underline;
+  }
+  .prose ul, .prose ol {
+    @apply list-inside mb-4 pl-5 space-y-1 text-lg text-neutral-700 dark:text-neutral-300;
+  }
+  .prose ul {
+    @apply list-disc;
+  }
+  .prose ol {
+    @apply list-decimal;
+  }
+  .prose li > p { /* Liste elemanları içindeki paragrafların alt boşluğunu kaldırır */
+    @apply mb-1;
+  }
+  .prose strong {
+    @apply font-bold;
+  }
+  .prose em {
+    @apply italic;
+  }
+  .prose table {
+    @apply min-w-full divide-y divide-neutral-300 dark:divide-neutral-700 mb-6;
+  }
+  .prose thead th {
+    @apply px-4 py-2 text-left text-xs font-medium uppercase text-neutral-500 dark:text-neutral-400;
+  }
+  .prose tbody tr:nth-child(even) {
+     @apply bg-neutral-100 dark:bg-neutral-700/30;
+  }
+  .prose tbody td {
+    @apply px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300;
+  }
+  .prose img {
+    @apply rounded-lg my-6 shadow-md; /* Resimlere stil eklendi */
+  }
+</style>
