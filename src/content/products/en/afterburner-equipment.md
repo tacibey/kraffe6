@@ -1,12 +1,12 @@
 ---
 title: "Afterburner"
-description: "KRAFFE Equipments" 
+description: "KRAFFE Equipment: Afterburner" 
 main:
   id: 18
   content: |
     KRAFFE designs and offers you the best fitting product and after you start to use the products, KRAFFE offers you a 7/24 online customer support.
-  imgCard: "@/images/EQUIPMENTS.avif"
-  imgMain: "@/images/EQUIPMENTS.avif"
+  imgCard: "@/images/EQUIPMENTS2.avif"
+  imgMain: "@/images/EQUIPMENTS2.avif"
   imgAlt: "KRAFFE Equipments Afterburner"
 tabs:
   - id: "tabs-with-card-item-1"
