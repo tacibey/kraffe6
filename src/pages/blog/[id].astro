@@ -91,12 +91,12 @@ const pageTitle: string = `${post.data.title} | ${SITE.title}`;
           class="flex flex-wrap gap-x-2 gap-y-1 sm:flex-nowrap sm:items-center sm:gap-y-0"
         >
           {
-            post.data.tags?.map((tag: string) => (
-              <a href={`/blog/tags/${tag.toLowerCase()}`} class="inline-flex items-center gap-x-1.5 rounded-lg bg-neutral-400/30 px-3 py-1.5 text-xs font-medium text-neutral-700 outline-hidden focus:outline-hidden focus-visible:outline-hidden focus-visible:ring-3 dark:bg-neutral-700/60 dark:text-neutral-300 hover:bg-neutral-500/30 dark:hover:bg-neutral-600/60">
-                {capitalize(tag)}
-              </a>
-            ))
-          }
+  post.data.tags?.map((tag: string) => (
+    <span class="inline-flex items-center gap-x-1.5 rounded-lg bg-neutral-400/30 px-3 py-1.5 text-xs font-medium text-neutral-700 dark:bg-neutral-700/60 dark:text-neutral-300">
+      {capitalize(tag)}
+    </span>
+  ))
+}
         </div>
         <div class="flex items-center justify-end gap-x-1.5">
           <Bookmark />
