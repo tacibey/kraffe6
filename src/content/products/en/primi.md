@@ -1,6 +1,6 @@
 ---
 title: "Kraffe Primi"
-description: "1 kg Commercial Coffee Roasting Machine" 
+description: "Primi: 1 kg Sample Roaster" 
 main:
   id: 6
   content: |
