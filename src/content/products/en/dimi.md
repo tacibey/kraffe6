@@ -1,6 +1,6 @@
 ---
 title: "Kraffe Dimi"
-description: "0.5 kg Commercial Coffee Roasting Machine" 
+description: "Dimi: 0.5 kg Sample Roaster" 
 main:
   id: 5
   content: |
