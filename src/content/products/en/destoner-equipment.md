@@ -1,12 +1,12 @@
 ---
 title: "Destoner"
-description: "KRAFFE Equipments" 
+description: "KRAFFE Equipment: Destoner" 
 main:
   id: 17
   content: |
     KRAFFE designs and offers you the best fitting product and after you start to use the products, KRAFFE offers you a 7/24 online customer support.
-  imgCard: "@/images/EQUIPMENTS.avif"
-  imgMain: "@/images/EQUIPMENTS.avif"
+  imgCard: "@/images/EQUIPMENTS2.avif"
+  imgMain: "@/images/EQUIPMENTS2.avif"
   imgAlt: "KRAFFE Equipments"
 tabs:
   - id: "tabs-with-card-item-1"
