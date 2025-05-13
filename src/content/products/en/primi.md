@@ -46,6 +46,8 @@ specificationsLeft:
     subTitle: "Equipped with sensitive 3mm thermocouples, PRIMI offers accurate real-time monitoring of bean and environment temperatures. Combined with superior insulation, it ensures dependable performance."
   - title: "Durable and Compact Design"
     subTitle: "Built with industrial-grade materials, KRAFFE PRIMI is designed for both durability and mobility. Its compact 1KG capacity makes it ideal for limited spaces without compromising on professional-grade performance."
+  - title: "Resources"
+    subTitle: "<a href='https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb' target='_blank' rel='noopener noreferrer' class='text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 hover:underline'>Download User Manuals and Catalogs</a>"
 tableData:
   - feature: ["Specification", "Value"]
     description:
