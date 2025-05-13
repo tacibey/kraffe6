@@ -4,15 +4,22 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import ProductTabBtn from "@components/ui/buttons/ProductTabBtn.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets"; // getImage eklendi
 import { getCollection } from "astro:content";
 import { SITE } from "@data/constants";
 import type { CollectionEntry } from 'astro:content';
 
-// Global declaration for gsap animation library
+// Global declaration
 declare global {
   interface Window {
     gsap: any;
+    // === galleryImages için global tipler buraya taşındı (İngilizce dosyadan) ===
+    currentImageIndex: number;
+    productImages: { src: string; alt: string; thumbnailSrc: string }[];
+    openLightbox: (index: number) => void;
+    closeLightbox: () => void;
+    changeImage: (step: number) => void;
+    // === /galleryImages ===
   }
 }
 // This gets the static paths for all the unique FR products
@@ -46,11 +53,30 @@ const nextProduct = currentIndex < allFrenchProducts.length - 1 ? allFrenchProdu
 const pageTitle: string = `${product.data.title} | ${SITE.title}`;
 const contactButtonTitle = "Demander des informations";
 const relatedProductsTitle = "Découvrez nos autres machines";
+const productGalleryTitle = "Galerie de produits";
 
-// === SABİT MANUEL İNDİRME LİNKİ (FRANSIZCA) ===
+const productTabs = [
+    { id: "tabs-with-card-item-1", dataTab: "#tabs-with-card-1", title: "Description" },
+    { id: "tabs-with-card-item-2", dataTab: "#tabs-with-card-2", title: "Spécifications" },
+    { id: "tabs-with-card-item-3", dataTab: "#tabs-with-card-3", title: "Plans" },
+];
+
+// === YENİ: galleryImages TANIMI EKLENDİ (İngilizce dosyadan kopyalandı) ===
+const galleryImages = await Promise.all(
+  (product.data.photos || []).map(async (photo) => {
+    const optimizedImage = await getImage({ src: photo.img, format: 'avif', quality: 80 });
+    const thumbnailImage = await getImage({ src: photo.img, width: 300, height:200,  fit: 'cover', format: 'avif', quality: 60 });
+    return {
+      src: optimizedImage.src,
+      alt: photo.imgAlt,
+      thumbnailSrc: thumbnailImage.src,
+    };
+  })
+);
+// === /YENİ ===
+
 const globalManualLinkText_FR = "Télécharger les manuels et catalogues";
-const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb"; // Link aynı
-// === /SABİT MANUEL İNDİRME LİNKİ ===
+const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb";
 ---
 
 <MainLayout title={pageTitle} lang="fr">
@@ -99,7 +125,7 @@ const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRr
       role="tablist"
     >
       {
-        product.data.tabs.map((tab, index) => (
+        productTabs.map((tab, index) => (
           <ProductTabBtn
             title={tab.title}
             id={tab.id}
@@ -111,7 +137,6 @@ const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRr
     </nav>
 
     <div class="mt-12 md:mt-16">
-      {/* Description Sekmesi */}
       <div id="tabs-with-card-1" role="tabpanel">
         <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
           <div class="grid gap-12 md:grid-cols-2">
@@ -153,7 +178,6 @@ const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRr
         </div>
       </div>
 
-      {/* Spécifications Sekmesi */}
       <div id="tabs-with-card-2" class="hidden" role="tabpanel">
         <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
           <div class="grid w-full grid-cols-1 gap-x-16 md:grid-cols-2">
@@ -229,7 +253,6 @@ const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRr
         </div>
       </div>
 
-      {/* Plans Sekmesi */}
       <div id="tabs-with-card-3" class="hidden" role="tabpanel">
          <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -280,7 +303,7 @@ const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRr
     </div>
   </div>
 
-  {(product.data.photos && product.data.photos.length > 0) && (
+  {(galleryImages && galleryImages.length > 0) && (
     <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 text-center mb-8">{productGalleryTitle}</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
