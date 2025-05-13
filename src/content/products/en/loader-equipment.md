@@ -30,6 +30,8 @@ descriptionList:
 specificationsLeft:
   - title: "Technical Layout"
     subTitle: "Check Blueprints section for detailed technical layouts."
+  - title: "Resources"
+    subTitle: "<a href='https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb' target='_blank' rel='noopener noreferrer' class='text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 hover:underline'>Download User Manuals and Catalogs</a>"
 tableData:
   - feature: ["Specification", "Value"]
     description:
