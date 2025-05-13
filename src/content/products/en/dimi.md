@@ -46,8 +46,8 @@ specificationsLeft:
     subTitle: "Fitted with 3mm thick thermocouples, DIMI provides accurate, real-time temperature readings throughout the roast. Combined with stable heat insulation, it ensures precise control in every cycle."
   - title: "Built to Last"
     subTitle: "Crafted with industrial-grade materials and precision engineering, KRAFFE DIMI is designed for longevity. Its robust construction ensures stable performance, even with frequent use—making it a reliable choice for daily roasting in professional environments."
-  - title: "User Manuals"
-    subTitle: "[Download User Manuals and Catalogs](https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb){:target='_blank' rel='noopener noreferrer'}"
+  - title: "Resources"
+    subTitle: "<a href='https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb' target='_blank' rel='noopener noreferrer' class='text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 hover:underline'>Download User Manuals and Catalogs</a>"
 tableData:
   - feature: ["Specification", "Value"]
     description:
