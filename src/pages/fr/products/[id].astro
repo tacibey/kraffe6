@@ -5,7 +5,7 @@ import ProductTabBtn from "@components/ui/buttons/ProductTabBtn.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection } from "astro:content"; // render importu kaldırıldı
 import { SITE } from "@data/constants";
 import type { CollectionEntry } from 'astro:content';
 
@@ -40,6 +40,7 @@ interface Props {
 }
 
 const { product } = Astro.props;
+// const { Content } = await render(product); // Bu satıra gerek yok
 
 const allFrenchProducts = (await getCollection("products", ({ id }) => id.startsWith("fr/")))
   .sort((a, b) => a.data.main.id - b.data.main.id);
@@ -71,9 +72,10 @@ const galleryImages = await Promise.all(
   })
 );
 
-// === SABİT MANUEL İNDİRME LİNK METNİ (FRANSIZCA - BLUEPRINTS İÇİN) ===
-const blueprintManualLinkText_FR = "Télécharger le manuel et les catalogues";
-// === /SABİT MANUEL İNDİRME LİNK METNİ ===
+// === SABİT MANUEL İNDİRME LİNK BİLGİLERİ (FRANSIZCA) ===
+const globalManualLinkText_FR = "Télécharger les manuels et catalogues";
+const globalManualUrl = "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb";
+// === /SABİT MANUEL İNDİRME LİNK BİLGİLERİ ===
 ---
 
 <MainLayout title={pageTitle} lang="fr">
@@ -197,7 +199,6 @@ const blueprintManualLinkText_FR = "Télécharger le manuel et les catalogues";
                 ))
               }
             </div>
-
             {/* Sağ Spesifikasyonlar veya Tablo */}
             <div class="mt-6 max-w-md space-y-6 md:ml-auto md:mt-0">
               {
@@ -214,7 +215,7 @@ const blueprintManualLinkText_FR = "Télécharger le manuel et les catalogues";
                   ))
                 ) : product.data.tableData ? (
                   <div class="flex flex-col">
-                     <div class="-m-1.5 overflow-x-auto">
+                    <div class="-m-1.5 overflow-x-auto">
                       <div class="inline-block min-w-full p-1.5 align-middle">
                         <div class="overflow-hidden">
                            <table class="min-w-full divide-y divide-neutral-300 dark:divide-neutral-700">
@@ -251,7 +252,7 @@ const blueprintManualLinkText_FR = "Télécharger le manuel et les catalogues";
                     </div>
                   </div>
                 ) : (
-                  <div class="text-neutral-500 dark:text-neutral-400">
+                   <div class="text-neutral-500 dark:text-neutral-400">
                     {/* Sağ tarafta içerik yoksa boş kalabilir */}
                   </div>
                 )
@@ -261,82 +262,68 @@ const blueprintManualLinkText_FR = "Télécharger le manuel et les catalogues";
         </div>
       </div>
 
-      {/* Plans Sekmesi */}
+      {/* === PLANS SEKMESİ BASİTLEŞTİRİLDİ (FRANSIZCA) === */}
       <div id="tabs-with-card-3" class="hidden" role="tabpanel">
          <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"> {/* items-center eklendi */}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Sol Taraf: Birinci Blueprint Görseli */}
             {product.data.blueprints?.first ? (
               <div class="overflow-hidden rounded-xl shadow-lg">
                 <Image
                   src={product.data.blueprints.first}
                   class="h-full w-full object-cover object-center"
-                  alt={product.data.blueprints.secondLinkAlt || "Illustration du plan 1"}
+                  alt={"Illustration du plan 1"}
                   format={"avif"}
                   loading={"lazy"}
                 />
               </div>
             ) : (
-              <div class="flex items-center justify-center h-full min-h-[200px] bg-neutral-100 dark:bg-neutral-700/30 rounded-xl">
-                <p class="text-neutral-500 dark:text-neutral-400">Aucun plan principal disponible.</p>
-              </div>
+                <div class="flex items-center justify-center h-64 bg-neutral-100 dark:bg-neutral-700/30 rounded-xl p-4">
+                    <p class="text-neutral-500 dark:text-neutral-400">Aucun plan principal disponible.</p>
+                </div>
             )}
 
-            {/* Sağ Taraf: İkinci Blueprint Görseli (Tıklanabilir Linke Dönüşecek) veya Sadece Link */}
-            {product.data.blueprints?.secondLink ? (
-              <a
-                href={product.data.blueprints.secondLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
-                aria-label={product.data.blueprints.secondLinkAlt || blueprintManualLinkText_FR}
-              >
-                {product.data.blueprints.second ? (
-                  <Image
-                    src={product.data.blueprints.second}
-                    alt={product.data.blueprints.secondLinkAlt || blueprintManualLinkText_FR}
-                    class="h-full w-full object-cover object-center"
-                    format={"avif"}
-                    loading={"lazy"}
-                  />
-                ) : (
-                  <div class="flex flex-col items-center justify-center h-full min-h-[200px] bg-neutral-100 dark:bg-neutral-700/30 rounded-xl p-6 text-center">
-                    <p class="text-lg font-semibold text-orange-500 dark:text-orange-400 mb-2">
-                      {product.data.blueprints.secondLinkAlt || blueprintManualLinkText_FR}
-                    </p>
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-orange-500 dark:text-orange-400">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                    </svg>
-                    <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Cliquez pour télécharger</p>
-                  </div>
-                )}
-              </a>
-            ) : product.data.blueprints?.second ? (
+            {/* Sağ Taraf: İkinci Blueprint Görseli (opsiyonel) */}
+            {product.data.blueprints?.second ? (
               <div class="overflow-hidden rounded-xl shadow-lg">
                 <Image
                   src={product.data.blueprints.second}
-                  alt={product.data.blueprints.secondLinkAlt || "Illustration du plan 2"}
+                  alt={"Illustration du plan 2"}
                   class="h-full w-full object-cover object-center"
                   format={"avif"}
                   loading={"lazy"}
                 />
               </div>
             ) : (
-               !product.data.blueprints?.first && (
-                    <div class="md:col-span-2 text-center py-10">
-                        <p class="text-neutral-500 dark:text-neutral-400">Aucun plan ou manuel disponible.</p>
+                 product.data.blueprints?.first && (
+                    <div class="flex items-center justify-center h-64 bg-neutral-100 dark:bg-neutral-700/30 rounded-xl p-4">
+                        <p class="text-neutral-500 dark:text-neutral-400">Aucun plan secondaire disponible.</p>
                     </div>
-                )
+                 )
             )}
+          </div>
+          {/* Sabit İndirme Linki (Her Zaman Görünür) */}
+          <div class="mt-10 text-center">
+            <a
+              href={globalManualUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 hover:underline font-medium text-lg inline-flex items-center gap-x-1"
+            >
+              {globalManualLinkText_FR}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
-      {/* === /BLUEPRINTS SEKMESİ GÜNCELLENDİ (FRANSIZCA) === */}
+      {/* === /PLANS SEKMESİ BASİTLEŞTİRİLDİ (FRANSIZCA) === */}
     </div>
   </div>
 
-  {/* Product Gallery, Related Products, Lightbox HTML (önceki gibi) */}
-  {(product.data.photos && product.data.photos.length > 0) && (
+  {/* Product Gallery Bölümü */}
+  {(galleryImages && galleryImages.length > 0) && (
     <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 text-center mb-8">{productGalleryTitle}</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -362,6 +349,7 @@ const blueprintManualLinkText_FR = "Télécharger le manuel et les catalogues";
     </section>
   )}
 
+  {/* Önceki/Sonraki Ürünler Bölümü */}
   {(prevProduct || nextProduct) && (
     <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 text-center mb-8">{relatedProductsTitle}</h2>
@@ -381,6 +369,7 @@ const blueprintManualLinkText_FR = "Télécharger le manuel et les catalogues";
     </section>
   )}
 
+  {/* Lightbox HTML'i */}
   <div id="lightbox-overlay" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-[100] p-4" onclick="closeLightbox()">
     <div class="relative max-w-4xl max-h-[90vh]" onclick="event.stopPropagation()">
       <button type="button" class="absolute -top-2 -right-2 sm:top-2 sm:right-2 z-50 p-2 bg-neutral-700 hover:bg-neutral-600 rounded-full text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white" onclick="closeLightbox()" aria-label="Fermer la lightbox">
