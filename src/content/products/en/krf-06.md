@@ -64,5 +64,5 @@ tableData:
       - ["Artisan-Cropster", "Fully compatible"]
 blueprints:
   first: "@/images/6-layout-1.avif"
-  second: "@/images/blueprint2.avif"  
+
 ---
