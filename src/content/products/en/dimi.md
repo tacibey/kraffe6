@@ -63,7 +63,4 @@ tableData:
 blueprints:
   first: "@/images/kraffe-03-catalog.avif"
   second: "@/images/kraffe-03-catalog.avif"
-secondLink: "https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb"
-  secondLinkAlt: "Download Technical Specifications PDF"
-
 ---
