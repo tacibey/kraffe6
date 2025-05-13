@@ -63,5 +63,5 @@ tableData:
       - ["Cooling Time", "2-4 min"]
       - ["Artisan-Cropster", "Fully compatible"]
 blueprints:
-  first: "@/images/blueprint2.avif"
+  first: "@/images/12b.avif"
 ---
