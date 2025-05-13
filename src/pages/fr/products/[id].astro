@@ -166,9 +166,7 @@ const relatedProductsTitle = "Découvrez nos autres machines"; // Section Title 
                     <h3 class="block font-bold text-neutral-800 dark:text-neutral-200">
                       {spec.title}
                     </h3>
-                    <p class="text-neutral-600 dark:text-neutral-400">
-                      {spec.subTitle}
-                    </p>
+                    <p class="text-neutral-600 dark:text-neutral-400" set:html={spec.subTitle}></p>
                   </div>
                 ))
               }
