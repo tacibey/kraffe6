@@ -62,5 +62,5 @@ tableData:
       - ["Artisan-Cropster", "Fully compatible"]
 blueprints:
   first: "@/images/kraffe-03-catalog.avif"
-  second: "@/images/dimi-booklet.pdf"  
+  second: "@/images/kraffe-03-catalog.avif"  
 ---
