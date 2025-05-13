@@ -46,6 +46,8 @@ specificationsLeft:
     subTitle: "Equipped with 3mm thick, sensitive thermocouples, the KRF-03 provides real-time temperature data throughout the roasting process. Master your roasting with precise variable controls and a well-insulated body that minimizes environmental effects, ensuring consistent results."
   - title: "Safety Systems"
     subTitle: "Equipped with advanced temperature and drum pressure safety systems, the KRF-03 ensures a safe roasting experience, giving you peace of mind throughout the process."
+  - title: "Resources"
+    subTitle: "<a href='https://drive.google.com/drive/folders/1F9e5EnI17jGkLRrw7HO03CCXrCJqcPnb' target='_blank' rel='noopener noreferrer' class='text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 hover:underline'>Download User Manuals and Catalogs</a>"
 tableData:
   - feature: ["Specification", "Value"]
     description:
