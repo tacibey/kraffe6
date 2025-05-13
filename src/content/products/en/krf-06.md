@@ -63,6 +63,6 @@ tableData:
       - ["Cooling Time", "2-4 min"]
       - ["Artisan-Cropster", "Fully compatible"]
 blueprints:
-  first: "@/images/kraffe-03-catalog.avif"
-  second: "@/images/kraffe-03-catalog.avif"  
+  first: "@/images/6-layout-1.avif"
+  second: "@/images/blueprint2.avif"  
 ---
