@@ -1,0 +1,42 @@
+# TEMEL SAYFA YÖNLENDİRMELERİ
+/contact-form/        /contact/         301!
+/contact-us/          /contact/         301!
+/about-us/            /about/           301!
+
+# KATEGORİ SAYFASI YÖNLENDİRMELERİ (Tümü /products/ altına)
+/drum-roasters/                           /products/        301!
+/drum-roasters/sample-roasters/           /products/        301!
+/drum-roasters/shop-roasters/             /products/        301!
+/drum-roasters/industrial-roasters/       /products/        301!
+/equipment/                               /products/        301! # Ekipman ana sayfası da /products/ altına
+
+# BLOG YAZISI YÖNLENDİRMELERİ
+# Eski URL (WordPress)                                       Yeni URL (Astro)
+/exploring-different-coffee-roasting-methods-traditional-vs-modern-approaches/  /blog/exploring-different-coffee-roasting-methods/    301!
+/choosing-the-right-coffee-roaster-for-your-business-a-comprehensive-guide/      /blog/choosing-right-coffee-roaster-business-guide/     301!
+/a-journey-of-excellence-in-coffee-roasting/                                     /blog/etude-coffee-sprudge-recognition-kraffe-partnership/ 301!
+/coffee-bean-roaster-unlocking-coffees-true-potential-for-exceptional-roasting/  /blog/kraffe-coffee-bean-roaster-guide/               301!
+/mastering-the-art-of-coffee-roasting/                                           /blog/mastering-art-of-coffee-roasting/                 301!
+# /choosing-the-perfect-bean-roasting-machine/  -> YENİ KARŞILIĞI LİSTEDE YOK, ŞİMDİLİK /blog/ ANA SAYFASINA YÖNLENDİRELİM VEYA EN YAKIN YAZIYA
+/choosing-the-perfect-bean-roasting-machine/                                     /blog/art-of-coffee-roasting-machines-guide/            301! # En yakın konu bu gibi duruyor
+/unleashing-the-art-of-coffee-roasting-with-the-primi-sample-roaster/            /blog/unleashing-the-art-of-coffee-roasting-with-primi-sample-roaster/ 301!
+/a-comprehensive-guide-to-creating-coffee-roasting-profiles/                     /blog/how-to-create-coffee-roasting-profiles/           301!
+
+
+# ÜRÜN SAYFASI YÖNLENDİRMELERİ
+# Eski URL (WordPress)                                       Yeni URL (Astro)
+/drum-roasters/sample-roasters/kraffe-dimi/                  /products/dimi/                                         301!
+/drum-roasters/sample-roasters/kraffe-primi/                 /products/primi/                                        301!
+/drum-roasters/shop-roasters/kraffe-krf-03/                  /products/krf-03/                                       301!
+/drum-roasters/shop-roasters/kraffe-krf-06/                  /products/krf-06/                                       301!
+/drum-roasters/shop-roasters/kraffe-krf-12/                  /products/krf-12/                                       301!
+/drum-roasters/shop-roasters/kraffe-krf-15/                  /products/krf-15/                                       301!
+/drum-roasters/shop-roasters/kraffe-krf-20/                  /products/krf-20/                                       301!
+/drum-roasters/industrial-roasters/kraffe-krf-30/            /products/krf-30/                                       301!
+/drum-roasters/industrial-roasters/kraffe-krf-60/            /products/krf-60/                                       301!
+/drum-roasters/industrial-roasters/kraffe-krf-120/           /products/krf-120/                                      301!
+/drum-roasters/industrial-roasters/kraffe-krf-180/           /products/krf-180/                                      301!
+/drum-roasters/industrial-roasters/kraffe-krf-240/           /products/krf-240/                                      301!
+/equipment/destoner/                                         /products/destoner-equipment/                           301!
+/equipment/afterburner/                                      /products/afterburner-equipment/                        301!
+/equipment/loader/                                           /products/loader-equipment/                             301!
