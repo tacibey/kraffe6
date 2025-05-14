@@ -1,7 +1,6 @@
 ---
 // src/layouts/MainLayout.astro
 
-// Gerekli bileşenleri ve sabitleri import et
 import Meta from "@components/Meta.astro";
 import Navbar from "@components/sections/navbar&footer/Navbar.astro";
 import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
@@ -10,10 +9,8 @@ import { SITE } from "@data/constants";
 import "@styles/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
-// Prop tanımları
 const { title = SITE.title, meta, structuredData, lang = "en" } = Astro.props;
 
-// Prop arayüzü
 interface Props {
   title?: string;
   meta?: string;
@@ -21,14 +18,13 @@ interface Props {
   lang?: string;
 }
 
-// Dinamik banner props'ları için dil ve URL belirle
 const currentLang = Astro.currentLocale || 'en';
 const contactUrl = getRelativeLocaleUrl(currentLang, 'contact');
 const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer';
 
-// === GOOGLE ANALYTICS MEASUREMENT ID ===
-const gaMeasurementId = "G-04W4B3DX9F";
-// === /GOOGLE ANALYTICS MEASUREMENT ID ===
+// === GOOGLE TAG MANAGER CONTAINER ID ===
+const gtmContainerId = "GTM-PZZBN787";
+// === /GOOGLE TAG MANAGER CONTAINER ID ===
 ---
 
 <html lang={lang} class="dark scrollbar-hide lenis lenis-smooth scroll-pt-16">
@@ -42,24 +38,28 @@ const gaMeasurementId = "G-04W4B3DX9F";
       import "@scripts/lenisSmoothScroll.js";
     </script>
 
-    {/* === GOOGLE ANALYTICS KODU BAŞLANGICI === */}
-    {gaMeasurementId && (
-      <Fragment>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-        <script is:inline define:vars={{ gaMeasurementId }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaMeasurementId);
-        </script>
-      </Fragment>
+    {/* === GOOGLE TAG MANAGER KODU (HEAD) BAŞLANGICI === */}
+    {gtmContainerId && (
+      <script is:inline define:vars={{ gtmContainerId }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',gtmContainerId);
+      </script>
     )}
-    {/* === GOOGLE ANALYTICS KODU SONU === */}
+    {/* === GOOGLE TAG MANAGER KODU (HEAD) SONU === */}
 
   </head>
   <body
     class="bg-neutral-200 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-800"
   >
+    {/* === GOOGLE TAG MANAGER (NOSCRIPT) KODU (BODY BAŞLANGICI) === */}
+    {gtmContainerId && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    )}
+    {/* === /GOOGLE TAG MANAGER (NOSCRIPT) KODU === */}
+
     <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
       <Navbar />
       <main>
