@@ -5,10 +5,10 @@
 import Meta from "@components/Meta.astro";
 import Navbar from "@components/sections/navbar&footer/Navbar.astro";
 import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
-import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro"; // Yeni eklenen import
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
 import { SITE } from "@data/constants";
 import "@styles/global.css";
-import { getRelativeLocaleUrl } from "astro:i18n"; // Yeni eklenen import
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 // Prop tanımları
 const { title = SITE.title, meta, structuredData, lang = "en" } = Astro.props;
@@ -22,14 +22,18 @@ interface Props {
 }
 
 // Dinamik banner props'ları için dil ve URL belirle
-const currentLang = Astro.currentLocale || 'en'; // Astro.currentLocale ile mevcut dili al
-const contactUrl = getRelativeLocaleUrl(currentLang, 'contact'); // İlgili dildeki contact URL'sini al
-const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer'; // Dile göre buton metnini ayarla
+const currentLang = Astro.currentLocale || 'en';
+const contactUrl = getRelativeLocaleUrl(currentLang, 'contact');
+const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer';
+
+// === GOOGLE ANALYTICS MEASUREMENT ID ===
+const gaMeasurementId = "G-04W4B3DX9F";
+// === /GOOGLE ANALYTICS MEASUREMENT ID ===
 ---
 
 <html lang={lang} class="dark scrollbar-hide lenis lenis-smooth scroll-pt-16">
   <head>
-    <!-- Meta etiketleri ve diğer başlık bilgileri -->
+    {/* Meta etiketleri ve diğer başlık bilgileri */}
     <Meta meta={meta} structuredData={structuredData} />
     <title>{title}</title>
     
@@ -37,6 +41,21 @@ const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer'; // 
     <script>
       import "@scripts/lenisSmoothScroll.js";
     </script>
+
+    {/* === GOOGLE ANALYTICS KODU BAŞLANGICI === */}
+    {gaMeasurementId && (
+      <Fragment>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaMeasurementId);
+        </script>
+      </Fragment>
+    )}
+    {/* === GOOGLE ANALYTICS KODU SONU === */}
+
   </head>
   <body
     class="bg-neutral-200 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-800"
@@ -48,22 +67,17 @@ const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer'; // 
       </main>
     </div>
 
-    {/* ==== YENİ EKLENEN BANNER ==== */}
-    {/* Floating "Get Offer" butonu */}
     <AnnouncementBanner
-      btnId="floating-offer-button" {/* ID artık işlevsel değil ama kalabilir */}
-      btnTitle={buttonText}          {/* Dile göre değişen metin */}
-      url={contactUrl}               {/* Dile göre değişen URL */}
+      btnId="floating-offer-button"
+      btnTitle={buttonText}
+      url={contactUrl}
     />
-    {/* ==== /YENİ EKLENEN BANNER ==== */}
 
-    <FooterSection /> {/* Footer bölümü */}
+    <FooterSection />
 
-    {/* Preline scripti */}
     <script>
       import "preline/preline.js";
     </script>
-    {/* Scrollbar gizleme stilleri */}
     <style>
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
