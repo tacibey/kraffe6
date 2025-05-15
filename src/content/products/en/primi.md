@@ -63,6 +63,6 @@ tableData:
       - ["Cooling Time", "3-4 min"]
       - ["Artisan-Cropster", "Fully compatible"]
 blueprints:
-  first: "@/images/pb.avif"
+  first: "@/images/primi-layout.avif"
 
 ---
