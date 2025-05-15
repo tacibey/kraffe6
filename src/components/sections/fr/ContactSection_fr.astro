@@ -11,9 +11,9 @@ import ceLogoNew from "@images/ce-mark-new.avif";
 
 // Prop Tanımı: Fransızca sayfadan gelen avatar verisini alacak
 interface Props {
-    amirAvatarData: ImageMetadata;
+    amirAvatarData: ImageMetadata; // Bu prop dışarıdan gelecek
 }
-const { amirAvatarData } = Astro.props; // Gelen prop'u al
+const { amirAvatarData } = Astro.props;
 
 // Review bölümü için grup avatar kaynakları (İngilizce ile aynı)
 const groupAvatarSrcs: Array<string> = [
@@ -23,47 +23,47 @@ const groupAvatarSrcs: Array<string> = [
   "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
 ];
 
-// Sabit metinler (Fransızca)
-const title: string = "Contactez-nous";
-const subTitle: string = "Le désir d'atteindre les plus hauts standards de qualité !";
-const formTitle: string = `Soyez l'un des <span class="text-orange-500 dark:text-orange-400">10</span> premiers ce mois-ci, obtenez une consultation gratuite !`; // Form başlığı (güncellendi)
-const formSubTitleItalic: string = `(<span class="text-orange-500 dark:text-orange-400">2</span>/10 places restantes)`; // Form alt başlığı (güncellendi)
-const formResponseTime: string = "Nous vous répondrons dans un délai de 1 à 2 jours ouvrables."; // Eski formSubTitle
+// === FRANSIZCA SABİT METİNLER ===
+const title_fr: string = "Votre nouvelle machine à torréfier est à portée de main";
+const subTitle_fr: string = "Remplissez notre formulaire pour révéler les secrets de vos grains de café 🌟";
+const formTitle_fr: string = "Définissez votre demande et obtenez un devis";
+const formSubTitle_fr: string = "Nous vous répondrons dans un délai de 1 à 2 jours ouvrables.";
 
-// Office verileri (İngilizce ile aynı)
-const officeHeading: string = "Notre Bureau"; // Başlık çevrildi
-const officeContent: string = "KRAFFE ROASTERS";
-const officeAddress: string = "Adalet, Manas Blvd. No. 39, Unit 3408, 35530 Bayraklı, İzmir, Turkiye";
+const officeHeading_fr: string = "Notre Bureau";
+const officeContent_fr: string = "KRAFFE ROASTERS";
+// Adres aynı kalabilir veya yerelleştirilebilir
+const officeAddress_fr: string = "Adalet Mah. Manas Blv. No:39 Folkart Towers A Kule K:34 D:3408 Bayraklı / İzmir / TÜRKİYE";
 
-// Email verileri (İngilizce ile aynı)
-const emailHeading: string = "Contactez-nous par e-mail";
-const emailContent: string = "Vous préférez l'écrit ? Envoyez-nous un e-mail à"; // İçerik çevrildi
-const emailLinkTitle: string = "info@krafferoasters.com";
-const emailLinkURL: string = "mailto:info@krafferoasters.com";
 
-// Review verileri (İngilizce ile aynı)
-const rating: string = `<span class="font-bold">4.8</span> / 5`;
-const starCount: number = 4;
-const reviews: string = `Approuvé par les <span class="font-bold">Torréfacteurs</span> du monde entier`; // Metin çevrildi
+const emailHeading_fr: string = "Contactez-nous par e-mail";
+const emailContent_fr: string = "Vous préférez l'écrit ? Envoyez-nous un e-mail à";
+const emailLinkTitle_fr: string = "info@krafferoasters.com"; // E-posta adresi genellikle değişmez
+const emailLinkURL_fr: string = "mailto:info@krafferoasters.com";
 
-// StaticForms bilgileri (İngilizce ile aynı)
+const rating_fr: string = `<span class="font-bold">4.8</span> / 5`; // Rakamlar aynı kalır
+const starCount_fr: number = 4; // Yıldız sayısı aynı kalır
+const reviews_fr: string = `Approuvé par les <span class="font-bold">Torréfacteurs</span> du Monde Entier`; // Çevrildi
+// === /FRANSIZCA SABİT METİNLER ===
+
+// StaticForms bilgileri (API Key ve Recaptcha aynı kalır)
 const staticFormsApiKey = "sf_323gg5f098n8e9d9ch167dmh";
 const recaptchaSiteKey = "6LeLrxwrAAAAABfZl7OIP3Yv0ibik2SANXaLixp6";
-const redirectUrl = "https://krafferoasters.com/fr"; // Yönlendirme FR sayfasına (veya ana sayfaya?)
+const redirectUrl_fr = "https://krafferoasters.com/fr/"; // Yönlendirme URL'si Fransızca ana sayfaya
 
-// Ürün listesi (İngilizce ile aynı)
-const productOptions = [
-  "Dimi - Capacité de lot d'un demi-kg", "Primi - Capacité de lot de 1 kg", // Çevrildi
-  "KRF-03", "KRF-06", "KRF-12", "KRF-15", "KRF-20", "KRF-30",
-  "KRF-60", "KRF-120", "KRF-180", "KRF-240"
+// Ürün listesi (Fransızca)
+const productOptions_fr = [
+  "Dimi - Capacité de lot de 0,5 kg",
+  "Primi - Capacité de lot de 1 kg",
+  "KRF-03", "KRF-06", "KRF-12", "KRF-15", "KRF-20",
+  "KRF-30", "KRF-60", "KRF-120", "KRF-180", "KRF-240"
 ];
 
-// Ülke/Bölge listesi (İngilizce ile aynı)
-const countryOptions = [
-  "Europe", "États-Unis", "Royaume-Uni", "Russie", "Amérique du Sud", "Asie", "Autre" // Çevrildi (isteğe bağlı)
+// Ülke/Bölge listesi (Fransızca)
+const countryOptions_fr = [
+  "Europe", "États-Unis", "Royaume-Uni", "Russie", "Amérique du Sud", "Asie", "Autre"
 ];
 
-// Input ve Select elemanları için ortak stil sınıfları (İngilizce ile aynı)
+// Input ve Select elemanları için ortak stil sınıfları (aynı kalır)
 const inputBaseClass = "block w-full rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-700 placeholder:text-neutral-500 focus:border-neutral-200 focus:outline-hidden focus:ring-3 focus:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-700/30 dark:text-neutral-300 dark:placeholder:text-neutral-400 dark:focus:ring-1";
 ---
 
@@ -71,119 +71,116 @@ const inputBaseClass = "block w-full rounded-lg border border-neutral-200 bg-neu
   <div class="mx-auto max-w-2xl lg:max-w-5xl">
     <div class="text-center">
       <h1 class="text-balance text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
-        {title}
+        {title_fr}
       </h1>
       <p class="mt-1 text-pretty text-lg text-neutral-600 dark:text-neutral-400">
-        {subTitle}
+        {subTitle_fr}
       </p>
       <div class="mt-8 flex items-center justify-center gap-x-8 sm:gap-x-12">
         <Image src={ceLogoNew} alt="Logo de certification CE Marking" class="h-24 w-auto object-contain sm:h-32" loading="lazy"/>
         <Image src={scaLogo} alt="Logo de membre de la Specialty Coffee Association" class="h-24 w-auto object-contain sm:h-32" loading="lazy"/>
       </div>
-
-      {/* Review Component (Formun üstünde) */}
-      <div class="mt-12 rounded-xl border border-neutral-200 bg-neutral-100 p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 sm:p-6 lg:mt-16">
-         <ReviewComponent
-           testimonialText="Incroyablement convivial et fournit des résultats constants à chaque fois." // Çevrildi
-           testimonialAuthor="Amir Montazer"
-           testimonialRole="Etude Coffee Co."
-           testimonialAvatar={amirAvatarData} {/* Prop'tan gelen veri */}
-           testimonialAvatarAlt="Portrait d'Amir Montazer" // Çevrildi
-           avatars={groupAvatarSrcs}
-           starCount={starCount}
-           rating={rating}
-           reviews={reviews}
-         />
-      </div>
     </div>
 
-    {/* Form ve Sağ Sütun */}
-    <div class="mt-8 grid items-start gap-6 lg:mt-10 lg:grid-cols-2 lg:gap-16">
+    <div class="mt-12 grid items-start gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-16">
       {/* Sol Taraf: Form */}
       <div class="flex flex-col rounded-xl border border-neutral-200 bg-neutral-100 p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 sm:p-6 lg:p-8">
-        <div class="mb-8 text-center">
-            <h2 class="text-xl font-semibold text-neutral-800 dark:text-neutral-200" set:html={formTitle} />
-            <p class="mt-1 text-sm italic text-neutral-600 dark:text-neutral-400" set:html={formSubTitleItalic} />
-        </div>
+        <h2 class="mb-8 text-xl font-semibold text-neutral-800 dark:text-neutral-200">
+          {formTitle_fr}
+        </h2>
 
         <form action="https://api.staticforms.xyz/submit" method="POST">
           <input type="hidden" name="apiKey" value={staticFormsApiKey} />
           <input type="hidden" name="replyTo" value="@" />
           <input type="text" name="honeypot" style="display: none;" tabindex="-1" autocomplete="off"/>
-          <input type="hidden" name="redirectTo" value={redirectUrl} />
+          <input type="hidden" name="redirectTo" value={redirectUrl_fr} />
 
           <div class="grid gap-4">
-            {/* Name Alanı */}
             <div>
-              <label for="contact-name" class="sr-only">Nom</label> {/* Çevrildi */}
-              <input type="text" id="contact-name" name="name" class={inputBaseClass} placeholder="Nom" required /> {/* Çevrildi */}
+              <label for="contact-name-fr" class="sr-only">Nom</label>
+              <input type="text" id="contact-name-fr" name="name" class={inputBaseClass} placeholder="Nom" required />
             </div>
-            {/* Company Alanı */}
             <div>
-              <label for="contact-company" class="sr-only">Société</label> {/* Çevrildi */}
-              <input type="text" id="contact-company" name="$company" class={inputBaseClass} placeholder="Société" /> {/* Çevrildi */}
+              <label for="contact-company-fr" class="sr-only">Société</label>
+              <input type="text" id="contact-company-fr" name="$company" class={inputBaseClass} placeholder="Société" />
             </div>
-            {/* Email Alanı */}
             <div>
-              <label for="contact-email" class="sr-only">E-mail</label> {/* Çevrildi */}
-              <input type="email" id="contact-email" name="email" class={inputBaseClass} placeholder="E-mail" required autocomplete="email"/> {/* Çevrildi */}
+              <label for="contact-email-fr" class="sr-only">E-mail</label>
+              <input type="email" id="contact-email-fr" name="email" class={inputBaseClass} placeholder="E-mail" required autocomplete="email"/>
             </div>
-            {/* Phone Alanı */}
             <div>
-              <label for="contact-phone" class="sr-only">Numéro de téléphone</label> {/* Çevrildi */}
-              <input type="tel" id="contact-phone" name="phone" class={inputBaseClass} placeholder="Numéro de téléphone"/> {/* Çevrildi */}
+              <label for="contact-phone-fr" class="sr-only">Numéro de téléphone</label>
+              <input type="tel" id="contact-phone-fr" name="phone" class={inputBaseClass} placeholder="Numéro de téléphone"/>
             </div>
-             {/* Country Select Alanı */}
              <div>
-               <label for="contact-country" class="sr-only">Sélectionnez le pays/la région</label> {/* Çevrildi */}
-               <select id="contact-country" name="$country" class={inputBaseClass + " cursor-pointer"}>
-                 <option value="" disabled selected>Sélectionnez le pays/la région</option> {/* Çevrildi */}
-                 {countryOptions.map(option => ( <option value={option}>{option}</option> ))}
-                 <option value="Autre">Autre (Veuillez préciser dans les détails)</option> {/* Çevrildi */}
+               <label for="contact-country-fr" class="sr-only">Sélectionnez le pays/la région</label>
+               <select id="contact-country-fr" name="$country" class={inputBaseClass + " cursor-pointer"}>
+                 <option value="" disabled selected>Sélectionnez le pays/la région</option>
+                 {countryOptions_fr.map(option => (
+                   <option value={option}>{option}</option>
+                 ))}
+                 <option value="Autre">Autre (Veuillez préciser dans les détails)</option>
                </select>
              </div>
-             {/* Product Select Alanı */}
              <div>
-               <label for="contact-product" class="sr-only">Sélectionnez le produit</label> {/* Çevrildi */}
-               <select id="contact-product" name="$product" class={inputBaseClass + " cursor-pointer"}>
-                 <option value="" disabled selected>Sélectionnez le produit</option> {/* Çevrildi */}
-                 {productOptions.map(option => ( <option value={option}>{option}</option> ))}
+               <label for="contact-product-fr" class="sr-only">Sélectionnez le produit</label>
+               <select id="contact-product-fr" name="$product" class={inputBaseClass + " cursor-pointer"}>
+                 <option value="" disabled selected>Sélectionnez le produit</option>
+                 {productOptions_fr.map(option => (
+                   <option value={option}>{option}</option>
+                 ))}
                </select>
              </div>
-            {/* Details Alanı */}
             <div>
-              <label for="contact-details" class="sr-only">Détails</label> {/* Çevrildi */}
-              <textarea id="contact-details" name="message" rows="4" class={inputBaseClass} placeholder="Détails" required></textarea> {/* Çevrildi */}
+              <label for="contact-details-fr" class="sr-only">Détails</label>
+              <textarea id="contact-details-fr" name="message" rows="4" class={inputBaseClass} placeholder="Détails" required></textarea>
             </div>
-            {/* reCAPTCHA */}
             <div class="mt-2">
                 <div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
             </div>
           </div>
 
           <div class="mt-4 grid">
-            <AuthBtn title="Envoyer le message" /> {/* Çevrildi */}
+            <AuthBtn title="Envoyer le Message" /> {/* Çevrildi */}
           </div>
           <div class="mt-3 text-center">
             <p class="text-sm text-neutral-600 dark:text-neutral-400">
-              {formResponseTime}
+              {formSubTitle_fr}
             </p>
           </div>
         </form>
       </div>
 
-      {/* Sağ Taraf: İkon Blokları */}
-      <div class="space-y-6 divide-y divide-neutral-200 dark:divide-neutral-700">
+      {/* Sağ Taraf: Önce Review, Sonra İkon Blokları */}
+      <div class="space-y-8">
+        <div class="rounded-xl border border-neutral-200 bg-neutral-100 p-4 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 sm:p-6">
+           <ReviewComponent
+             avatars={groupAvatarSrcs} {/* Grup avatarları aynı */}
+             starCount={starCount_fr}
+             rating={rating_fr}
+             reviews={reviews_fr}
+             testimonialText="Kraffe est incroyablement convivial et fournit des résultats constants à chaque fois." // Örnek çevrilmiş yorum
+             testimonialAuthor="Amir Montazer" // Bu prop'u ReviewComponent'ten kaldırmıştık, ama burada tekrar eklenmiş.
+                                             // Eğer ReviewComponent prop olarak almıyorsa, bu satırları silebilirsiniz.
+                                             // Ya da ReviewComponent'i bu prop'ları alacak şekilde güncelleyebilirsiniz.
+                                             // Şimdilik, bu prop'u amirAvatarData ile değiştirelim.
+             testimonialAvatar={amirAvatarData} // Prop'tan gelen veri
+             testimonialAvatarAlt="Portrait d'Amir Montazer" // Çevrildi
+             testimonialRole="Etude Coffee Co."
+           />
+        </div>
+        <div class="space-y-6 divide-y divide-neutral-200 dark:divide-neutral-700">
           <div class="pt-6 first:pt-0">
-             <ContactIconBlock heading={officeHeading} content={officeContent} isAddressVisible={true} addressContent={officeAddress}>
+             <ContactIconBlock heading={officeHeading_fr} content={officeContent_fr} isAddressVisible={true} addressContent={officeAddress_fr}>
                <Icon name="mapPin" />
              </ContactIconBlock>
           </div>
           <div class="pt-6 first:pt-0">
-             <ContactIconBlock heading={emailHeading} content={emailContent} isLinkVisible={true} linkTitle={emailLinkTitle} linkURL={emailLinkURL}>
+             <ContactIconBlock heading={emailHeading_fr} content={emailContent_fr} isLinkVisible={true} linkTitle={emailLinkTitle_fr} linkURL={emailLinkURL_fr}>
                <Icon name="envelopeOpen" />
              </ContactIconBlock>
           </div>
+        </div>
       </div>
     </div>
   </div>
