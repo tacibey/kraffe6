@@ -11,26 +11,26 @@ const footerLinks = [
   {
     section: "Écosystème",
     links: [
-      { name: "Documentation", url: "/fr/welcome-to-docs/" },
-      { name: "Outils et Équipements", url: "/fr/products" },
-      { name: "Services de Construction", url: "/fr/services" },
+     
+      { name: "Produits", url: "/fr/products" },
+ 
     ],
   },
   {
     section: "Société",
     links: [
-      { name: "À propos de nous", url: "#" },
+      { name: "À propos de nous", url: "/fr/about" },
       { name: "Blog", url: "/fr/blog" },
-      { name: "Carrières", url: "#" },
-      { name: "Clients", url: "#" },
+      { name: "Contact", url: "/contact" },
+    
     ],
   },
 ];
 
 const socialLinks = {
-  facebook: "#",
+  facebook: "https://www.facebook.com/kraffe.roasters",
   x: "#",
-  github: "https://github.com/mearashadowfax/ScrewFast",
+  github: "#",
   google: "#",
   slack: "#",
 };
