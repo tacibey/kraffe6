@@ -164,14 +164,17 @@
   }
 }
 /* === BLOG YAZISI İÇİN PROSE STİLLERİ SONU === */
-/* src/assets/styles/global.css dosyasının sonuna */
-
 /* Preline Dropdown AÇILAN MENÜ Seçenekleri İçin Düzeltme */
 /* Light Mode için Varsayılanlar */
-.hs-select-menu > div > button, /* Preline'ın oluşturduğu buton benzeri seçenekler */
+.hs-select-menu > div > button,
 .hs-select-menu > div > a,
-.hs-select-menu ul li[role="option"], /* Eğer liste elemanı kullanıyorsa */
-.hs-select-menu [data-hs-select-option] { /* Preline'ın kullandığı data attribute'u */
+.hs-select-menu ul li[role="option"],
+.hs-select-menu [data-hs-select-option],
+/* Bazen Preline seçenekleri doğrudan .hs-select-menu altında bir div veya button olabilir */
+.hs-select-menu > button,
+.hs-select-menu > a,
+/* Doğrudan select içindeki option'ları da bir kez daha deneyelim, belki bazı durumlarda tarayıcı render ediyor olabilir */
+select option {
   color: #1f2937 !important; /* Koyu Gri Metin (Tailwind gray-800) */
   background-color: #ffffff !important; /* Beyaz Arka Plan */
 }
@@ -180,7 +183,10 @@
 .hs-select-menu > div > button:hover,
 .hs-select-menu > div > a:hover,
 .hs-select-menu ul li[role="option"]:hover,
-.hs-select-menu [data-hs-select-option]:hover {
+.hs-select-menu [data-hs-select-option]:hover,
+.hs-select-menu > button:hover,
+.hs-select-menu > a:hover,
+select option:hover { /* Tarayıcı varsayılanı için pek çalışmaz ama ekleyelim */
   background-color: #f3f4f6 !important; /* Açık Gri Arka Plan (Tailwind gray-100) */
   color: #111827 !important; /* Biraz daha koyu metin (Tailwind gray-900) */
 }
@@ -189,7 +195,10 @@
 html.dark .hs-select-menu > div > button,
 html.dark .hs-select-menu > div > a,
 html.dark .hs-select-menu ul li[role="option"],
-html.dark .hs-select-menu [data-hs-select-option] {
+html.dark .hs-select-menu [data-hs-select-option],
+html.dark .hs-select-menu > button,
+html.dark .hs-select-menu > a,
+html.dark select option {
   color: #f3f4f6 !important; /* Açık Gri Metin (Tailwind gray-100) */
   background-color: #374151 !important; /* Koyu Gri Arka Plan (Tailwind gray-700) */
 }
@@ -198,16 +207,10 @@ html.dark .hs-select-menu [data-hs-select-option] {
 html.dark .hs-select-menu > div > button:hover,
 html.dark .hs-select-menu > div > a:hover,
 html.dark .hs-select-menu ul li[role="option"]:hover,
-html.dark .hs-select-menu [data-hs-select-option]:hover {
+html.dark .hs-select-menu [data-hs-select-option]:hover,
+html.dark .hs-select-menu > button:hover,
+html.dark .hs-select-menu > a:hover,
+html.dark select option:hover {
   background-color: #4b5563 !important; /* Biraz daha açık Koyu Gri Arka Plan (Tailwind gray-600) */
   color: #ffffff !important; /* Beyaz Metin */
-}
-
-/* Seçili olan placeholder için (örn: "Select Product") */
-/* Bu zaten <select> elementi üzerinden stilleniyor olmalı ama emin olmak için */
-select.dark\:text-neutral-300 option[disabled][selected] {
-    color: #d1d5db; /* Tailwind gray-300 */
-}
-html.dark select.dark\:text-neutral-300 option[disabled][selected] {
-    color: #d1d5db; /* Tailwind gray-300 */
 }
