@@ -1,29 +1,101 @@
 {
-  "subTitle": "Posez-nous toutes vos questions sur notre marque et nos produits, et obtenez des réponses factuelles.",
+  "subTitle": "Posez-nous toutes vos questions sur les torréfacteurs Kraffe, nos machines professionnelles et nos services. Obtenez des réponses factuelles pour guider votre décision.",
   "faqs": [
     {
-      "question": "Quels types d'outils sont inclus dans le Kit de Démarrage?",
-      "answer": "Le Kit de Démarrage comprend des outils à main et électriques essentiels pour différents projets de bricolage, notamment des marteaux, des perceuses, des tournevis et une variété de fixations. C'est une sélection soigneusement élaborée pour aider les débutants et les bricoleurs expérimentés à aborder la plupart des tâches d'amélioration de l'habitat."
+      "question": "Quels sont les principaux avantages des torréfacteurs Kraffe ?",
+      "answer": "Les torréfacteurs Kraffe allient ingénierie de précision, efficacité énergétique et conception sur mesure avec des composants européens premium. Ils offrent des contrôles flexibles, un support mondial et une torréfaction de qualité constante pour les experts comme pour les débutants."
     },
     {
-      "question": "Puis-je passer du Kit de Démarrage à la Boîte à Outils Professionnelle?",
-      "answer": "Absolument ! Vous pouvez passer à la Boîte à Outils Professionnelle à tout moment pour accéder à une gamme plus large d'outils de haute qualité, bénéficier d'un support client prioritaire et recevoir un contenu exclusif. Contactez notre équipe de support pour une transition sans problème."
+      "question": "Les torréfacteurs Kraffe sont-ils compatibles avec Artisan et Cropster ?",
+      "answer": "Oui. Les torréfacteurs Kraffe s'intègrent parfaitement avec Artisan et Cropster, vous permettant de vous connecter via ordinateur portable et d'utiliser ces plateformes tierces reconnues pour le profilage et le contrôle de la torréfaction."
     },
     {
-      "question": "Quels sont les rabais disponibles pour les commandes en gros via le plan Boîte à Outils Professionnelle?",
-      "answer": "Les membres de la Boîte à Outils Professionnelle ont droit à des rabais exclusifs sur les commandes en gros, dont le pourcentage peut varier en fonction du volume de la commande. Contactez-nous pour discuter de vos besoins, et nous vous fournirons une structure de rabais personnalisée."
+      "question": "Quel support client Kraffe propose-t-il ?",
+      "answer": "Kraffe offre un support en ligne gratuit à vie, un dépannage à distance et des réponses rapides. Nous collaborons avec des partenaires de service certifiés dans le monde entier pour assurer une assistance après-vente fiable."
     },
     {
-      "question": "À quoi puis-je m'attendre en termes de support client?",
-      "answer": "Tous nos clients bénéficient d'un support par e-mail dédié. Avec le Kit de Démarrage, vous recevrez notre support standard, tandis que le plan Boîte à Outils Professionnelle vous mettra à niveau vers un support prioritaire, ce qui signifie des temps de réponse plus rapides et une assistance spécialisée."
+      "question": "Quels systèmes de sécurité incluent les torréfacteurs Kraffe ?",
+      "answer": "Les torréfacteurs Kraffe disposent d'une surveillance avancée de la température/pression du tambour, d'arrêts automatiques et d'alertes de sécurité pour protéger à la fois les opérateurs et l'équipement pendant la torréfaction."
     },
     {
-      "question": "À quelle fréquence sont mises à jour les ressources en ligne et les tutoriels?",
-      "answer": "Nous mettons régulièrement à jour nos ressources en ligne et nos tutoriels pour refléter les dernières tendances en matière de bricolage et de construction, ainsi que les introductions de nouveaux outils et techniques. Notre matériel vise à être complet et convivial pour tous les niveaux de compétence."
+      "question": "Quels composants sont utilisés dans les torréfacteurs Kraffe ?",
+      "answer": "Kraffe utilise des composants européens premium : moteurs Bonfiglioli (Italie), systèmes électriques Siemens/Schneider (Allemagne/France) et thermocouples 3mm. Toutes les machines respectent les normes de sécurité CE."
     },
     {
-      "question": "ScrewFast propose-t-il des services pour les grands projets de construction?",
-      "answer": "Oui, nos Solutions Entreprise sont conçues pour les grandes entreprises ayant besoin de services complets. Nous fournissons des consultations, de la planification et de l'approvisionnement en outils et matériaux de haute qualité, ainsi que des solutions de personnel pour des besoins de construction importants. Contactez-nous pour un devis personnalisé."
+      "question": "Pourquoi Kraffe utilise-t-il des logiciels de torréfaction tiers ?",
+      "answer": "Kraffe privilégie la compatibilité avec des outils standards comme Artisan et Cropster plutôt que des logiciels propriétaires. Cela garantit flexibilité, mises à jour régulières et familiarité pour les utilisateurs."
+    },
+    {
+      "question": "Que sont les modes préchauffage et fin de journée ?",
+      "answer": "Le mode préchauffage amène le tambour à des températures optimales pour une bonne constance. Le mode fin de journée refroidit le système et le prépare pour un arrêt sécurisé et économe en énergie."
+    },
+    {
+      "question": "Quelles fonctionnalités d'automatisation offrent les torréfacteurs Kraffe ?",
+      "answer": "Kraffe prend en charge la torréfaction automatique par profil, le contrôle par écran tactile/ordinateur portable et l'automatisation complète en option. Ajustez le débit d'air, la flamme, la vitesse du tambour et enregistrez/répétez des profils avec précision."
+    },
+    {
+      "question": "Comment les torréfacteurs Kraffe assurent-ils la constance ?",
+      "answer": "La constance est obtenue grâce à des thermocouples 3mm pour des données en temps réel, des corps isolés contre les interférences environnementales et des contrôles précis et reproductibles pour chaque profil de torréfaction."
+    },
+    {
+      "question": "Quel est le délai de livraison et le processus de transport ?",
+      "answer": "Les délais standards sont de 4 à 8 semaines (variable selon la personnalisation). Nous organisons la livraison mondiale via des partenaires logistiques de confiance sur demande."
+    },
+    {
+      "question": "Quelle gamme de capacités couvrent les torréfacteurs Kraffe ?",
+      "answer": "Les machines Kraffe gèrent des fournées de 0,5kg à 240kg, supportant autant les petites torréfactions spécialisées que la production à haut volume. Le rendement horaire dépend du modèle."
+    },
+    {
+      "question": "Qu'est-ce qui définit une 'fournée' et le temps de cycle de torréfaction ?",
+      "answer": "Une fournée correspond à une charge complète de café vert. La torréfaction prend 12 à 14 minutes par fournée (selon le profil), suivies de 2 à 4 minutes de refroidissement."
+    },
+    {
+      "question": "Les torréfacteurs Kraffe peuvent-ils gérer tous les styles de torréfaction ?",
+      "answer": "Oui. Le système de brûleur prémélange modulé de Kraffe supporte tous les styles, des torréfactions légères/rapides aux torréfactions foncées, et performe de manière fiable dans divers climats."
+    },
+    {
+      "question": "Quel type de brûleur Kraffe utilise-t-il ?",
+      "answer": "Tous les modèles Kraffe utilisent des brûleurs à gaz prémélange haute efficacité pour un contrôle précis de la flamme, des temps de réponse rapides et une consommation réduite de carburant."
+    },
+    {
+      "question": "Quels contrôles sont disponibles sur les torréfacteurs Kraffe ?",
+      "answer": "Les opérateurs peuvent ajuster manuellement ou automatiquement le débit d'air, le niveau de flamme et la vitesse du tambour pour affiner les profils de torréfaction."
+    },
+    {
+      "question": "Quels sont les avantages de l'écran tactile 10 pouces ?",
+      "answer": "L'écran tactile fournit des métriques en temps réel (température/ROR/temps de développement), l'étiquetage/sauvegarde de profils, le support multilingue et un contrôle intuitif des paramètres de torréfaction."
+    },
+    {
+      "question": "Quelle est l'efficacité énergétique des torréfacteurs Kraffe ?",
+      "answer": "L'isolation optimisée, les brûleurs haute efficacité et le débit d'air ajustable minimisent les pertes de chaleur et l'usage de gaz, réduisant les coûts opérationnels sans sacrifier la qualité."
+    },
+    {
+      "question": "Quelle est la durée de vie d'un torréfacteur Kraffe ?",
+      "answer": "Les torréfacteurs Kraffe sont conçus pour durer 15 à 20 ans grâce à une construction robuste, des composants premium et un support continu en pièces détachées."
+    },
+    {
+      "question": "Quelle est la facilité d'entretien des torréfacteurs Kraffe ?",
+      "answer": "Conçus pour la simplicité : composants facilement accessibles, routines de nettoyage intuitives et support à distance/guide de maintenance."
+    },
+    {
+      "question": "Quelles sont les exigences d'installation ?",
+      "answer": "L'installation nécessite un système de cheminée/conduit, des connexions gaz/électricité appropriées, une ventilation et un espace dégagé. Une documentation claire et un guide en ligne sont fournis."
+    },
+    {
+      "question": "Quelles options électriques/gaz sont disponibles ?",
+      "answer": "Kraffe supporte l'électrique monophasé ou triphasé (selon modèle) et des configurations au GPL (propane) ou gaz naturel."
+    },
+    {
+      "question": "Proposez-vous une formation utilisateur ?",
+      "answer": "Oui. Des partenaires certifiés SCA proposent des formations complètes (en ligne/en présentiel) sur l'opération, le profilage, la maintenance et la sécurité."
+    },
+    {
+      "question": "Kraffe dispose-t-il de distributeurs mondiaux ?",
+      "answer": "Oui. Un réseau croissant de partenaires et distributeurs certifiés assure un support technique local, un service et une livraison rapide."
+    },
+    {
+      "question": "Quelle est la période de garantie ?",
+      "answer": "Toutes les machines incluent une garantie standard de 2 ans couvrant composants et fabrication. Des garanties étendues sont disponibles sur demande."
     }
   ]
 }
