@@ -164,3 +164,15 @@
   }
 }
 /* === BLOG YAZISI İÇİN PROSE STİLLERİ SONU === */
+/* src/assets/styles/global.css dosyasının sonuna */
+
+html.dark .hs-select select option {
+  color: #1f2937; /* Koyu Gri - Tailwind'deki gray-800'e yakın */
+  background-color: #f9fafb; /* Çok açık gri - Tailwind'deki gray-50'ye yakın (opsiyonel, sadece metin rengi de yetebilir) */
+}
+
+/* Sadece Preline'ın select component'i için daha spesifik bir hedefleme (gerekirse) */
+html.dark .hs-select-disabled\:pointer-events-none select option {
+    color: #1f2937 !important; /* !important gerekirse kullanılabilir ama kaçınılmalı */
+    background-color: #f9fafb !important; /* !important gerekirse kullanılabilir */
+}
