@@ -1,17 +1,23 @@
 ---
+import { Image } from "astro:assets";
+// ImageMetadata importuna artık gerek yok, sadece string yol alacağız
+
 const { src, alt } = Astro.props;
 
 interface Props {
-  src: string;
+  src: string; // Sadece @/images/... gibi bir string yol bekliyoruz
   alt: string;
 }
 ---
 
 <div class="shrink-0">
-  <img
+  {/* Astro, src prop'una @/ ile başlayan bir string verildiğinde bunu otomatik işler */}
+  <Image
     class="size-8 rounded-full sm:h-[2.875rem] sm:w-[2.875rem]"
     src={src}
     alt={alt}
     loading="lazy"
+    format="avif"
+    quality={70}
   />
 </div>
