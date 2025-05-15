@@ -12,7 +12,7 @@ const footerLinks = [
     section: "Ecosystem",
     links: [
       { name: "Products", url: "/products" },
-      { name: "Equipment", url: "/equipment" },
+      { name: "Equipment", url: "/products" },
     ],
   },
   {
