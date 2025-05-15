@@ -1,0 +1,146 @@
+---
+// Gerekli bileşenleri import et
+import MainLayout from "@/layouts/MainLayout.astro";
+import MainSection from "@components/ui/blocks/MainSection.astro";
+import LeftSection from "@components/ui/blocks/LeftSection.astro";
+import FeaturesStats from "@components/sections/features/FeaturesStats.astro";
+import { SITE } from "@data/constants"; // SITE.title gibi genel bilgiler için
+import type { ImageMetadata } from 'astro';
+import { Image } from "astro:assets"; // Kullanılmıyor ama kalsın, belki lazım olur
+
+// Kullanılacak görseller (İngilizce ile aynı varsayılıyor)
+import imgPlaceholder1 from "@images/etude-kraffe.avif";
+import imgPlaceholder2 from "@images/kraffeabout.avif";
+
+// Article tip tanımı
+interface Article {
+  isRightSection: boolean;
+  title: string;
+  subTitle: string;
+  btnExists?: boolean;
+  btnTitle?: string;
+  btnURL?: string;
+  img: ImageMetadata;
+  imgAlt: string;
+}
+
+// === FRANSIZCA İÇERİK ===
+const articles_fr: Article[] = [
+  {
+    isRightSection: false,
+    title: "Pourquoi Kraffe Roasters", // Çevrildi
+    subTitle: `
+      <p>Chez KRAFFE ROASTERS, nous pensons que les fonctionnalités considérées comme « optionnelles » ailleurs devraient être standard. C'est pourquoi chaque machine Kraffe comprend :</p>
+      <ul class="list-disc list-inside mt-2 space-y-1 text-neutral-600 dark:text-neutral-400">
+        <li>Ingénierie de précision pour une constance lot après lot</li>
+        <li>Isolation thermique élevée et systèmes de contrôle variable avancés</li>
+        <li>Tests complets en usine et processus de contrôle qualité strict</li>
+        <li>Conçue pour une durabilité à long terme et une efficacité opérationnelle</li>
+      </ul>
+      <p class="mt-2">Que vous ayez besoin d'un torréfacteur d'échantillons de 1 kg ou d'un torréfacteur industriel de 240 kg, chaque machine KRAFFE offre des performances de torréfaction constantes et une valeur durable pour votre entreprise.</p>
+    `, // Çevrildi
+    img: imgPlaceholder1,
+    imgAlt: "Schéma de conception des torréfacteurs Kraffe superposé sur des grains de café torréfiés", // Çevrildi (isteğe bağlı)
+    btnExists: true,
+    btnTitle: "Contactez-Nous", // Çevrildi
+    btnURL: "/fr/contact", // URL güncellendi
+  },
+  {
+    isRightSection: false,
+    title: "Notre Engagement Envers Vous", // Çevrildi
+    subTitle: `
+      <p>KRAFFE ROASTERS offre le support client le plus rapide de l'industrie. Nous comprenons que chaque minute compte dans la production de café, c'est pourquoi nous garantissons :</p>
+      <ul class="list-disc list-inside mt-2 space-y-1 text-neutral-600 dark:text-neutral-400">
+        <li>Un temps de réponse de 24 heures à toutes les demandes des clients</li>
+        <li>Un accès direct 24h/24 et 7j/7 à nos ingénieurs d'assurance qualité — pas à des commerciaux</li>
+        <li>Diagnostics rapides, support pièces détachées et dépannage à distance</li>
+        <li>Un réseau de support mondial qui maintient votre exploitation en fonctionnement</li>
+      </ul>
+      <p class="mt-2">Durable. Constant. Rapide. C’est plus que notre promesse — c’est notre norme.</p>
+    `, // Çevrildi
+    img: imgPlaceholder2,
+    imgAlt: "Technicien effectuant la maintenance d'un torréfacteur Kraffe", // Çevrildi (isteğe bağlı)
+    btnExists: false,
+  },
+];
+
+const featuresStatsTitle_fr: string = "Nos Principes Fondamentaux"; // Çevrildi
+const featuresStatsSubTitle_fr: string = "Ces piliers définissent l'expérience Kraffe Roasters, garantissant qualité, fiabilité et partenariat."; // Çevrildi
+const featuresStatsMainStatTitle_fr: string = "Partenariat"; // Çevrildi
+const featuresStatsMainStatSubTitle_fr: string = "Nous croyons en la construction de relations durables avec nos clients, devenant ainsi partie intégrante de leur histoire à succès."; // Çevrildi
+const statsData_fr = [ // İstatistik açıklamaları da çevrilebilir veya İngilizce kalabilir
+    {
+        stat: "100%",
+        description: "Assurance Qualité : Tests rigoureux avant expédition.",
+    },
+    {
+        stat: "Flexible",
+        description: "Conception Orientée Solution : Adaptée aux besoins uniques de votre torréfaction.",
+    },
+    {
+        stat: "Intuitif",
+        description: "Convivial : Configuration, fonctionnement et maintenance simples.",
+    },
+    {
+        stat: "7j/7 24h/24",
+        description: "Support à Vie : Assistance dédiée et rapide chaque fois que vous en avez besoin.",
+    },
+];
+
+const pageTitle_fr: string = `À Propos de Nous | ${SITE.title}`; // Çevrildi
+const mainSectionTitle_fr: string = "Qui Sommes-Nous"; // Çevrildi
+const mainSectionSubTitle_fr: string = "Fondée en 2022, KRAFFE ROASTERS est une entreprise innovante dirigée par une équipe d'ingénieurs et de professionnels de l'industrie du café avec plus d'une décennie d'expérience dans la fabrication de machines à torréfier. À la tête du projet se trouve le fondateur et ingénieur en chef d'une marque de torréfacteurs bien connue, apportant une expertise approfondie en développement de produits, ingénierie et solutions axées sur le client. Kraffe est née de la vision de construire les machines à torréfier les plus constantes, durables et réactives du marché — et de le faire mieux que quiconque. Chaque décision que nous prenons, de l'ingénierie au support client, est axée sur cette mission."; // Çevrildi
+const mainSectionBtnTitle_fr: string = "Contactez-Nous"; // Çevrildi
+
+// === /FRANSIZCA İÇERİK ===
+---
+
+<MainLayout
+  title={pageTitle_fr}
+  lang="fr" {/* Dil etiketi eklendi */}
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE.url}/fr/about`, // URL güncellendi
+    "url": `${SITE.url}/fr/about`,  // URL güncellendi
+    "name": `À Propos de Kraffe Roasters | ${SITE.title}`, // İsim güncellendi
+    "description": "Découvrez Kraffe Roasters, notre mission, nos valeurs et notre engagement envers la qualité et l'innovation dans l'industrie de la torréfaction du café.", // Açıklama çevrildi
+    "isPartOf": {
+        "@type": "WebSite",
+        "url": `${SITE.url}/fr`, // Ana site URL'si güncellendi
+        "name": SITE.title,
+        "description": SITE.description // Bu constants.ts'den geliyor, gerekirse orası da çevrilmeli
+    },
+    "inLanguage": "fr-FR" // Dil kodu güncellendi
+  }}
+>
+  <MainSection
+    title={mainSectionTitle_fr}
+    subTitle={mainSectionSubTitle_fr}
+    btnExists={true}
+    btnTitle={mainSectionBtnTitle_fr}
+    btnURL="/fr/contact" {/* URL güncellendi */}
+  />
+
+  {
+    articles_fr.map(article => (
+        <LeftSection
+          title={article.title}
+          subTitle={article.subTitle}
+          img={article.img}
+          imgAlt={article.imgAlt}
+          btnExists={article.btnExists}
+          btnTitle={article.btnTitle}
+          btnURL={article.btnURL}
+        />
+    ))
+  }
+
+  <FeaturesStats
+    title={featuresStatsTitle_fr}
+    subTitle={featuresStatsSubTitle_fr}
+    mainStatTitle={featuresStatsMainStatTitle_fr}
+    mainStatSubTitle={featuresStatsMainStatSubTitle_fr}
+    stats={statsData_fr}
+  />
+</MainLayout>
