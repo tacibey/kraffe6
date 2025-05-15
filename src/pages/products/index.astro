@@ -29,35 +29,35 @@ const subTitle: string =
 
 // Testimonial data that will be rendered in the component
 const testimonials = [
+  // First testimonial data
   {
-    // content: "...", // Bu satır silindi
-    mainImageSrc: "@/images/testimonial-image-1.avif", // ANA GÖRSEL YOLU
-    mainImageAlt: "Customer using Kraffe Roaster with a smile",   // ANA GÖRSEL ALT METNİ
-    author: "Henry",
-    role: "Kraffe Customer",
+    content:
+      " \"The coffee roasting machine from Kraffe has become an indispensable tool in my coffee journey.\" ",
+    author: "Henry P.",
+    role: "From UK 🇬🇧",
     avatarSrc:
       "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    avatarAlt: "Photo of Henry", // Avatar alt metni güncellendi
+    avatarAlt: "Image Description",
   },
+  // Second testimonial data
   {
-    // content: "...", // Bu satır silindi
-    mainImageSrc: "@/images/testimonial-image-1.avif", // ANA GÖRSEL YOLU
-    mainImageAlt: "A beautifully roasted batch of coffee beans from a Kraffe machine", // ANA GÖRSEL ALT METNİ
-    author: "Sophie",
-    role: "Kraffe Customer",
+    content:
+      " \"This machine delivers on all fronts.\" ",
+    author: "Sophie C.",
+    role: "From France 🇫🇷",
     avatarSrc:
       "https://images.unsplash.com/photo-1464979681340-bdd28a61699e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    avatarAlt: "Photo of Sophie", // Avatar alt metni güncellendi
+    avatarAlt: "Image Description",
   },
+  // Third testimonial data
   {
-    // content: "...", // Bu satır silindi
-    mainImageSrc: "@/images/testimonial-image-1.avif", // ANA GÖRSEL YOLU
-    mainImageAlt: "Barista proudly presenting coffee made with Kraffe roasted beans", // ANA GÖRSEL ALT METNİ
-    author: "Madison",
-    role: "Kraffe Customer",
+    content:
+      " \"I must say it has exceeded my expectations. Modular flame level is helping me out to yield best results.\" ",
+    author: "Lucas N.",
+    role: "From USA 🇺🇸",
     avatarSrc:
       "https://images.unsplash.com/photo-1507914464562-6ff4ac29692f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    avatarAlt: "Photo of Madison", // Avatar alt metni güncellendi
+    avatarAlt: "Image Description",
   },
 ];
 
@@ -129,7 +129,7 @@ const pageTitle: string = `Products | ${SITE.title}`;
   />
   <!--Testimonials section-->
   <TestimonialsSectionAlt
-    title="KRAFFE Around Worldwide"
+    title="What Our Customers Say"
     testimonials={testimonials}
   />
 </MainLayout>
