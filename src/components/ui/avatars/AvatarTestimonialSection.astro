@@ -1,17 +1,53 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro"; // ImageMetadata tipini import et
+
+// Props'u alırken src tipini ImageMetadata | string olarak güncelleyelim
+// Bu sayede hem import edilmiş resim hem de dış URL kabul edebilir.
+// Ancak products/index.astro'dan @/ ile string gönderdiğimiz için,
+// bu bileşenin içindegetImage kullanmak daha doğru olacak.
+// Ya da products/index.astro'da resimleri import edip ImageMetadata olarak göndermeliyiz.
+// Şimdilik, products/index.astro'da @/ ile string yol göndermeye devam edeceğiz
+// ve bu bileşende getImage kullanmayacağız, doğrudan Image bileşenine src olarak vereceğiz.
+// Astro, <Image src="@/images/..."> kullanımını otomatik olarak çözer.
+
 const { src, alt } = Astro.props;
 
 interface Props {
-  src: string;
+  src: string | ImageMetadata; // @/images/... gibi bir string veya import edilmiş resim
   alt: string;
 }
 ---
 
 <div class="shrink-0">
-  <img
-    class="size-8 rounded-full sm:h-[2.875rem] sm:w-[2.875rem]"
-    src={src}
-    alt={alt}
-    loading="lazy"
-  />
+  {typeof src === 'string' && src.startsWith('@/') ? (
+    // Eğer src @/ ile başlayan bir string ise, Astro <Image> bunu çözer
+    <Image
+      class="size-8 rounded-full sm:h-[2.875rem] sm:w-[2.875rem]"
+      src={src} {/* Astro bu string yolu kendisi çözecektir */}
+      alt={alt}
+      loading="lazy"
+      format="avif" 
+      quality={70} 
+    />
+  ) : typeof src === 'string' && (src.startsWith('http') || src.startsWith('/_astro/')) ? (
+    // Eğer tam bir URL veya zaten optimize edilmiş bir Astro yolu ise, standart img kullan
+    // Veya yine <Image> kullanabiliriz ama external URL ise authorize etmek gerekebilir
+    <img
+      class="size-8 rounded-full sm:h-[2.875rem] sm:w-[2.875rem]"
+      src={src}
+      alt={alt}
+      loading="lazy"
+    />
+  ) : (
+    // Eğer src bir ImageMetadata objesi ise (import edilmiş resim)
+    <Image
+      class="size-8 rounded-full sm:h-[2.875rem] sm:w-[2.875rem]"
+      src={src as ImageMetadata} {/* Tip zorlaması */}
+      alt={alt}
+      loading="lazy"
+      format="avif"
+      quality={70}
+    />
+  )}
 </div>
