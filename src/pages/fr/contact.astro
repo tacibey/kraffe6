@@ -1,36 +1,37 @@
 ---
 // Gerekli bileşenleri ve verileri import et
 import MainLayout from "@/layouts/MainLayout.astro";
-import ContactSection_fr from "@components/sections/fr/ContactSection_fr.astro"; // Fransızca bileşeni import et
-import { SITE } from "@data/constants";
-import amirAvatar from "@images/Amir+Montazer.avif"; // Amir'in avatarı import edildi
+// Fransızca için ayrı bir ContactSection bileşeni olduğunu varsayıyoruz
+import ContactSection_fr from "@components/sections/fr/ContactSection_fr.astro";
+import { SITE } from "@data/constants"; // SITE sabiti kullanılacak
+import amirAvatar from "@images/Amir+Montazer.avif"; // Amir'in avatarı import edildi (her iki dil için aynı varsayılıyor)
 
-// Sayfa başlığı
-const pageTitle: string = `Nous Contacter | ${SITE.title}`; // Fransızca başlık
+// Sayfa başlığını Kraffe Roasters'a göre ayarla (Fransızca)
+const pageTitle_fr: string = `Nous Contacter | ${SITE.title}`;
 
-// Canonical URL
-const canonicalUrl = "https://krafferoasters.com/fr/contact"; // Fransızca hedef URL
+// Canonical URL için hedef domaini ve dil yolunu kullan
+const canonicalUrl_fr = `${SITE.url}/fr/contact`; // SITE.url kullanılmalı
 ---
 
 <MainLayout
-  title={pageTitle}
-  lang="fr" {/* Dil etiketi */}
+  title={pageTitle_fr}
+  lang="fr" {/* Dil etiketi eklendi */}
   structuredData={{
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": canonicalUrl,
-    "url": canonicalUrl,
-    "name": `Contacter Kraffe Roasters | Machines à Torréfier Commerciales et Industrielles`, // Fransızca sayfa adı
-    "description": "Contactez Kraffe Roasters pour toute question concernant nos machines à torréfier commerciales et industrielles, nos équipements ou nos services. Demandez un devis ou une consultation.", // Fransızca meta description
+    "@type": "ContactPage", // Tip ContactPage olarak güncellendi
+    "@id": canonicalUrl_fr,
+    "url": canonicalUrl_fr,
+    "name": `Contacter Kraffe Roasters | Machines à Torréfier Commerciales et Industrielles`, // Sayfa adı çevrildi
+    "description": "Contactez Kraffe Roasters pour toute question concernant nos machines à torréfier commerciales et industrielles, nos équipements ou nos services. Demandez un devis ou une consultation.", // Meta description çevrildi
     "isPartOf": {
         "@type": "WebSite",
-        "url": "https://krafferoasters.com/fr", // Ana site FR URL'si
-        "name": SITE.title,
+        "url": `${SITE.url}/fr`, // Ana site FR URL'si
+        "name": SITE.title, // constants.ts'den alınacak
         "description": SITE.description // constants.ts'den alınacak (İngilizce kalabilir veya çevrilebilir)
     },
-    "inLanguage": "fr-FR" // Dil kodu
+    "inLanguage": "fr-FR" // Dil kodu güncellendi
   }}
 >
-  {/* ContactSection_fr'e amirAvatar verisi prop olarak geçirildi */}
-  <ContactSection_fr amirAvatarData={amirAvatar} /> {/* Prop adı aynı */}
+  {/* ContactSection_fr bileşenine amirAvatar verisi prop olarak geçirildi */}
+  <ContactSection_fr amirAvatarData={amirAvatar} />
 </MainLayout>
