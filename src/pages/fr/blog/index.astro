@@ -1,4 +1,6 @@
 ---
+// src/pages/fr/blog/index.astro
+
 // Import necessary components, modules and types
 import MainLayout from "@/layouts/MainLayout.astro";
 import CardBlog from "@components/ui/cards/CardBlog.astro";
@@ -6,73 +8,74 @@ import CardBlogRecent from "@components/ui/cards/CardBlogRecent.astro";
 import CardInsight from "@components/ui/cards/CardInsight.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { SITE } from "@data/constants";
+import { SITE } from "@data/constants"; // SITE.title hala kullanılacak
 
-// Get all blogs post in French and sort them based on publish date
-
+// Get all blog posts in French and sort them based on publish date
 const frenchBlogEntries = await getCollection("blog", ({ id }) => {
-  return id.startsWith("fr/");
+  return id.startsWith("fr/"); // Sadece Fransızca blog yazılarını al
 });
 
 const frenchInsightsEntries = await getCollection("insights", ({ id }) => {
-  return id.startsWith("fr/");
+  return id.startsWith("fr/"); // Sadece Fransızca insight'ları al
 });
 
 const blogPosts: CollectionEntry<"blog">[] = frenchBlogEntries.sort(
   (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-    b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-// Get all insights posts
+
 const insightPosts: CollectionEntry<"insights">[] = frenchInsightsEntries;
 
 // Separate the most recent post from others
-const mostRecentPost: CollectionEntry<"blog"> = blogPosts[0];
-const otherPosts: CollectionEntry<"blog">[] = blogPosts.slice(1);
+// Eğer hiç blog yazısı yoksa bu kısım hata verebilir, kontrol ekleyelim
+const mostRecentPost: CollectionEntry<"blog"> | undefined = blogPosts.length > 0 ? blogPosts[0] : undefined;
+const otherPosts: CollectionEntry<"blog">[] = blogPosts.length > 0 ? blogPosts.slice(1) : [];
 
-// Define variables for page content
-const title: string = "Votre Passerelle vers l'Excellence en Construction";
-const subTitle: string =
-  "Explorez les dernières actualités, astuces et analyses de ScrewFast pour améliorer vos projets de construction. Des mises en avant de produits aux stratégies de gestion de projet, notre blog est votre ressource incontournable pour tout ce qui concerne les outils et la construction.";
-const secondTitle: string = "Perspectives";
-const secondSubTitle: string =
-  "Restez à jour avec les dernières tendances et évolutions de l'industrie de la construction grâce aux analyses de l'équipe d'experts de ScrewFast.";
+// Define variables for page content (Fransızca)
+const title_fr: string = "Votre Passerelle vers l'Excellence en Torréfaction de Café";
+const subTitle_fr: string =
+  "Explorez les dernières avancées, les conseils d'experts et les connaissances approfondies de KRAFFE ROASTERS dans l'industrie des machines à torréfier le café. Des innovations produits aux stratégies de création de profils de torréfaction constants, notre blog est votre ressource incontournable pour tout ce qui concerne la torréfaction du café.";
+const secondTitle_fr: string = "Perspectives de l'Industrie";
+const secondSubTitle_fr: string =
+  "Restez à jour avec les dernières tendances et évolutions de l'industrie de la torréfaction du café grâce aux perspectives de l'équipe expérimentée d'ingénieurs et de professionnels du café de Kraffe Roasters.";
 
-const pageTitle: string = `Blog | ${SITE.title}`;
+const pageTitle_fr: string = `Blog | ${SITE.title}`; // SITE.title genel site başlığı olduğu için aynı kalabilir
 ---
 
-<MainLayout lang="fr"
-  title={pageTitle}
+<MainLayout
+  title={pageTitle_fr}
+  lang="fr" {/* Dil etiketi eklendi */}
   structuredData={{
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://screwfast.uk/fr/blog",
-    "url": "https://screwfast.uk/fr/blog",
-    "name": "Blog | ScrewFast",
-    "description": "Restez informé des dernières tendances et évolutions dans le secteur de la construction avec les analyses de l'équipe d'experts de ScrewFast.",
-    "isPartOf": {
+    "@type": "WebPage", // Veya Blog
+    "@id": `${SITE.url}/fr/blog`, // URL güncellendi
+    url: `${SITE.url}/fr/blog`,   // URL güncellendi
+    name: `Blog | ${SITE.title}`, // İsim aynı kalabilir veya "Blog | Kraffe Roasters"
+    description: subTitle_fr, // Fransızca alt başlık meta description olarak kullanılabilir
+    isPartOf: {
       "@type": "WebSite",
-      "url": "https://screwfast.uk/fr",
-      "name": "ScrewFast",
-      "description": "ScrewFast propose des outils matériels de premier ordre et des services de construction experts pour répondre à tous vos besoins de projet."
+      url: `${SITE.url}/fr`, // Ana Fransızca site URL'si
+      name: SITE.title,
+      description: SITE.description // Genel site açıklaması (constants.ts'den)
     },
-    "inLanguage": "fr"
+    "inLanguage": "fr-FR" // Dil kodu güncellendi
   }}
 >
   <section
     class="mx-auto max-w-[85rem] space-y-8 px-4 pt-16 sm:px-6 lg:px-8 2xl:max-w-full"
   >
-    <!--Page header-->
+    {/*Page header*/}
     <div class="mx-auto max-w-3xl text-left sm:text-center">
       <h1
         class="block text-balance text-4xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-5xl lg:text-6xl"
       >
-        {title}
+        {title_fr}
       </h1>
 
       <p
         class="mt-4 text-pretty text-lg text-neutral-600 dark:text-neutral-400"
       >
-        {subTitle}
+        {subTitle_fr}
       </p>
     </div>
   </section>
@@ -80,37 +83,47 @@ const pageTitle: string = `Blog | ${SITE.title}`;
   <section
     class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
   >
-    <!--Blog posts grid-->
-    <div class="grid gap-6 lg:grid-cols-2">
-      {otherPosts.map((blogEntry) => <CardBlog blogEntry={blogEntry} blogLocale="fr"/>)}
-    </div>
+    {/*Blog posts grid*/}
+    {otherPosts.length > 0 ? (
+      <div class="grid gap-6 lg:grid-cols-2">
+        {otherPosts.map((blogEntry) => <CardBlog blogEntry={blogEntry} blogLocale="fr" />)} {/* blogLocale="fr" eklendi */}
+      </div>
+    ) : (
+      !mostRecentPost && <p class="text-center text-lg text-neutral-600 dark:text-neutral-400">Aucun article de blog disponible pour le moment.</p>
+    )}
   </section>
-  <!--Most recent blog post-->
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    <CardBlogRecent blogEntry={mostRecentPost} recentBlogLocale="fr" />
-  </section>
-  <!--Insights section-->
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
-      <h2
-        class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
-      >
-        {secondTitle}
-      </h2>
-      <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
-        {secondSubTitle}
-      </p>
-    </div>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        insightPosts.map((insightEntry) => (
-          <CardInsight insightEntry={insightEntry} insightLocale="fr" />
-        ))
-      }
-    </div>
-  </section>
+
+  {/*Most recent blog post*/}
+  {mostRecentPost && (
+    <section
+      class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
+    >
+      <CardBlogRecent blogEntry={mostRecentPost} recentBlogLocale="fr" /> {/* recentBlogLocale="fr" eklendi */}
+    </section>
+  )}
+
+  {/*Insights section*/}
+  {insightPosts.length > 0 && (
+    <section
+      class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
+    >
+      <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+        <h2
+          class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
+        >
+          {secondTitle_fr}
+        </h2>
+        <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
+          {secondSubTitle_fr}
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          insightPosts.map((insightEntry) => (
+            <CardInsight insightEntry={insightEntry} insightLocale="fr" /> /* insightLocale="fr" eklendi */
+          ))
+        }
+      </div>
+    </section>
+  )}
 </MainLayout>
