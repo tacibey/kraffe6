@@ -1,0 +1,39 @@
+---
+// src/pages/contact-form.astro (contact.astro'nun kopyası)
+
+// Gerekli bileşenleri ve verileri import et
+import MainLayout from "@/layouts/MainLayout.astro";
+import ContactSection from "@components/sections/misc/ContactSection.astro"; // Bu bileşen tüm içeriği barındırıyor olmalı
+import { SITE } from "@data/constants";
+import amirAvatar from "@images/Amir+Montazer.avif"; // Bu prop hala ContactSection tarafından kullanılıyorsa
+
+// Sayfa başlığını yeni URL'ye göre biraz değiştirebiliriz veya aynı kalabilir
+const pageTitle: string = `Contact Us | ${SITE.title}`; // Veya "Contact Form | Kraffe Roasters"
+
+// Canonical URL ve Structured Data için yeni URL'yi kullan
+const pageUrl = `${SITE.url}/contact-form/`; // SITE.url sizin ana domaininiz olmalı (örn: https://krafferoasters.com)
+---
+
+<MainLayout
+  title={pageTitle}
+  lang="en"
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "ContactPage", // Tip ContactPage olarak kalabilir
+    "@id": pageUrl, // YENİ SAYFANIN URL'Sİ
+    "url": pageUrl, // YENİ SAYFANIN URL'Sİ
+    "name": `Contact Kraffe Roasters | Commercial & Industrial Coffee Roasters`, // İsterseniz "Contact Form - Kraffe Roasters" yapabilirsiniz
+    "description": "Get in touch with Kraffe Roasters for inquiries about our commercial and industrial coffee roasting machines, equipment, or services. Request a quote or consultation.",
+    "isPartOf": {
+        "@type": "WebSite",
+        "url": SITE.url,
+        "name": SITE.title,
+        "description": SITE.description
+    },
+    "inLanguage": "en-US"
+  }}
+>
+  {/* ContactSection'a amirAvatar verisi prop olarak geçirildi (eğer hala kullanılıyorsa) */}
+  {/* Bu çağrı, contact.astro'dakiyle aynı olmalı */}
+  <ContactSection amirAvatarData={amirAvatar} />
+</MainLayout>
