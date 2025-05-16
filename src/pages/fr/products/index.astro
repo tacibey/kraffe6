@@ -1,86 +1,187 @@
 ---
+// src/pages/fr/products/index.astro
+
 // Importing necessary components
 import MainLayout from "@/layouts/MainLayout.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
-// import CardWide from "@components/ui/cards/CardWide.astro"; // Artık kullanılmıyor
 import FeaturesStatsAlt from "@components/sections/features/FeaturesStatsAlt.astro";
 import TestimonialsSectionAlt from "@components/sections/testimonials/TestimonialsSectionAlt.astro";
 
 // Importing necessary functions from Astro
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { SITE } from "@data/constants"; // SITE importu eklendi (önceden yoktu ama title için lazım)
+import { SITE } from "@data/constants";
 
 // Fetching all the FR product related content and sorting it by main.id
-const product: CollectionEntry<"products">[] = (
+const product_fr: CollectionEntry<"products">[] = ( // Değişken adı _fr ile güncellendi
   await getCollection("products", ({ id }) => {
-    return id.startsWith("fr/");
+    return id.startsWith("fr/"); // Sadece Fransızca ürünleri al
   })
 ).sort(
   (a: CollectionEntry<"products">, b: CollectionEntry<"products">) =>
-    a.data.main.id - b.data.main.id
+    a.data.main.id - b.data.main.id,
 );
 
-// Define variables for page content
-const title: string = "Produits";
-const subTitle: string =
-  "Explorez la durabilité et la précision des outils ScrewFast, conçus aussi bien pour les professionnels que pour les amateurs. Chacun de nos produits est fabriqué avec précision et conçu pour durer, garantissant que vous disposez du bon outil pour chaque tâche.";
+// Define variables for page content (Fransızca)
+const title_fr: string = "Produits";
+const subTitle_fr: string =
+  "Toutes les machines Kraffe Roasters sont testées à 100% à chaque étape de la production, de la phase de conception jusqu'à l'expédition. Indépendamment des limites de température et des échelles de lots, Kraffe Roasters peut fournir un contrôle total sur votre processus et vous donnera l'opportunité de révéler votre talent en torréfaction.";
+const testimonialsTitle_fr: string = "KRAFFE à Travers le Monde"; // Testimonial başlığı çevrildi
+const featuresStatsTitle_fr: string = "Conçu pour la Perfection de la Torréfaction";
+const featuresStatsSubTitle_fr: string = "Chaque torréfacteur KRAFFE est savamment conçu pour offrir un contrôle exceptionnel, une constance entre les lots et une efficacité, vous permettant de libérer pleinement le potentiel de chaque grain.";
+const featuresStatsBenefits_fr = [
+      "Contrôle de Précision",
+      "Constance Exceptionnelle Lot après Lot",
+      "Durable, Constant, Facile à Entretenir",
+      "Intégré et Supporté",
+];
 
-// Testimonial data that will be rendered in the component
-const testimonials = [
+
+// Testimonial data (Fransızca)
+const testimonials_fr = [
   {
-    content:
-      "Depuis que nous avons adopté les outils matériels de ScrewFast, l'efficacité sur nos chantiers de construction a explosé. La durabilité des boulons hexagonaux et la précision des vis machine sont tout simplement inégalées. C'est rafraîchissant de travailler avec une entreprise qui comprend vraiment les exigences quotidiennes de l'industrie.",
-    author: "Jason Clark",
-    role: "Contremaître de chantier | TopBuild",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    avatarAlt: "Description de l'image",
+    content: `
+      <p>ETUDE COFFEE 🇬🇧</p>
+      <p>Modèle : KRF-06</p>
+      <p>instagram : @etude.coffee</p>
+      <p>📍 Londres, Bungay, R.-U.</p>
+    `,
+    author: "Contact : Amir Montazer",
+    role: "🇬🇧",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/etude.webp",
+    avatarAlt: "Avatar d'Amir Montazer d'Etude Coffee",
   },
-
   {
-    content:
-      "En tant que designer d'intérieur, je suis toujours à la recherche de matériaux et d'outils de haute qualité qui m'aident à donner vie à mes visions. L'assortiment de vis mixtes de ScrewFast a révolutionné mes projets, offrant le mélange parfait de qualité et de variété. Le support client exceptionnel était la cerise sur le gâteau !",
-    author: "Maria Gonzalez",
-    role: "Designer d'intérieur | Creative Spaces",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    avatarAlt: "Description de l'image",
+    content: `
+      <p>BAROMAN TORRÉFACTION DE CAFÉ 🇫🇷</p>
+      <p>Modèle : KRF-12</p>
+      <p>instagram : @baroman_official</p>
+      <p>📍 Paris, FRANCE</p>
+    `,
+    author: "Contact : Saad El Darazi",
+    role: "🇫🇷",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/baroman.avif",
+    avatarAlt: "Avatar de Saad El Darazi de Baroman Torréfaction de Café",
   },
-
   {
-    content:
-      "Je suis menuisier professionnel depuis plus de 15 ans, et je peux sincèrement dire que les boulons et écrous à tarauder de ScrewFast sont parmi les meilleurs que j'ai utilisés. Ils adhèrent comme aucun autre, et j'ai une confiance totale dans chaque joint et élément. De plus, le service est impeccable - ils se soucient vraiment du succès de mon projet.",
-    author: "Richard Kim",
-    role: "Menuisier-Maître | WoodWright",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1474176857210-7287d38d27c6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    avatarAlt: "Description de l'image",
+    content: `
+      <p>ROASBEAN COFFEE ROASTERY 🇬🇮</p>
+      <p>Modèle : KRF-30 / KRF-06</p>
+      <p>instagram : @roasbean.coffee</p>
+      <p>📍 Shiraz, IRAN</p>
+    `,
+    author: "Contact : Amir Hezajifar",
+    role: "🇬🇮",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/roasbean.avif",
+    avatarAlt: "Avatar d'Amir Hezajifar de Roasbean Coffee Roastery",
+  },
+  {
+    content: `
+      <p>MARIPOSA COFFEE 🇸🇮</p>
+      <p>Modèle : KRF-06</p>
+      <p>instagram : @mariposa_coffee</p>
+      <p>📍 Domžale, SLOVÉNIE</p>
+    `,
+    author: "Contact : Klemen Macek",
+    role: "🇸🇮",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/Mariposa1.avif",
+    avatarAlt: "Avatar de Klemen Macek de Mariposa Coffee",
+  },
+  {
+    content: `
+      <p>HANNES STAMMLER 🇦🇹</p>
+      <p>weltladen-linz.at</p>
+      <p>Modèle : KRF-12</p>
+      <p>📍 Linz, AUTRICHE</p>
+    `,
+    author: "Contact : Hannes Stammler",
+    role: "🇦🇹",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/hannes.webp",
+    avatarAlt: "Avatar de Hannes Stammler",
+  },
+  {
+    content: `
+      <p>SANPAOLO COFFEE ROASTER 🇭🇺</p>
+      <p>instagram : @SANPAOLO_COFFEE_ROASTER</p>
+      <p>Modèle : KRF-30</p>
+      <p>📍 Dunaszentpál, HONGRIE</p>
+    `,
+    author: "Contact : Safran Gergely",
+    role: "🇭🇺",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/sanpaolo.avif",
+    avatarAlt: "Avatar de Safran Gergely de Sanpaolo Coffee Roaster",
+  },
+  {
+    content: `
+      <p>FIKA COFFEE 🇦🇿</p>
+      <p>instagram : @FIKA.COFFEE.CULTURE</p>
+      <p>Modèle : KRF-03</p>
+      <p>📍 Bakou, AZERBAÏDJAN</p>
+    `,
+    author: "Contact : Камран Пирджанов",
+    role: "🇦🇿",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/fika.webp",
+    avatarAlt: "Avatar de Fika Coffee",
+  },
+  {
+    content: `
+      <p>KUANTA COFFEE ROASTERY 🇹🇷</p>
+      <p>instagram : @kuantakahvekavurma</p>
+      <p>Modèle : KRF-03</p>
+      <p>📍 Izmir, TURQUIE</p>
+    `,
+    author: "Contact : Özlem Goral",
+    role: "🇹🇷",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/kuanta.avif",
+    avatarAlt: "Avatar d'Özlem Goral de Kuanta Coffee Roastery",
+  },
+  {
+    content: `
+      <p>CASA SALVO ROASTERY 🇺🇸</p>
+      <p>instagram : @REALCHEFSALVOLOCASTRO</p>
+      <p>Modèle : KRF-03</p>
+      <p>📍 New York, ÉTATS-UNIS</p>
+    `,
+    author: "Contact : Salvatore Lo Castro",
+    role: "🇺🇸",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/salvo.avif",
+    avatarAlt: "Avatar de Salvatore Lo Castro de Casa Salvo Roastery",
+  },
+  {
+    content: `
+      <p>DUO PRO INZENJERING 🇷🇸</p>
+      <p>duopro.rs</p>
+      <p>Modèle : KRF-03</p>
+      <p>📍 Ćuprija, SERBIE</p>
+    `,
+    author: "Contact: Djordje Brankovic",
+    role: "🇷🇸",
+    avatarSrc: "https://raw.githubusercontent.com/tacibey/kraffe6/refs/heads/main/src/images/duo.avif",
+    avatarAlt: "Avatar de Djordje Brankovic de Duo Pro Inzenjering",
   },
 ];
 
-// Page title için SITE.title kullanıldı
-const pageTitle: string = `Produits | ${SITE.title}`;
+const pageTitle_fr: string = `Produits | ${SITE.title}`;
 ---
 
 <MainLayout
-  title={pageTitle} {/* Dinamik başlık */}
-  lang="fr"
-  structuredData={{ // Structured data güncellendi
+  title={pageTitle_fr}
+  lang="fr" {/* Dil etiketi eklendi */}
+  structuredData={{
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://krafferoasters.com/fr/products", // URL güncellendi
-    "url": "https://krafferoasters.com/fr/products", // URL güncellendi
-    "name": `Produits | ${SITE.title}`, // Sayfa adı güncellendi
-    "description": "Explorez la durabilité et la précision des torréfacteurs Kraffe, conçus pour les professionnels et les passionnés.", // Açıklama güncellendi
+    "@type": "WebPage", // Veya CollectionPage
+    "@id": `${SITE.url}/fr/products`, // URL güncellendi
+    "url": `${SITE.url}/fr/products`,   // URL güncellendi
+    "name": `Produits | ${SITE.title}`, // İsim güncellendi
+    "description": subTitle_fr, // Fransızca alt başlık
     "isPartOf": {
       "@type": "WebSite",
-      "url": "https://krafferoasters.com/fr", // Ana site URL'si güncellendi
+      "url": `${SITE.url}/fr`, // Ana Fransızca site URL'si
       "name": SITE.title,
-      "description": SITE.description // constants.ts'den (İngilizce kalabilir veya çevrilebilir)
+      "description": SITE.description // Genel site açıklaması (constants.ts'den, gerekirse çevrilebilir)
     },
-    "inLanguage": "fr" // Dil kodu güncellendi
+    "inLanguage": "fr-FR" // Dil kodu güncellendi
   }}
 >
   <div
@@ -91,50 +192,37 @@ const pageTitle: string = `Produits | ${SITE.title}`;
         <h1
           class="text-balance text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
         >
-          {title}
+          {title_fr}
         </h1>
         {
-          subTitle && (
+          subTitle_fr && (
             <p class="hidden max-w-(--breakpoint-sm) text-pretty text-neutral-600 dark:text-neutral-400 md:block">
-              {subTitle}
+              {subTitle_fr}
             </p>
           )
         }
       </div>
-      <PrimaryCTA
-        title="Histoires de clients"
-        url="#testimonials"
-        noArrow={true}
-      />
+      <PrimaryCTA title="▼ Références" url="#testimonials" noArrow={true} /> {/* Buton metni çevrildi */}
     </div>
 
-    {/* === DEĞİŞEN BÖLÜM === */}
-    {/* Tüm ürünler için CardSmall kullanılıyor */}
     <section class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
       {
-        product.map((product) => {
-          // if/else kaldırıldı, her zaman CardSmall döndürülüyor
-          // productLocale="fr" prop'u eklendi
-          return <CardSmall product={product} productLocale="fr" />;
+        product_fr.map((product_item) => { // Değişken adı product_item olarak değiştirildi (product zaten prop adı)
+          return <CardSmall product={product_item} productLocale="fr" />; // productLocale="fr" eklendi
         })
       }
     </section>
-    {/* === /DEĞİŞEN BÖLÜM === */}
 
   </div>
   <!--Features statistics section-->
   <FeaturesStatsAlt
-    title="Pourquoi choisir ScrewFast ?"
-    subTitle="Transformez vos idées en résultats tangibles avec les outils ScrewFast. Que vous commenciez par un croquis sur un coin de table ou plongiez dans un projet de construction complet, nos outils sont conçus pour vous aider à construire en toute confiance."
-    benefits={[
-      "Outils robustes et fiables pour des performances durables.",
-      "Solutions innovantes adaptées aux besoins de construction modernes.",
-      "Support client dédié au succès de votre projet.",
-    ]}
+    title={featuresStatsTitle_fr}
+    subTitle={featuresStatsSubTitle_fr}
+    benefits={featuresStatsBenefits_fr}
   />
   <!--Testimonials section-->
   <TestimonialsSectionAlt
-    title="Ce que disent nos clients"
-    testimonials={testimonials}
+    title={testimonialsTitle_fr}
+    testimonials={testimonials_fr}
   />
 </MainLayout>
