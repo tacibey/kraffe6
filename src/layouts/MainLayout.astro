@@ -36,7 +36,6 @@ const gtmContainerId = "GTM-PZZBN787";
     {/* KRİTİK CSS BAŞLANGICI - YALNIZCA LCP METİN VE TEMEL GÖRSEL STİLLERİ */}
     <style is:inline>
       /* Bu CSS, HeroSection'daki h1 başlığının ve sayfanın temel gövdesinin hemen stilini sağlar. */
-      /* Layout ile ilgili genel sınıflar kaldırılmıştır, bunlar global.css'den yüklenecektir. */
       
       /* h1 başlığı için kritik stiller */
       /* `block text-balance text-3xl font-bold tracking-tight text-neutral-800 dark:text-yellow-400` */
@@ -54,23 +53,24 @@ const gtmContainerId = "GTM-PZZBN787";
         letter-spacing: -0.025em; /* -0.4px */
       }
       /* H1 Başlık Rengi Düzeltmesi */
-      /* Normal (light) modda kullanılacak renk */
-      h1.text-neutral-800 {
+      /* Eğer HTML'de 'dark' sınıfı yoksa (yani light modda), metin koyu gri olsun. */
+      html:not(.dark) h1.text-neutral-800 {
         color: #3b3b3b; /* Koyu gri */
       }
-      /* HTML etiketinde 'dark' sınıfı varsa (sitenizin varsayılan karanlık modu için) */
-      /* Bu kural, tarayıcının medya sorgusu yerine doğrudan 'dark' sınıfını kontrol eder. */
-      html.dark h1.dark\:text-yellow-400 {
-        color: #facc15; /* Tailwind'in yellow-400 rengi */
+      /* HTML etiketinde 'dark' sınıfı varsa, metin kesinlikle sarı olsun. */
+      html.dark h1.dark\:text-yellow-400,
+      html.dark h1.text-neutral-800 { /* !ÖNEMLİ: Bu satır eklendi! */
+        color: #facc15 !important; /* Tailwind'in yellow-400 rengi, !important ile öncelik veriyoruz */
       }
       
-      /* Eğer HeroSection içindeki span'in stilini de isterseniz */
-      .text-yellow-500 {
+      /* HeroSection içindeki span'in stilini de isterseniz */
+      /* Normal (light) modda span rengi */
+      html:not(.dark) .text-yellow-500 {
         color: #eab308; /* Tailwind'in yellow-500 rengi */
       }
       /* span için dark mod rengi, html.dark sınıfına bağlı */
       html.dark .dark\:text-yellow-400 {
-        color: #facc15;
+        color: #facc15 !important; /* !important ile öncelik veriyoruz */
       }
 
       /* Sayfadaki genel gövde stilinin gecikmesini azaltmak için */
