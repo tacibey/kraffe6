@@ -5,7 +5,7 @@ import Meta from "@components/Meta.astro";
 import Navbar from "@components/sections/navbar&footer/Navbar.astro";
 import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
 import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
-import { SITE } = "@data/constants";
+import { SITE } from "@data/constants"; // FIX: '=' yerine 'from' kullanıldı
 import "@styles/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -33,63 +33,66 @@ const gtmContainerId = "GTM-PZZBN787";
     <Meta meta={meta} structuredData={structuredData} />
     <title>{title}</title>
     
-    {/* KRİTİK CSS BAŞLANGICI - LCP METİN RENGİ VE TEMEL BODY STİLLERİ */}
+    {/* KRİTİK CSS BAŞLANGICI - LCP METİN RENGİ, TEMEL BODY VE ANA H1 STİLLERİ */}
     <style is:inline>
       /* Bu CSS, sitenizin en büyük içeriği olan ana başlığın rengini ve sayfa arka planını hemen sağlar. */
       /* Diğer tüm stiller global.css'den yüklenecektir. */
       
-      /* H1 başlığı ve diğer olası LCP metinleri için renk düzeltmeleri */
-      /* Siteniz varsayılan olarak koyu modda başladığı için, metinlerin görünür olmasını sağlıyoruz. */
-      /* Eğer bir element .text-neutral-800 sınıfına sahipse (koyu gri), koyu modda sarı olsun. */
-      /* Bu, ana sayfadaki H1'i ve diğer sayfalardaki muhtemel başlıkları hedef alır. */
-      html.dark .text-neutral-800 {
-        color: #facc15 !important; /* Tailwind yellow-400 rengi, !important ile yüksek öncelik */
+      /* GENEL METİN RENKLERİ İÇİN KONTRAST DÜZELTMELERİ (KOYU MOD) */
+      /* HTML etiketinde 'dark' sınıfı varsa, tüm metin renklerini okunabilir hale getiriyoruz */
+
+      /* text-neutral-800, text-neutral-700, text-neutral-600 gibi koyu gri metinleri sarı yap */
+      html.dark .text-neutral-800,
+      html.dark .text-neutral-700,
+      html.dark .text-neutral-600 {
+        color: #facc15 !important; /* Tailwind yellow-400 rengi - Yüksek kontrast için */
       }
       
-      /* Eğer .text-yellow-500 veya .dark\:text-yellow-400 sınıfları kullanılıyorsa, bunlar da sarı olsun. */
-      /* Bu, H1 içindeki SPAN elementi gibi durumlarda faydalıdır. */
+      /* Sarı veya koyu modda sarı olması gereken diğer metinleri de sarı yap */
       html.dark .text-yellow-500,
       html.dark .dark\:text-yellow-400 {
         color: #facc15 !important; /* Tailwind yellow-400 rengi */
       }
 
-      /* Light moddaki varsayılan text-neutral-800 rengini de belirtelim, çakışmayı önlemek için */
-      html:not(.dark) .text-neutral-800 {
-        color: #3b3b3b; /* Koyu gri, light modda arka planla kontrast sağlamalı */
-      }
-      html:not(.dark) .text-yellow-500 {
-        color: #eab308; /* Tailwind yellow-500 rengi, light modda */
-      }
-      
-      /* Sayfadaki genel gövde stilinin gecikmesini azaltmak için */
-      body.bg-neutral-200 {
-        background-color: #e5e7eb; /* Tailwind neutral-200 (açık gri) */
-      }
-      @media (prefers-color-scheme: dark) {
-        body.dark\:bg-neutral-800 {
-          background-color: #3b3b3b; /* Tailwind neutral-800 (koyu gri) */
-        }
-      }
+      /* dark:text-neutral-200, dark:text-neutral-300, dark:text-neutral-400 gibi açık gri metinler */
+      /* Bu sınıflar zaten açık renk olması beklenir, ancak garanti için belirginleştirelim */
+      html.dark .dark\:text-neutral-200 { color: #e5e7eb !important; } /* neutral-200 */
+      html.dark .dark\:text-neutral-300 { color: #d4d4d4 !important; } /* neutral-300 */
+      html.dark .dark\:text-neutral-400 { color: #a3a3a3 !important; } /* neutral-400 */
 
-      /* Genel HTML'in `scroll-pt-16` sınıfını da ekleyelim */
-      html.scroll-pt-16 {
-        scroll-padding-top: 4rem; /* 64px */
-      }
-      
-      /* Lenis ve scrollbar-hide için de başlangıç stilleri */
-      html.scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      html.scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
 
-      /* Ekstra kritik H1 metin stilleri (boyut, kalınlık, aralık) - bunlar genellikle güvenlidir */
+      /* LIGHT MODDAKİ VARSAYILAN RENKLER (Kontrast sorunları için) */
+      html:not(.dark) .text-neutral-800 { color: #3b3b3b; } /* Koyu gri */
+      html:not(.dark) .text-neutral-700 { color: #525252; } /* Orta koyu gri */
+      html:not(.dark) .text-neutral-600 { color: #737373; } /* Orta gri */
+      html:not(.dark) .text-yellow-500 { color: #eab308; } /* Sarı */
+      /* Light modda dark: sınıflarının bir etkisi olmamalı, güvenlik için tanımlama */
+      html:not(.dark) .dark\:text-yellow-400 { color: #eab308; }
+      html:not(.dark) .dark\:text-neutral-200 { color: #3b3b3b; }
+      html:not(.dark) .dark\:text-neutral-300 { color: #525252; }
+      html:not(.dark) .dark\:text-neutral-400 { color: #737373; }
+
+
+      /* SAYFA ARKA PLAN STİLLERİ */
+      body.bg-neutral-200 { background-color: #e5e7eb; } /* Light modda açık gri */
+      html.dark body.dark\:bg-neutral-800 { background-color: #3b3b3b; } /* Koyu modda koyu gri */
+      /* Eğer html class="dark" ise ve body'de dark:bg-neutral-800 varsa,
+         body'nin varsayılan arka planı da anında uygulanmalı */
+      html.dark body { background-color: #3b3b3b; }
+
+
+      /* KRİTİK LCP ELEMENTİ (H1) STİLLERİ */
+      /* Pagespeed raporunda belirtilen LCP elementi H1 için temel stiller */
       h1.block { display: block; }
+      h1.text-balance { text-wrap: balance; } /* Metin dengesi için */
       h1.text-3xl { font-size: 1.875rem; line-height: 2.25rem; } /* 30px / 36px */
       h1.font-bold { font-weight: 700; }
       h1.tracking-tight { letter-spacing: -0.025em; } /* -0.4px */
+
+      /* Gerekli diğer temel HTML stilleri */
+      html.scroll-pt-16 { scroll-padding-top: 4rem; /* 64px */ }
+      html.scrollbar-hide::-webkit-scrollbar { display: none; }
+      html.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
     </style>
     {/* KRİTİK CSS BİTİŞİ */}
