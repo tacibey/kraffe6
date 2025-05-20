@@ -4,7 +4,7 @@
 import Meta from "@components/Meta.astro";
 import Navbar from "@components/sections/navbar&footer/Navbar.astro";
 import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
-import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro"; // AnnouncementBanner hala kullanılıyor
 import { SITE } from "@data/constants";
 import "@styles/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
@@ -20,7 +20,7 @@ interface Props {
 
 const currentLang = Astro.currentLocale || 'en';
 const contactUrl = getRelativeLocaleUrl(currentLang, 'contact');
-const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer';
+const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer'; // AnnouncementBanner için hala kullanılabilir
 
 // === GOOGLE TAG MANAGER CONTAINER ID ===
 const gtmContainerId = "GTM-PZZBN787";
@@ -39,24 +39,10 @@ const gtmContainerId = "GTM-PZZBN787";
       /* Diğer tüm stiller global.css'den yüklenecektir. */
       
       /* GENEL METİN RENKLERİ İÇİN KONTRAST DÜZELTMELERİ (KOYU MOD) */
-      /* Pagespeed raporunda belirtilen düşük kontrastlı text-neutral-X00 gibi genel metinleri iyileştirir */
-      /* Tüm neutral-X00 sınıflarını ve dark:text-neutral-X00 sınıflarını hedefleyelim */
-      html.dark .text-neutral-900,
+      /* Pagespeed raporunda belirtilen düşük kontrastlı text-neutral-700/600/800 gibi genel metinleri iyileştirir */
       html.dark .text-neutral-800,
       html.dark .text-neutral-700,
-      html.dark .text-neutral-600,
-      html.dark .text-neutral-500,
-      html.dark .text-neutral-400,
-      html.dark .text-neutral-300,
-      html.dark .text-neutral-200,
-      html.dark .dark\:text-neutral-900,
-      html.dark .dark\:text-neutral-800,
-      html.dark .dark\:text-neutral-700,
-      html.dark .dark\:text-neutral-600,
-      html.dark .dark\:text-neutral-500,
-      html.dark .dark\:text-neutral-400,
-      html.dark .dark\:text-neutral-300,
-      html.dark .dark\:text-neutral-200 {
+      html.dark .text-neutral-600 {
         color: #facc15 !important; /* Tailwind yellow-400 rengi - okuma kolaylığı için */
       }
       
@@ -65,6 +51,11 @@ const gtmContainerId = "GTM-PZZBN787";
       html.dark .dark\:text-yellow-400 {
         color: #facc15 !important; /* Tailwind yellow-400 rengi - okuma kolaylığı için */
       }
+
+      /* Koyu modda nötr tonlar için genel düzeltmeler */
+      html.dark .dark\:text-neutral-200 { color: #e5e7eb !important; } /* Light gray */
+      html.dark .dark\:text-neutral-300 { color: #d4d4d4 !important; } /* Medium-light gray */
+      html.dark .dark\:text-neutral-400 { color: #a3a3a3 !important; } /* Medium gray */
 
       /* LIGHT MODDAKİ VARSAYILAN RENKLERİN DOĞRU OLDUĞUNDAN EMİN OLALIM */
       /* Tailwind varsayılanlarını koruyoruz, sadece .dark olmayan durumları belirtiyoruz */
@@ -76,6 +67,12 @@ const gtmContainerId = "GTM-PZZBN787";
       html:not(.dark) .dark\:text-neutral-200 { color: #3b3b3b; } /* Fallback for potentially misapplied dark mode classes in light mode */
       html:not(.dark) .dark\:text-neutral-300 { color: #525252; }
       html:not(.dark) .dark\:text-neutral-400 { color: #737373; }
+
+
+      /* Sarı butonlardaki metin rengi artık SecondaryCTA.astro içinde yönetiliyor. */
+      /* Bu yüzden buradaki "#floating-offer-button" ve ".bg-yellow-400" vb. kurallarını kaldırıyoruz */
+      /* Çakışmayı önlemek ve tek bir yerden yönetmek için. */
+
 
       /* Sayfa arka plan stilleri */
       body.bg-neutral-200 { background-color: #e5e7eb; }
@@ -115,15 +112,14 @@ const gtmContainerId = "GTM-PZZBN787";
 
     {/* AnnouncementBanner hala var ama butonu SecondaryCTA.astro kullanıyor */}
     <AnnouncementBanner
-      btnId="floating-offer-button"
+      btnId="floating-offer-button" // Bu ID artık CSS tarafından kullanılmayacak
       btnTitle={buttonText}
       url={contactUrl}
     />
 
     <FooterSection />
 
-    {/* Preline JS'e defer özelliği eklendi */}
-    <script defer>
+    <script>
       import "preline/preline.js";
     </script>
     <style>
