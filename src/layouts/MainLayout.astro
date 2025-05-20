@@ -40,44 +40,16 @@ const gtmContainerId = "GTM-PZZBN787";
       
       /* GENEL METİN RENKLERİ İÇİN KONTRAST DÜZELTMELERİ (KOYU MOD) */
       /* Pagespeed raporunda belirtilen düşük kontrastlı text-neutral-700/600/800 gibi genel metinleri iyileştirir */
-      html.dark .text-neutral-800,
-      html.dark .text-neutral-700,
-      html.dark .text-neutral-600 {
-        color: #facc15 !important; /* Tailwind yellow-400 rengi - okuma kolaylığı için */
-      }
-      
-      /* Belki de genel metinde yanlışlıkla uygulanan sarı tonları düzeltir */
-      html.dark .text-yellow-500,
-      html.dark .dark\:text-yellow-400 {
-        color: #facc15 !important; /* Tailwind yellow-400 rengi - okuma kolaylığı için */
-      }
-
-      /* Koyu modda nötr tonlar için genel düzeltmeler */
-      html.dark .dark\:text-neutral-200 { color: #e5e7eb !important; } /* Light gray */
-      html.dark .dark\:text-neutral-300 { color: #d4d4d4 !important; } /* Medium-light gray */
-      html.dark .dark\:text-neutral-400 { color: #a3a3a3 !important; } /* Medium gray */
-
-      /* LIGHT MODDAKİ VARSAYILAN RENKLERİN DOĞRU OLDUĞUNDAN EMİN OLALIM */
-      /* Tailwind varsayılanlarını koruyoruz, sadece .dark olmayan durumları belirtiyoruz */
-      html:not(.dark) .text-neutral-800 { color: #3b3b3b; } /* Dark gray */
-      html:not(.dark) .text-neutral-700 { color: #525252; } /* Medium-dark gray */
-      html:not(.dark) .text-neutral-600 { color: #737373; } /* Medium gray */
-      html:not(.dark) .text-yellow-500 { color: #eab308; } /* Yellow */
-      html:not(.dark) .dark\:text-yellow-400 { color: #eab308; } /* Yellow */
-      html:not(.dark) .dark\:text-neutral-200 { color: #3b3b3b; } /* Fallback for potentially misapplied dark mode classes in light mode */
-      html:not(.dark) .dark\:text-neutral-300 { color: #525252; }
-      html:not(.dark) .dark\:text-neutral-400 { color: #737373; }
-
+      /* Bu kısım kaldırılmıştır, zira tüm yazıların sarı olmasına neden oluyordu. */
+      /* Tailwind CSS'in ve global.css'in varsayılan renklerini kullanacaktır. */
 
       /* Sarı butonlardaki metin rengi artık SecondaryCTA.astro içinde yönetiliyor. */
       /* Bu yüzden buradaki "#floating-offer-button" ve ".bg-yellow-400" vb. kurallarını kaldırıyoruz */
       /* Çakışmayı önlemek ve tek bir yerden yönetmek için. */
 
 
-      /* Sayfa arka plan stilleri */
-      body.bg-neutral-200 { background-color: #e5e7eb; }
-      html.dark body.dark\:bg-neutral-800 { background-color: #3b3b3b; }
-      html.dark body { background-color: #3b3b3b; } /* Dark mode background */
+      /* Sayfa arka plan stilleri - Tailwind sınıflarına bırakılmıştır. */
+      /* body.bg-neutral-200 ve html.dark body.dark\:bg-neutral-800 gibi sınıflar kullanılacaktır. */
 
       /* Kritik LCP elementi (H1) stilleri - bunlar performans düşüşüne neden olmamalıdır */
       h1.block { display: block; }
