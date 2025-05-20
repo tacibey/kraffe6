@@ -4,8 +4,8 @@
 import Meta from "@components/Meta.astro";
 import Navbar from "@components/sections/navbar&footer/Navbar.astro";
 import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
-import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
-import { SITE } from "@data/constants"; // FIX: '=' yerine 'from' kullanıldı
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro"; // AnnouncementBanner hala kullanılıyor
+import { SITE } from "@data/constants";
 import "@styles/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -20,7 +20,7 @@ interface Props {
 
 const currentLang = Astro.currentLocale || 'en';
 const contactUrl = getRelativeLocaleUrl(currentLang, 'contact');
-const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer';
+const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer'; // AnnouncementBanner için hala kullanılabilir
 
 // === GOOGLE TAG MANAGER CONTAINER ID ===
 const gtmContainerId = "GTM-PZZBN787";
@@ -33,75 +33,53 @@ const gtmContainerId = "GTM-PZZBN787";
     <Meta meta={meta} structuredData={structuredData} />
     <title>{title}</title>
     
-    {/* KRİTİK CSS BAŞLANGICI - LCP METİN RENGİ, TEMEL BODY VE ANA H1 STİLLERİ */}
+    {/* KRİTİK CSS BAŞLANGICI - PERFORMANSI DÜŞÜRMEYECEK, SADECE GEREKLİ KONTRAST DÜZELTMELERİ */}
     <style is:inline>
-      /* Bu CSS, sitenizin en büyük içeriği olan ana başlığın rengini ve sayfa arka planını hemen sağlar. */
+      /* Bu CSS, sitenizin temel renklerini hemen sağlar. */
       /* Diğer tüm stiller global.css'den yüklenecektir. */
       
-      /* GENEL METİN RENKLERİ İÇİN KONTRAST DÜZELTMELERİ */
-      /* HTML etiketinde 'dark' sınıfı varsa, tüm metin renklerini okunabilir hale getiriyoruz */
-
-      /* Koyu modda, .text-neutral-800, .text-neutral-700, .text-neutral-600 gibi koyu gri metinleri sarı yap */
+      /* GENEL METİN RENKLERİ İÇİN KONTRAST DÜZELTMELERİ (KOYU MOD) */
+      /* Pagespeed raporunda belirtilen düşük kontrastlı text-neutral-700/600/800 gibi genel metinleri iyileştirir */
       html.dark .text-neutral-800,
       html.dark .text-neutral-700,
       html.dark .text-neutral-600 {
-        color: #facc15 !important; /* Tailwind yellow-400 rengi - Yüksek kontrast için */
+        color: #facc15 !important; /* Tailwind yellow-400 rengi - okuma kolaylığı için */
       }
       
-      /* Sarı veya koyu modda sarı olması gereken diğer metinleri de sarı yap */
+      /* Belki de genel metinde yanlışlıkla uygulanan sarı tonları düzeltir */
       html.dark .text-yellow-500,
       html.dark .dark\:text-yellow-400 {
-        color: #facc15 !important; /* Tailwind yellow-400 rengi */
+        color: #facc15 !important; /* Tailwind yellow-400 rengi - okuma kolaylığı için */
       }
 
-      /* dark:text-neutral-200, dark:text-neutral-300, dark:text-neutral-400 gibi açık gri metinler */
-      html.dark .dark\:text-neutral-200 { color: #e5e7eb !important; } /* neutral-200 */
-      html.dark .dark\:text-neutral-300 { color: #d4d4d4 !important; } /* neutral-300 */
-      html.dark .dark\:text-neutral-400 { color: #a3a3a3 !important; } /* neutral-400 */
+      /* Koyu modda nötr tonlar için genel düzeltmeler */
+      html.dark .dark\:text-neutral-200 { color: #e5e7eb !important; } /* Light gray */
+      html.dark .dark\:text-neutral-300 { color: #d4d4d4 !important; } /* Medium-light gray */
+      html.dark .dark\:text-neutral-400 { color: #a3a3a3 !important; } /* Medium gray */
 
-
-      /* LIGHT MODDAKİ VARSAYILAN RENKLER (Kontrast sorunları için) */
-      html:not(.dark) .text-neutral-800 { color: #3b3b3b; }
-      html:not(.dark) .text-neutral-700 { color: #525252; }
-      html:not(.dark) .text-neutral-600 { color: #737373; }
-      html:not(.dark) .text-yellow-500 { color: #eab308; }
-      html:not(.dark) .dark\:text-yellow-400 { color: #eab308; }
-      html:not(.dark) .dark\:text-neutral-200 { color: #3b3b3b; }
+      /* LIGHT MODDAKİ VARSAYILAN RENKLERİN DOĞRU OLDUĞUNDAN EMİN OLALIM */
+      /* Tailwind varsayılanlarını koruyoruz, sadece .dark olmayan durumları belirtiyoruz */
+      html:not(.dark) .text-neutral-800 { color: #3b3b3b; } /* Dark gray */
+      html:not(.dark) .text-neutral-700 { color: #525252; } /* Medium-dark gray */
+      html:not(.dark) .text-neutral-600 { color: #737373; } /* Medium gray */
+      html:not(.dark) .text-yellow-500 { color: #eab308; } /* Yellow */
+      html:not(.dark) .dark\:text-yellow-400 { color: #eab308; } /* Yellow */
+      html:not(.dark) .dark\:text-neutral-200 { color: #3b3b3b; } /* Fallback for potentially misapplied dark mode classes in light mode */
       html:not(.dark) .dark\:text-neutral-300 { color: #525252; }
       html:not(.dark) .dark\:text-neutral-400 { color: #737373; }
 
-      /* YENİ VE DAHA AGRESİF: SARI BUTON METİN RENGİ DÜZELTMESİ */
-      /* .bg-yellow-400 veya .bg-yellow-500 sınıflarına sahip herhangi bir elementin
-         içindeki herhangi bir metin elementini (.text-neutral-XXX, .text-yellow-XXX, vb.)
-         veya doğrudan link/span elementini hedefliyoruz. */
-      
-      .bg-yellow-400 *,
-      .bg-yellow-400,
-      .bg-yellow-500 *,
-      .bg-yellow-500 {
-        color: #3b3b3b !important; /* Tailwind neutral-800 (Koyu gri) */
-      }
-      /* Butonun hover/focus durumları için de geçerli olsun */
-      .bg-yellow-400:hover *,
-      .bg-yellow-400:hover,
-      .bg-yellow-500:hover *,
-      .bg-yellow-500:hover {
-        color: #3b3b3b !important; /* Koyu gri */
-      }
-      /* Eğer buton link ise */
-      .bg-yellow-400 a,
-      .bg-yellow-500 a {
-        color: #3b3b3b !important; /* Koyu gri */
-      }
+
+      /* Sarı butonlardaki metin rengi artık SecondaryCTA.astro içinde yönetiliyor. */
+      /* Bu yüzden buradaki "#floating-offer-button" ve ".bg-yellow-400" vb. kurallarını kaldırıyoruz */
+      /* Çakışmayı önlemek ve tek bir yerden yönetmek için. */
 
 
-      /* SAYFA ARKA PLAN STİLLERİ */
-      body.bg-neutral-200 { background-color: #e5e7eb; } /* Light modda açık gri */
-      html.dark body.dark\:bg-neutral-800 { background-color: #3b3b3b; } /* Koyu modda koyu gri */
-      html.dark body { background-color: #3b3b3b; }
+      /* Sayfa arka plan stilleri */
+      body.bg-neutral-200 { background-color: #e5e7eb; }
+      html.dark body.dark\:bg-neutral-800 { background-color: #3b3b3b; }
+      html.dark body { background-color: #3b3b3b; } /* Dark mode background */
 
-
-      /* KRİTİK LCP ELEMENTİ (H1) STİLLERİ */
+      /* Kritik LCP elementi (H1) stilleri - bunlar performans düşüşüne neden olmamalıdır */
       h1.block { display: block; }
       h1.text-balance { text-wrap: balance; }
       h1.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
@@ -121,28 +99,10 @@ const gtmContainerId = "GTM-PZZBN787";
       import "@scripts/lenisSmoothScroll.js";
     </script>
 
-    {/* === GOOGLE TAG MANAGER KODU (HEAD) BAŞLANGICI === */}
-    {gtmContainerId && (
-      <script is:inline define:vars={{ gtmContainerId }}>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer',gtmContainerId);
-      </script>
-    )}
-    {/* === GOOGLE TAG MANAGER KODU (HEAD) SONU === */}
-
   </head>
   <body
     class="bg-neutral-200 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-800"
   >
-    {/* === GOOGLE TAG MANAGER (NOSCRIPT) KODU (BODY BAŞLANGICI) === */}
-    {gtmContainerId && (
-      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    )}
-    {/* === /GOOGLE TAG MANAGER (NOSCRIPT) KODU === */}
-
     <div class="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
       <Navbar />
       <main>
@@ -150,8 +110,9 @@ const gtmContainerId = "GTM-PZZBN787";
       </main>
     </div>
 
+    {/* AnnouncementBanner hala var ama butonu SecondaryCTA.astro kullanıyor */}
     <AnnouncementBanner
-      btnId="floating-offer-button"
+      btnId="floating-offer-button" // Bu ID artık CSS tarafından kullanılmayacak
       btnTitle={buttonText}
       url={contactUrl}
     />
@@ -170,5 +131,22 @@ const gtmContainerId = "GTM-PZZBN787";
         scrollbar-width: none;
       }
     </style>
+
+    {/* === GOOGLE TAG MANAGER KODU (BODY SONU) BAŞLANGICI === */}
+    {gtmContainerId && (
+      <script async defer define:vars={{ gtmContainerId }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',gtmContainerId);
+      </script>
+    )}
+    {/* === GOOGLE TAG MANAGER (NOSCRIPT) KODU (BODY SONU) === */}
+    {gtmContainerId && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    )}
+    {/* === /GOOGLE TAG MANAGER KODU (BODY SONU) SONU === */}
+
   </body>
 </html>
