@@ -33,6 +33,114 @@ const gtmContainerId = "GTM-PZZBN787";
     <Meta meta={meta} structuredData={structuredData} />
     <title>{title}</title>
     
+    {/* KRİTİK CSS BAŞLANGICI - LCP ELEMENTİ İÇİN */}
+    <style is:inline>
+      /* Bu CSS, HeroSection'daki h1 başlığının ve container'ının hemen stilini sağlar. */
+      /* Eğer bu H1 dışında farklı LCP elementleriniz varsa, onların kritik stillerini de buraya eklemeniz gerekebilir. */
+      
+      /* HeroSection'ın genişliği ve hizalaması */
+      /* Bu stil tahmini olarak HeroSection'ın genişliğini ve merkezlemesini kontrol ediyor. */
+      /* HeroSection bileşeninizin iç yapısına göre bu stil değişebilir */
+      /* Önemli Not: Tailwind sınıfları derlendikten sonra bu hale gelir. */
+      /* Bu sınıfların gerçek CSS değerlerini öğrenmek için tarayıcının geliştirici araçlarını kullanmalısınız. */
+      /* Ancak şimdilik genel bir tahminle ekliyoruz. */
+      
+      /* .hero-section-container (HeroSection'ın dış div'i) */
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .max-w-\[85rem\] { /* Yaklaşık 1360px */
+        max-width: 85rem;
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .sm\:px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .lg\:px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .gap-8 {
+        gap: 2rem;
+      }
+      .grid-cols-1 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+      @media (min-width: 768px) {
+        .md\:grid-cols-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      
+      /* h1 başlığı için kritik stiller */
+      /* `block text-balance text-3xl font-bold tracking-tight text-neutral-800 dark:text-yellow-400` */
+      h1.block {
+        display: block;
+      }
+      h1.text-3xl {
+        font-size: 1.875rem; /* 30px */
+        line-height: 2.25rem; /* 36px */
+      }
+      h1.font-bold {
+        font-weight: 700;
+      }
+      h1.tracking-tight {
+        letter-spacing: -0.025em; /* -0.4px */
+      }
+      h1.text-neutral-800 {
+        color: #3b3b3b; /* Veya kullandığınız tam renk kodu */
+      }
+      @media (prefers-color-scheme: dark) {
+        h1.dark\:text-yellow-400 {
+          color: #facc15; /* Tailwind'in yellow-400 rengi */
+        }
+      }
+      
+      /* Eğer HeroSection içindeki span'in stilini de isterseniz */
+      .text-yellow-500 {
+        color: #eab308; /* Tailwind'in yellow-500 rengi */
+      }
+      @media (prefers-color-scheme: dark) {
+        .dark\:text-yellow-400 {
+          color: #facc15;
+        }
+      }
+
+      /* Sayfadaki genel gövde stilinin gecikmesini azaltmak için */
+      body.bg-neutral-200 {
+        background-color: #e5e7eb; /* tailwind neutral-200 */
+      }
+      @media (prefers-color-scheme: dark) {
+        body.dark\:bg-neutral-800 {
+          background-color: #3b3b3b; /* tailwind neutral-800 */
+        }
+      }
+
+      /* Genel HTML'in `scroll-pt-16` sınıfını da ekleyelim */
+      html.scroll-pt-16 {
+        scroll-padding-top: 4rem; /* 64px */
+      }
+      
+      /* Lenis ve scrollbar-hide için de başlangıç stilleri */
+      html.scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      html.scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+    </style>
+    {/* KRİTİK CSS BİTİŞİ */}
+    
     {/* Lenis smooth scroll scripti */}
     <script>
       import "@scripts/lenisSmoothScroll.js";
@@ -79,6 +187,8 @@ const gtmContainerId = "GTM-PZZBN787";
       import "preline/preline.js";
     </script>
     <style>
+      /* global.css'den gelen ve tüm site için geçerli olan diğer stiller */
+      /* Bu kısım mevcut haliyle kalmalı, çünkü diğer stiller hala global.css'den yüklenecek. */
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
       }
