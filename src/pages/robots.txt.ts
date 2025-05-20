@@ -18,7 +18,7 @@ Allow: /
 Crawl-delay: 2
 
 User-agent: *
-Disallow: /
+Allow: / # Buradaki Disallow: / satırını Allow: / olarak değiştirdik.
 
 Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
 `.trim();
