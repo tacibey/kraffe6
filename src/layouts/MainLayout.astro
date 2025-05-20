@@ -38,10 +38,10 @@ const gtmContainerId = "GTM-PZZBN787";
       /* Bu CSS, sitenizin en büyük içeriği olan ana başlığın rengini ve sayfa arka planını hemen sağlar. */
       /* Diğer tüm stiller global.css'den yüklenecektir. */
       
-      /* GENEL METİN RENKLERİ İÇİN KONTRAST DÜZELTMELERİ (KOYU MOD) */
+      /* GENEL METİN RENKLERİ İÇİN KONTRAST DÜZELTMELERİ */
       /* HTML etiketinde 'dark' sınıfı varsa, tüm metin renklerini okunabilir hale getiriyoruz */
 
-      /* text-neutral-800, text-neutral-700, text-neutral-600 gibi koyu gri metinleri sarı yap */
+      /* Koyu modda, .text-neutral-800, .text-neutral-700, .text-neutral-600 gibi koyu gri metinleri sarı yap */
       html.dark .text-neutral-800,
       html.dark .text-neutral-700,
       html.dark .text-neutral-600 {
@@ -71,6 +71,30 @@ const gtmContainerId = "GTM-PZZBN787";
       html:not(.dark) .dark\:text-neutral-200 { color: #3b3b3b; }
       html:not(.dark) .dark\:text-neutral-300 { color: #525252; }
       html:not(.dark) .dark\:text-neutral-400 { color: #737373; }
+
+      /* YENİ: SARI BUTON METİN RENGİ DÜZELTMESİ (Light ve Dark Modlar için) */
+      /* Sarı arka plana sahip butonların içindeki metinleri hedefleyelim. */
+      /* Genellikle .bg-yellow-400 veya .bg-yellow-500 gibi sınıflara sahip butonlar olacaktır. */
+      /* Bu butonların metinleri için text-neutral-800 veya text-neutral-900 gibi koyu renkler kullanmalıyız. */
+      
+      /* Eğer butonun kendisinde veya içindeki metinde bir .text-yellow-XXX sınıfı varsa */
+      .bg-yellow-400 .text-yellow-500, /* Buton bg-yellow-400 ve metin text-yellow-500 */
+      .bg-yellow-400 .dark\:text-yellow-400, /* Buton bg-yellow-400 ve metin dark:text-yellow-400 */
+      .bg-yellow-500 .text-yellow-500, /* Buton bg-yellow-500 ve metin text-yellow-500 */
+      .bg-yellow-500 .dark\:text-yellow-400 /* Buton bg-yellow-500 ve metin dark:text-yellow-400 */
+      {
+        color: #3b3b3b !important; /* Tailwind neutral-800 (Koyu gri) - Sarı üzerinde iyi okunur */
+      }
+
+      /* Ek olarak, sarı butonların içindeki diğer metin sınıfları için de (genel güvenlik) */
+      .bg-yellow-400 .text-neutral-800,
+      .bg-yellow-400 .text-neutral-700,
+      .bg-yellow-400 .text-neutral-600,
+      .bg-yellow-500 .text-neutral-800,
+      .bg-yellow-500 .text-neutral-700,
+      .bg-yellow-500 .text-neutral-600 {
+        color: #3b3b3b !important; /* Koyu gri (neutral-800) */
+      }
 
 
       /* SAYFA ARKA PLAN STİLLERİ */
