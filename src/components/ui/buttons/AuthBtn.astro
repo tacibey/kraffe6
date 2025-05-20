@@ -4,22 +4,22 @@ const { title } = Astro.props;
 
 // Define TypeScript interface for the properties
 interface Props {
-  title: string;
+  title: string;
 }
 // Define CSS classes for styling the button
 const baseClasses =
-  "inline-flex w-full items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-sm font-bold text-neutral-800 md:text-neutral-700 focus-visible:ring-3 outline-hidden transition duration-300";
+  "inline-flex w-full items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-sm font-bold text-neutral-900 focus-visible:ring-3 outline-hidden transition duration-300"; // text-neutral-900 olarak güncellendi
 const borderClasses = "border border-transparent";
 const bgColorClasses = "bg-yellow-400 dark:focus:outline-hidden";
 const hoverClasses = "hover:bg-yellow-500";
 const fontSizeClasses = "2xl:text-base";
 const disabledClasses = "disabled:pointer-events-none disabled:opacity-50";
-const ringClasses = "ring-zinc-500 dark:ring-zinc-200";
+const ringClasses = "ring-zinc-500 dark:ring-zinc-200"; // Buradaki ring-zinc-500 dark:ring-zinc-200, sarı odak halkası yerine çinko rengi veriyor. Eğer odak halkasının da sarı olmasını istersen, ring-yellow-500 olarak değiştirebiliriz.
+
 ---
 
-<!-- Styled submit button with dynamic title -->
 <button
-  type="submit"
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${fontSizeClasses} ${disabledClasses} ${ringClasses}`}
-  >{title}</button
+  type="submit"
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${fontSizeClasses} ${disabledClasses} ${ringClasses}`}
+  >{title}</button
 >
