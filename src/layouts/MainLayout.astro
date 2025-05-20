@@ -55,66 +55,61 @@ const gtmContainerId = "GTM-PZZBN787";
       }
 
       /* dark:text-neutral-200, dark:text-neutral-300, dark:text-neutral-400 gibi açık gri metinler */
-      /* Bu sınıflar zaten açık renk olması beklenir, ancak garanti için belirginleştirelim */
       html.dark .dark\:text-neutral-200 { color: #e5e7eb !important; } /* neutral-200 */
       html.dark .dark\:text-neutral-300 { color: #d4d4d4 !important; } /* neutral-300 */
       html.dark .dark\:text-neutral-400 { color: #a3a3a3 !important; } /* neutral-400 */
 
 
       /* LIGHT MODDAKİ VARSAYILAN RENKLER (Kontrast sorunları için) */
-      html:not(.dark) .text-neutral-800 { color: #3b3b3b; } /* Koyu gri */
-      html:not(.dark) .text-neutral-700 { color: #525252; } /* Orta koyu gri */
-      html:not(.dark) .text-neutral-600 { color: #737373; } /* Orta gri */
-      html:not(.dark) .text-yellow-500 { color: #eab308; } /* Sarı */
-      /* Light modda dark: sınıflarının bir etkisi olmamalı, güvenlik için tanımlama */
+      html:not(.dark) .text-neutral-800 { color: #3b3b3b; }
+      html:not(.dark) .text-neutral-700 { color: #525252; }
+      html:not(.dark) .text-neutral-600 { color: #737373; }
+      html:not(.dark) .text-yellow-500 { color: #eab308; }
       html:not(.dark) .dark\:text-yellow-400 { color: #eab308; }
       html:not(.dark) .dark\:text-neutral-200 { color: #3b3b3b; }
       html:not(.dark) .dark\:text-neutral-300 { color: #525252; }
       html:not(.dark) .dark\:text-neutral-400 { color: #737373; }
 
-      /* YENİ: SARI BUTON METİN RENGİ DÜZELTMESİ (Light ve Dark Modlar için) */
-      /* Sarı arka plana sahip butonların içindeki metinleri hedefleyelim. */
-      /* Genellikle .bg-yellow-400 veya .bg-yellow-500 gibi sınıflara sahip butonlar olacaktır. */
-      /* Bu butonların metinleri için text-neutral-800 veya text-neutral-900 gibi koyu renkler kullanmalıyız. */
+      /* YENİ VE DAHA AGRESİF: SARI BUTON METİN RENGİ DÜZELTMESİ */
+      /* .bg-yellow-400 veya .bg-yellow-500 sınıflarına sahip herhangi bir elementin
+         içindeki herhangi bir metin elementini (.text-neutral-XXX, .text-yellow-XXX, vb.)
+         veya doğrudan link/span elementini hedefliyoruz. */
       
-      /* Eğer butonun kendisinde veya içindeki metinde bir .text-yellow-XXX sınıfı varsa */
-      .bg-yellow-400 .text-yellow-500, /* Buton bg-yellow-400 ve metin text-yellow-500 */
-      .bg-yellow-400 .dark\:text-yellow-400, /* Buton bg-yellow-400 ve metin dark:text-yellow-400 */
-      .bg-yellow-500 .text-yellow-500, /* Buton bg-yellow-500 ve metin text-yellow-500 */
-      .bg-yellow-500 .dark\:text-yellow-400 /* Buton bg-yellow-500 ve metin dark:text-yellow-400 */
-      {
-        color: #3b3b3b !important; /* Tailwind neutral-800 (Koyu gri) - Sarı üzerinde iyi okunur */
+      .bg-yellow-400 *,
+      .bg-yellow-400,
+      .bg-yellow-500 *,
+      .bg-yellow-500 {
+        color: #3b3b3b !important; /* Tailwind neutral-800 (Koyu gri) */
       }
-
-      /* Ek olarak, sarı butonların içindeki diğer metin sınıfları için de (genel güvenlik) */
-      .bg-yellow-400 .text-neutral-800,
-      .bg-yellow-400 .text-neutral-700,
-      .bg-yellow-400 .text-neutral-600,
-      .bg-yellow-500 .text-neutral-800,
-      .bg-yellow-500 .text-neutral-700,
-      .bg-yellow-500 .text-neutral-600 {
-        color: #3b3b3b !important; /* Koyu gri (neutral-800) */
+      /* Butonun hover/focus durumları için de geçerli olsun */
+      .bg-yellow-400:hover *,
+      .bg-yellow-400:hover,
+      .bg-yellow-500:hover *,
+      .bg-yellow-500:hover {
+        color: #3b3b3b !important; /* Koyu gri */
+      }
+      /* Eğer buton link ise */
+      .bg-yellow-400 a,
+      .bg-yellow-500 a {
+        color: #3b3b3b !important; /* Koyu gri */
       }
 
 
       /* SAYFA ARKA PLAN STİLLERİ */
       body.bg-neutral-200 { background-color: #e5e7eb; } /* Light modda açık gri */
       html.dark body.dark\:bg-neutral-800 { background-color: #3b3b3b; } /* Koyu modda koyu gri */
-      /* Eğer html class="dark" ise ve body'de dark:bg-neutral-800 varsa,
-         body'nin varsayılan arka planı da anında uygulanmalı */
       html.dark body { background-color: #3b3b3b; }
 
 
       /* KRİTİK LCP ELEMENTİ (H1) STİLLERİ */
-      /* Pagespeed raporunda belirtilen LCP elementi H1 için temel stiller */
       h1.block { display: block; }
-      h1.text-balance { text-wrap: balance; } /* Metin dengesi için */
-      h1.text-3xl { font-size: 1.875rem; line-height: 2.25rem; } /* 30px / 36px */
+      h1.text-balance { text-wrap: balance; }
+      h1.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
       h1.font-bold { font-weight: 700; }
-      h1.tracking-tight { letter-spacing: -0.025em; } /* -0.4px */
+      h1.tracking-tight { letter-spacing: -0.025em; }
 
       /* Gerekli diğer temel HTML stilleri */
-      html.scroll-pt-16 { scroll-padding-top: 4rem; /* 64px */ }
+      html.scroll-pt-16 { scroll-padding-top: 4rem; }
       html.scrollbar-hide::-webkit-scrollbar { display: none; }
       html.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -167,9 +162,6 @@ const gtmContainerId = "GTM-PZZBN787";
       import "preline/preline.js";
     </script>
     <style>
-      /* Bu stil bloğu, `global.css` içindeki .scrollbar-hide'ı geçersiz kılabilir. */
-      /* Yukarıdaki kritik CSS'te zaten bu stiller olduğu için burası tekrardır ve kaldırılabilir. */
-      /* Ancak şimdilik mevcut yapıyı koruyalım. */
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
       }
