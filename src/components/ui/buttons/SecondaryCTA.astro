@@ -6,13 +6,14 @@ const { title, url } = Astro.props;
 
 // Prop tiplerini tanımla
 interface Props {
-  title?: string;
-  url?: string;
+  title?: string;
+  url?: string;
 }
 
 // Orijinal yapıya dayalı, renkleri değiştirilmiş CSS sınıfları
+// **ÖNEMLİ: METİN RENGİ BURADA KOYU NÖTRAL-900 OLARAK ZORLANDI**
 const baseClasses =
-  "inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-sm font-medium text-neutral-800 shadow-xs outline-hidden ring-yellow-500 focus-visible:ring-3 transition duration-300"; // Metin rengi koyu gri (text-neutral-800), focus halkası sarı (ring-yellow-500)
+  "inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-sm font-medium text-neutral-900 shadow-xs outline-hidden ring-yellow-500 focus-visible:ring-3 transition duration-300"; // Metin rengi koyu gri (text-neutral-900), focus halkası sarı (ring-yellow-500)
 const borderClasses = "border border-transparent"; // Kenarlık şeffaf yapıldı (sarı arka plan için)
 const bgColorClasses = "bg-yellow-400"; // Arka plan sarı yapıldı
 const hoverClasses = "hover:bg-yellow-500 active:bg-yellow-500"; // Hover/active için biraz daha koyu sarı, metin rengi hover'da değişmiyor
@@ -20,14 +21,14 @@ const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
 const fontSizeClasses = "2xl:text-base";
 const ringClasses = "dark:ring-yellow-500"; // Dark mode focus halkası da sarı
 
+// **ÖNEMLİ: KOYU MODDA DA METİNİ KOYU NÖTRAL-900 OLARAK ZORLADIK**
 const darkClasses =
-  "dark:text-neutral-800 dark:focus:outline-none"; // Koyu modda da metin koyu gri (sarı arka plan üzerinde), özel dark:bg kaldırıldı (bg-yellow-400 kullanılacak), dark:hover kaldırıldı (hover:bg-yellow-500 kullanılacak)
+  "dark:text-neutral-900 dark:focus:outline-none"; // Koyu modda da metin koyu gri (sarı arka plan üzerinde), özel dark:bg kaldırıldı (bg-yellow-400 kullanılacak), dark:hover kaldırıldı (hover:bg-yellow-500 kullanılacak)
 ---
 
-<!-- Arka planı sarı, metni koyu gri olan link butonu -->
 <a
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses}`}
-  href={url}
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses}`}
+  href={url}
 >
-  {title}
+  {title}
 </a>
