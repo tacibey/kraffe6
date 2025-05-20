@@ -5,7 +5,7 @@ import Meta from "@components/Meta.astro";
 import Navbar from "@components/sections/navbar&footer/Navbar.astro";
 import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
 import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
-import { SITE } from "@data/constants";
+import { SITE } = "@data/constants";
 import "@styles/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -33,53 +33,41 @@ const gtmContainerId = "GTM-PZZBN787";
     <Meta meta={meta} structuredData={structuredData} />
     <title>{title}</title>
     
-    {/* KRİTİK CSS BAŞLANGICI - YALNIZCA LCP METİN VE TEMEL GÖRSEL STİLLERİ */}
+    {/* KRİTİK CSS BAŞLANGICI - LCP METİN RENGİ VE TEMEL BODY STİLLERİ */}
     <style is:inline>
-      /* Bu CSS, HeroSection'daki h1 başlığının ve sayfanın temel gövdesinin hemen stilini sağlar. */
+      /* Bu CSS, sitenizin en büyük içeriği olan ana başlığın rengini ve sayfa arka planını hemen sağlar. */
+      /* Diğer tüm stiller global.css'den yüklenecektir. */
       
-      /* h1 başlığı için kritik stiller */
-      /* `block text-balance text-3xl font-bold tracking-tight text-neutral-800 dark:text-yellow-400` */
-      h1.block {
-        display: block;
-      }
-      h1.text-3xl {
-        font-size: 1.875rem; /* 30px */
-        line-height: 2.25rem; /* 36px */
-      }
-      h1.font-bold {
-        font-weight: 700;
-      }
-      h1.tracking-tight {
-        letter-spacing: -0.025em; /* -0.4px */
-      }
-      /* H1 Başlık Rengi Düzeltmesi */
-      /* Eğer HTML'de 'dark' sınıfı yoksa (yani light modda), metin koyu gri olsun. */
-      html:not(.dark) h1.text-neutral-800 {
-        color: #3b3b3b; /* Koyu gri */
-      }
-      /* HTML etiketinde 'dark' sınıfı varsa, metin kesinlikle sarı olsun. */
-      html.dark h1.dark\:text-yellow-400,
-      html.dark h1.text-neutral-800 { /* !ÖNEMLİ: Bu satır eklendi! */
-        color: #facc15 !important; /* Tailwind'in yellow-400 rengi, !important ile öncelik veriyoruz */
+      /* H1 başlığı ve diğer olası LCP metinleri için renk düzeltmeleri */
+      /* Siteniz varsayılan olarak koyu modda başladığı için, metinlerin görünür olmasını sağlıyoruz. */
+      /* Eğer bir element .text-neutral-800 sınıfına sahipse (koyu gri), koyu modda sarı olsun. */
+      /* Bu, ana sayfadaki H1'i ve diğer sayfalardaki muhtemel başlıkları hedef alır. */
+      html.dark .text-neutral-800 {
+        color: #facc15 !important; /* Tailwind yellow-400 rengi, !important ile yüksek öncelik */
       }
       
-      /* HeroSection içindeki span'in stilini de isterseniz */
-      /* Normal (light) modda span rengi */
-      html:not(.dark) .text-yellow-500 {
-        color: #eab308; /* Tailwind'in yellow-500 rengi */
-      }
-      /* span için dark mod rengi, html.dark sınıfına bağlı */
+      /* Eğer .text-yellow-500 veya .dark\:text-yellow-400 sınıfları kullanılıyorsa, bunlar da sarı olsun. */
+      /* Bu, H1 içindeki SPAN elementi gibi durumlarda faydalıdır. */
+      html.dark .text-yellow-500,
       html.dark .dark\:text-yellow-400 {
-        color: #facc15 !important; /* !important ile öncelik veriyoruz */
+        color: #facc15 !important; /* Tailwind yellow-400 rengi */
       }
 
+      /* Light moddaki varsayılan text-neutral-800 rengini de belirtelim, çakışmayı önlemek için */
+      html:not(.dark) .text-neutral-800 {
+        color: #3b3b3b; /* Koyu gri, light modda arka planla kontrast sağlamalı */
+      }
+      html:not(.dark) .text-yellow-500 {
+        color: #eab308; /* Tailwind yellow-500 rengi, light modda */
+      }
+      
       /* Sayfadaki genel gövde stilinin gecikmesini azaltmak için */
       body.bg-neutral-200 {
-        background-color: #e5e7eb; /* Tailwind neutral-200 */
+        background-color: #e5e7eb; /* Tailwind neutral-200 (açık gri) */
       }
       @media (prefers-color-scheme: dark) {
         body.dark\:bg-neutral-800 {
-          background-color: #3b3b3b; /* Tailwind neutral-800 */
+          background-color: #3b3b3b; /* Tailwind neutral-800 (koyu gri) */
         }
       }
 
@@ -96,6 +84,12 @@ const gtmContainerId = "GTM-PZZBN787";
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
+      /* Ekstra kritik H1 metin stilleri (boyut, kalınlık, aralık) - bunlar genellikle güvenlidir */
+      h1.block { display: block; }
+      h1.text-3xl { font-size: 1.875rem; line-height: 2.25rem; } /* 30px / 36px */
+      h1.font-bold { font-weight: 700; }
+      h1.tracking-tight { letter-spacing: -0.025em; } /* -0.4px */
 
     </style>
     {/* KRİTİK CSS BİTİŞİ */}
