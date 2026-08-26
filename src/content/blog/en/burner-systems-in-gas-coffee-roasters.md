@@ -4,7 +4,7 @@ description: "Learn how burner systems affect heat transfer, roast control, airf
 author: "Kraffe Team"
 authorImage: "@/images/blog/polat.jpeg"
 authorImageAlt: "Kraffe Technics Team Avatar"
-pubDate: 2026-07-14
+pubDate: 2026-08-26
 cardImage: "@/images/blog/yellow roaster.jpg"
 cardImageAlt: "6kg batch yellow roasting machine"
 readTime: 8
