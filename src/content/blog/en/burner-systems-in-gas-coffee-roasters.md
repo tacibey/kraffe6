@@ -24,6 +24,7 @@ But the real question should be:
 Because in gas-powered machines, the burner is the heart of the entire heat transfer system.
 
 To understand how everything works together, it helps to first look at 
+
 👉 [**How Professional Coffee Roasters Are Engineered?**](https://krafferoasters.com/blog/how-professional-coffee-roasters-are-engineered/)
 
 The burner does not work alone.
