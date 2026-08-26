@@ -110,7 +110,7 @@ The burner directly influences all three heat transfer mechanisms:
 * Convection (via heated airflow)
 * Radiation (via flame and hot metal emission)
 
-If you haven’t yet, read our detailed explanation of [heat transfer in coffee roasting](/blog/heat-transfer-in-coffee-roasting) to understand how these mechanisms interact.
+If you haven’t yet, read our detailed explanation of [**heat transfer in coffee roasting**](https://krafferoasters.com/blog/heat-transfer-in-coffee-roasting/) to understand how these mechanisms interact.
 
 A well-designed burner system ensures:
 
