@@ -83,6 +83,12 @@ const thankYouMainSubTitle: string = "Thank you for your interest in Kraffe Roas
 // === /SAYFA BAŞLIĞI VE İÇERİK ===
 ---
 
+<script is:inline>
+  if (window.location.search) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+</script>
+
 <MainLayout
   title={pageTitle}
   structuredData={{
@@ -107,14 +113,6 @@ const thankYouMainSubTitle: string = "Thank you for your interest in Kraffe Roas
     subTitle={thankYouMainSubTitle}
     btnExists={false} {/* Teşekkür sayfasında butona gerek yok */}
   />
-
-  {/* 
-    Aşağıdaki bölümler (articles ve FeaturesStats) "About Us" sayfasından alındı.
-    Teşekkür sayfanızda bu kadar detaylı bilgiye ihtiyaç duymayabilirsiniz.
-    Eğer bu bölümleri teşekkür sayfasında göstermek istemiyorsanız, 
-    aşağıdaki `{articles.map...}` ve `<FeaturesStats... />` bloklarını silebilirsiniz.
-    Sadece basit bir teşekkür mesajı yeterliyse, sadece yukarıdaki <MainSection /> kalabilir.
-  */}
 
   {/* İçerik Bölümleri ("About Us" sayfasından) */}
   {
