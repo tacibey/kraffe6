@@ -37,9 +37,6 @@ export default defineConfig({
     }),
     mdx()
   ],
-  experimental: {
-    clientPrerender: true,
-  },
   vite: {
     plugins: [tailwindcss()],
   },
