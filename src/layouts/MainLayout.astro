@@ -66,9 +66,9 @@ const buttonText = currentLang === 'fr' ? 'Obtenir une offre' : 'Get Offer';
       html.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
     
-    <script is:inline>
+    <script>
       if (window.matchMedia("(min-width: 1024px)").matches) {
-        import("/scripts/lenisSmoothScroll.js");
+        import("../scripts/lenisSmoothScroll.js");
       }
     </script>
   </head>
